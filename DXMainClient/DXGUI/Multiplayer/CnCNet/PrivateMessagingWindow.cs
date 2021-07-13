@@ -22,13 +22,20 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
         private const int FRIEND_LIST_VIEW_INDEX = 1;
 
         private CnCNetUserData cncnetUserData;
+        private readonly PrivateMessageHandler privateMessageHandler;
 
-        public PrivateMessagingWindow(WindowManager windowManager,
-            CnCNetManager connectionManager, GameCollection gameCollection, CnCNetUserData cncnetUserData) : base(windowManager)
+        public PrivateMessagingWindow(
+            WindowManager windowManager,
+            CnCNetManager connectionManager, 
+            GameCollection gameCollection, 
+            CnCNetUserData cncnetUserData,
+            PrivateMessageHandler privateMessageHandler
+        ) : base(windowManager)
         {
             this.gameCollection = gameCollection;
             this.connectionManager = connectionManager;
             this.cncnetUserData = cncnetUserData;
+            this.privateMessageHandler = privateMessageHandler;
         }
 
         private XNALabel lblPrivateMessaging;
@@ -113,9 +120,9 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
             tabControl.ClientRectangle = new Rectangle(60, 50, 0, 0);
             tabControl.ClickSound = new EnhancedSoundEffect("button.wav");
             tabControl.FontIndex = 1;
-            tabControl.AddTab("Messages", 160);
-            tabControl.AddTab("Friend List", 160);
-            tabControl.AddTab("All Players", 160);
+            tabControl.AddTab("Messages", UIDesignConstants.BUTTON_WIDTH_160);
+            tabControl.AddTab("Friend List", UIDesignConstants.BUTTON_WIDTH_160);
+            tabControl.AddTab("All Players", UIDesignConstants.BUTTON_WIDTH_160);
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
             lblPlayers = new XNALabel(WindowManager);
@@ -187,7 +194,7 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
 
             tabControl.SelectedTab = 0;
 
-            connectionManager.PrivateMessageReceived += ConnectionManager_PrivateMessageReceived;
+            privateMessageHandler.PrivateMessageReceived += PrivateMessageHandler_PrivateMessageReceived;
             connectionManager.UserAdded += ConnectionManager_UserAdded;
             connectionManager.UserRemoved += ConnectionManager_UserRemoved;
             connectionManager.UserGameIndexUpdated += ConnectionManager_UserGameIndexUpdated;
@@ -451,26 +458,13 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
             }
         }
 
-        private void ConnectionManager_PrivateMessageReceived(object sender, PrivateMessageEventArgs e)
+        private void PrivateMessageHandler_PrivateMessageReceived(object sender, PrivateMessageEventArgs e)
         {
             PrivateMessageUser pmUser = privateMessageUsers.Find(u => u.IrcUser.Name == e.Sender);
-            IRCUser iu = connectionManager.UserList.Find(u => u.Name == e.Sender);
-
-            // We don't accept PMs from people who we don't share any channels with
-            if (iu == null)
-            {
-                return;
-            }
-
-            // Messages from users we've blocked are not wanted
-            if (cncnetUserData.IsIgnored(iu.Ident))
-            {
-                return;
-            }
 
             if (pmUser == null)
             {
-                pmUser = new PrivateMessageUser(iu);
+                pmUser = new PrivateMessageUser(e.ircUser);
                 privateMessageUsers.Add(pmUser);
 
                 if (tabControl.SelectedTab == 0)
@@ -531,7 +525,11 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
 
         private void ShowNotification(IRCUser ircUser, string message)
         {
-            notificationBox.Show(GetUserTexture(ircUser), ircUser.Name, message);
+            if (!UserINISettings.Instance.DisablePrivateMessagePopups)
+                notificationBox.Show(GetUserTexture(ircUser), ircUser.Name, message);
+            else 
+                privateMessageHandler.IncrementUnreadMessageCount();
+            
             if (sndPrivateMessageSound != null)
                 sndPrivateMessageSound.Play();
         }
@@ -730,6 +728,7 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
             notificationBox.Hide();
 
             WindowManager.SelectedControl = null;
+            privateMessageHandler.ResetUnreadMessageCount();
 
             if (Visible)
             {

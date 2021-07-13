@@ -92,14 +92,14 @@ namespace DTAClient.DXGUI.Generic
             var cncnetUserData = new CnCNetUserData(WindowManager);
             var cncnetManager = new CnCNetManager(WindowManager, gameCollection);
             var tunnelHandler = new TunnelHandler(WindowManager, cncnetManager);
+            var privateMessageHandler = new PrivateMessageHandler(cncnetManager, cncnetUserData);
             
-
-            var topBar = new TopBar(WindowManager, cncnetManager);
+            var topBar = new TopBar(WindowManager, cncnetManager, privateMessageHandler);
 
             var optionsWindow = new OptionsWindow(WindowManager, gameCollection, topBar);
 
             var pmWindow = new PrivateMessagingWindow(WindowManager,
-                cncnetManager, gameCollection, cncnetUserData);
+                cncnetManager, gameCollection, cncnetUserData, privateMessageHandler);
             privateMessagingPanel = new PrivateMessagingPanel(WindowManager);
 
             var cncnetGameLobby = new CnCNetGameLobby(WindowManager,
@@ -108,7 +108,7 @@ namespace DTAClient.DXGUI.Generic
                 topBar, cncnetManager, tunnelHandler, mapLoader.GameModes, gameCollection, discordHandler);
             var cncnetLobby = new CnCNetLobby(WindowManager, cncnetManager, 
                 cncnetGameLobby, cncnetGameLoadingLobby, topBar, pmWindow, tunnelHandler,
-                gameCollection, cncnetUserData);
+                gameCollection, cncnetUserData, optionsWindow);
             var gipw = new GameInProgressWindow(WindowManager);
 
             var skirmishLobby = new SkirmishLobby(WindowManager, topBar, mapLoader.GameModes, discordHandler);
