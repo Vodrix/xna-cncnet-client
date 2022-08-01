@@ -25,18 +25,7 @@ namespace ClientCore
 
         public const string QRES_EXECUTABLE = "qres.dat";
 
-<<<<<<< Updated upstream
-        public const string CNCNET_PROTOCOL_REVISION = "R9";
-        public const string LAN_PROTOCOL_REVISION = "RL6";
-        public const int LAN_PORT = 1234;
-        public const int LAN_INGAME_PORT = 1234;
-        public const int LAN_LOBBY_PORT = 1232;
-        public const int LAN_GAME_LOBBY_PORT = 1233;
-        public const char LAN_DATA_SEPARATOR = (char)01;
-        public const char LAN_MESSAGE_SEPARATOR = (char)02;
-=======
         public const string EASTEREGG = "1018";
->>>>>>> Stashed changes
 
         public const string SPAWNMAP_INI = "spawnmap.ini";
         public const string SPAWNER_SETTINGS = "spawn.ini";
@@ -75,24 +64,5 @@ namespace ClientCore
         {
             return GamePath + BASE_RESOURCE_PATH;
         }
-<<<<<<< Updated upstream
-
-        public const string GAME_INVITE_CTCP_COMMAND = "INVITE";
-        public const string GAME_INVITATION_FAILED_CTCP_COMMAND = "INVITATION_FAILED";
-
-        public static string GetAILevelName(int aiLevel)
-        {
-            if (aiLevel > 0 && aiLevel < AI_PLAYER_NAMES.Count)
-                return AI_PLAYER_NAMES[aiLevel];
-
-            return "";
-        }
-
-        public static readonly List<string> TEAMS = new List<string> { "A", "B", "C", "D" };
-
-        // Static fields might be initialized before the translation file is loaded. Change to readonly properties here.
-        public static List<string> AI_PLAYER_NAMES => new List<string> { "Easy AI".L10N("UI:Main:EasyAIName"), "Medium AI".L10N("UI:Main:MediumAIName"), "Hard AI".L10N("UI:Main:HardAIName") };
-=======
->>>>>>> Stashed changes
     }
 }

@@ -1,29 +1,23 @@
 ﻿using ClientCore;
 using ClientCore.INIProcessing;
 using DTAClient.Domain;
-<<<<<<< Updated upstream
 using ClientCore;
 using Rampastring.Tools;
 using DTAClient.DXGUI;
 using ClientUpdater;
 using System.Security.Principal;
 using System.DirectoryServices;
-=======
 using DTAClient.DXGUI;
 using Microsoft.Win32;
 using Rampastring.Tools;
 using System;
 using System.IO;
->>>>>>> Stashed changes
 using System.Linq;
 using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
-<<<<<<< Updated upstream
 using System.Globalization;
-=======
 using Updater;
->>>>>>> Stashed changes
 
 namespace DTAClient
 {
@@ -301,58 +295,6 @@ namespace DTAClient
         /// <summary>
         /// Generate an ID for online play.
         /// </summary>
-<<<<<<< Updated upstream
-        private static void GenerateOnlineId()
-        {
-            try
-            {
-                ManagementObjectCollection mbsList = null;
-                ManagementObjectSearcher mbs = new ManagementObjectSearcher("Select * From Win32_processor");
-                mbsList = mbs.Get();
-                string cpuid = "";
-                foreach (ManagementObject mo in mbsList)
-                {
-                    cpuid = mo["ProcessorID"].ToString();
-                }
-
-                ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
-                var moc = mos.Get();
-                string mbid = "";
-                foreach (ManagementObject mo in moc)
-                {
-                    mbid = (string)mo["SerialNumber"];
-                }
-
-                string sid = new SecurityIdentifier((byte[])new DirectoryEntry(string.Format("WinNT://{0},Computer", Environment.MachineName)).Children.Cast<DirectoryEntry>().First().InvokeGet("objectSID"), 0).AccountDomainSid.Value;
-
-                Connection.SetId(cpuid + mbid + sid);
-                Registry.CurrentUser.CreateSubKey("SOFTWARE\\" + ClientConfiguration.Instance.InstallationPathRegKey).SetValue("Ident", cpuid + mbid + sid);
-            }
-            catch (Exception)
-            {
-                Random rn = new Random();
-
-                RegistryKey key;
-                key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\" + ClientConfiguration.Instance.InstallationPathRegKey);
-                string str = rn.Next(Int32.MaxValue - 1).ToString();
-
-                try
-                {
-                    Object o = key.GetValue("Ident");
-                    if (o == null)
-                    {
-                        key.SetValue("Ident", str);
-                    }
-                    else
-                        str = o.ToString();
-                }
-                catch { }
-
-                key.Close();
-                Connection.SetId(str);
-            }
-        }
-=======
        //private static void GenerateOnlineId()
        //{
        //    try
@@ -403,7 +345,6 @@ namespace DTAClient
        //        Connection.SetId(str);
        //    }
        //}
->>>>>>> Stashed changes
 
         /// <summary>
         /// Writes the game installation path to the Windows registry.

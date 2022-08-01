@@ -7,12 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
-<<<<<<< Updated upstream
-using System.Collections.Generic;
-using Localization;
-=======
 using System.Windows.Forms;
->>>>>>> Stashed changes
 
 namespace DTAClient
 {

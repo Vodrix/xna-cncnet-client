@@ -36,19 +36,6 @@ namespace DTAConfig
             ClientRectangle = new Rectangle(0, 0, 576, 475);
             BackgroundTexture = AssetLoader.LoadTextureUncached("optionsbg.png");
 
-<<<<<<< Updated upstream
-            tabControl = new XNAClientTabControl(WindowManager);
-            tabControl.Name = "tabControl";
-            tabControl.ClientRectangle = new Rectangle(12, 12, 0, 23);
-            tabControl.FontIndex = 1;
-            tabControl.ClickSound = new EnhancedSoundEffect("button.wav");
-            tabControl.AddTab("Display".L10N("UI:DTAConfig:TabDisplay"), UIDesignConstants.BUTTON_WIDTH_92);
-            tabControl.AddTab("Audio".L10N("UI:DTAConfig:TabAudio"), UIDesignConstants.BUTTON_WIDTH_92);
-            tabControl.AddTab("Game".L10N("UI:DTAConfig:TabGame"), UIDesignConstants.BUTTON_WIDTH_92);
-            tabControl.AddTab("CnCNet".L10N("UI:DTAConfig:TabCnCNet"), UIDesignConstants.BUTTON_WIDTH_92);
-            tabControl.AddTab("Updater".L10N("UI:DTAConfig:TabUpdater"), UIDesignConstants.BUTTON_WIDTH_92);
-            tabControl.AddTab("Components".L10N("UI:DTAConfig:TabComponents"), UIDesignConstants.BUTTON_WIDTH_92);
-=======
             tabControl = new XNAClientTabControl(WindowManager)
             {
                 Name = "tabControl",
@@ -56,7 +43,6 @@ namespace DTAConfig
                 FontIndex = 1,
                 ClickSound = new EnhancedSoundEffect("button.wav")
             };
->>>>>>> Stashed changes
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             tabControl.AddTab("Display", 138);
             tabControl.AddTab("Audio", 138);
@@ -113,16 +99,11 @@ namespace DTAConfig
             {
                 tabControl.MakeUnselectable(3);
             }
-<<<<<<< Updated upstream
-            else if (Updater.CustomComponents == null || Updater.CustomComponents.Count < 1)
-                tabControl.MakeUnselectable(5);
-=======
 
             //else
             //{
             //
             //}
->>>>>>> Stashed changes
 
             foreach (var panel in optionsPanels)
             {

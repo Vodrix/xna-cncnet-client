@@ -154,15 +154,6 @@ namespace DTAConfig.OptionPanels
             chkMainMenuMusic.Text = "Main menu music".L10N("UI:DTAConfig:MainMenuMusic");
             chkMainMenuMusic.CheckedChanged += ChkMainMenuMusic_CheckedChanged;
 
-<<<<<<< Updated upstream
-            chkStopMusicOnMenu = new XNAClientCheckBox(WindowManager);
-            chkStopMusicOnMenu.Name = "chkStopMusicOnMenu";
-            chkStopMusicOnMenu.ClientRectangle = new Rectangle(
-                lblScoreVolume.X, chkMainMenuMusic.Bottom + 24, 0, 0);
-            chkStopMusicOnMenu.Text = "Don't play main menu music in lobbies".L10N("UI:DTAConfig:NoLobbiesMusic");
-
-=======
->>>>>>> Stashed changes
             AddChild(lblScoreVolume);
             AddChild(lblScoreVolumeValue);
             AddChild(trbScoreVolume);

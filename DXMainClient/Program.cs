@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
-<<<<<<< Updated upstream
-using System.Collections.Generic;
 using Localization;
-=======
-using System.Windows.Forms;
->>>>>>> Stashed changes
 
 namespace DTAClient
 {

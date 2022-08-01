@@ -199,29 +199,11 @@ namespace DTAClient.DXGUI
             else
             {
                 if (!wm.InitGraphicsMode(1024, 600, false))
-                    throw new GraphicsModeInitializationException("Setting default graphics mode failed!".L10N("UI:Main:SettingDefaultGraphicModeFailed"));
+                    throw new GraphicsModeInitializationException("Setting default graphics mode failed!");
             }
 
             int renderResolutionX = 0;
             int renderResolutionY = 0;
-<<<<<<< Updated upstream
-
-            int initialXRes = Math.Max(windowWidth, clientConfiguration.MinimumRenderWidth);
-            initialXRes = Math.Min(initialXRes, clientConfiguration.MaximumRenderWidth);
-
-            int initialYRes = Math.Max(windowHeight, clientConfiguration.MinimumRenderHeight);
-            initialYRes = Math.Min(initialYRes, clientConfiguration.MaximumRenderHeight);
-
-            double xRatio = (windowWidth) / (double)initialXRes;
-            double yRatio = (windowHeight) / (double)initialYRes;
-
-            double ratio = xRatio > yRatio ? yRatio : xRatio;
-
-            if ((windowWidth == 1366 || windowWidth == 1360) && windowHeight == 768)
-            {
-                renderResolutionX = windowWidth;
-                renderResolutionY = windowHeight;
-=======
 
             int initialXRes = Math.Max(windowWidth, clientConfiguration.MinimumRenderWidth);
             initialXRes = Math.Min(initialXRes, clientConfiguration.MaximumRenderWidth);
@@ -241,7 +223,6 @@ namespace DTAClient.DXGUI
             else
             {
                 ratio = xRatio;
->>>>>>> Stashed changes
             }
 
             if (ratio > 1.0)

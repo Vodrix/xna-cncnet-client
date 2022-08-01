@@ -1,9 +1,6 @@
 ﻿using ClientGUI;
-<<<<<<< Updated upstream
 using DTAConfig.Settings;
-=======
 using DTAConfig.CustomSettings;
->>>>>>> Stashed changes
 
 namespace DTAConfig
 {

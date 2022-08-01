@@ -1,10 +1,7 @@
 ﻿using ClientCore;
 using ClientGUI;
-<<<<<<< Updated upstream
 using DTAClient.Domain;
 using Localization;
-=======
->>>>>>> Stashed changes
 using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;

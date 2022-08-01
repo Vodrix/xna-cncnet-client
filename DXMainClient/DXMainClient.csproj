@@ -465,12 +465,7 @@
     <Compile Include="Domain\SavedGame.cs" />
     <Compile Include="Domain\MainClientConstants.cs" />
     <Compile Include="Domain\UserAgentHandler.cs" />
-<<<<<<< Updated upstream
-    <Compile Include="DXGUI\Generic\CampaignSelector.cs" />
-    <Compile Include="DXGUI\Generic\ManualUpdateQueryWindow.cs" />
-=======
     <Compile Include="DXGUI\Generic\CreditsWindow.cs" />
->>>>>>> Stashed changes
     <Compile Include="DXGUI\Generic\PrivacyNotification.cs" />
     <Compile Include="DXGUI\Generic\ManualUpdateQueryWindow.cs" />
     <Compile Include="DXGUI\Generic\TopBar.cs" />

@@ -8,11 +8,6 @@ using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using System.Threading.Tasks;
 using Rampastring.Tools;
-<<<<<<< Updated upstream
-using ClientUpdater;
-using SkirmishLobby = DTAClient.DXGUI.Multiplayer.GameLobby.SkirmishLobby;
-=======
->>>>>>> Stashed changes
 
 namespace DTAClient.DXGUI.Generic
 {
@@ -45,7 +40,6 @@ namespace DTAClient.DXGUI.Generic
                 Cursor.Visible = false;
                 visibleSpriteCursor = true;
             }
-<<<<<<< Updated upstream
         }
 
         private void InitUpdater()
@@ -59,25 +53,19 @@ namespace DTAClient.DXGUI.Generic
             Logger.Log($"Game Client Version: {ClientConfiguration.Instance.LocalGame} {Updater.GameVersion}");
             Updater.OnLocalFileVersionsChecked -= LogGameClientVersion;
         }
-=======
->>>>>>> Stashed changes
 
             Finish();
         }
 
         private void Finish()
         {
-<<<<<<< Updated upstream
             ProgramConstants.GAME_VERSION = ClientConfiguration.Instance.ModMode ? 
                 "N/A" : Updater.GameVersion;
-=======
->>>>>>> Stashed changes
 
             DiscordHandler discordHandler = null;
             if (!string.IsNullOrEmpty(ClientConfiguration.Instance.DiscordAppId))
                 discordHandler = new DiscordHandler(WindowManager);
 
-<<<<<<< Updated upstream
             ClientGUICreator.Instance.AddControl(typeof(GameLobbyCheckBox));
             ClientGUICreator.Instance.AddControl(typeof(GameLobbyDropDown));
             ClientGUICreator.Instance.AddControl(typeof(MapPreviewBox));
@@ -85,14 +73,10 @@ namespace DTAClient.DXGUI.Generic
             ClientGUICreator.Instance.AddControl(typeof(ChatListBox));
             ClientGUICreator.Instance.AddControl(typeof(XNAChatTextBox));
             ClientGUICreator.Instance.AddControl(typeof(PlayerExtraOptionsPanel));
-=======
->>>>>>> Stashed changes
-
             var gameCollection = new GameCollection();
             gameCollection.Initialize(GraphicsDevice);
 
 
-<<<<<<< Updated upstream
             var cncnetUserData = new CnCNetUserData(WindowManager);
             var cncnetManager = new CnCNetManager(WindowManager, gameCollection, cncnetUserData);
             var tunnelHandler = new TunnelHandler(WindowManager, cncnetManager);
@@ -121,13 +105,11 @@ namespace DTAClient.DXGUI.Generic
 
             var mainMenu = new MainMenu(WindowManager, skirmishLobby, lanLobby,
                 topBar, optionsWindow, cncnetLobby, cncnetManager, discordHandler);
-=======
             var optionsWindow = new OptionsWindow(WindowManager, gameCollection);
 
             var gipw = new GameInProgressWindow(WindowManager);
 
             var mainMenu = new MainMenu(WindowManager, optionsWindow, discordHandler);
->>>>>>> Stashed changes
             WindowManager.AddAndInitializeControl(mainMenu);
 
 
