@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-﻿using System;
-=======
-﻿using Rampastring.Tools;
->>>>>>> Stashed changes
+using Rampastring.Tools;
 using Rampastring.XNAUI;
 using System;
 using System.Diagnostics;

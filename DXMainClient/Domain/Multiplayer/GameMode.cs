@@ -132,7 +132,6 @@ namespace DTAClient.Domain.Multiplayer
                     forcedOptionsIni.GetStringValue(section, key, string.Empty)));
             }
         }
-<<<<<<< Updated upstream
 
         public void ApplySpawnIniCode(IniFile spawnIni)
         {
@@ -148,7 +147,6 @@ namespace DTAClient.Domain.Multiplayer
         protected bool Equals(GameMode other) => string.Equals(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
         public override int GetHashCode() => (Name != null ? Name.GetHashCode() : 0);
-=======
->>>>>>> Stashed changes
+
     }
 }

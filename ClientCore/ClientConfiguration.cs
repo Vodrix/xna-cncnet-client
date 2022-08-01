@@ -72,17 +72,6 @@ namespace ClientCore
 
         public string ButtonHoverColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "ButtonHoverColor", "255,192,192");
 
-<<<<<<< Updated upstream
-        public string MapPreviewNameBackgroundColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "MapPreviewNameBackgroundColor", "0,0,0,144");
-
-        public string MapPreviewNameBorderColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "MapPreviewNameBorderColor", "128,128,128,128");
-
-        public string MapPreviewStartingLocationHoverRemapColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "StartingLocationHoverColor", "255,255,255,128");
-
-        public bool MapPreviewStartingLocationUsePlayerRemapColor => DTACnCNetClient_ini.GetBooleanValue(GENERAL, "StartingLocationsUsePlayerRemapColor", false);
-
-=======
->>>>>>> Stashed changes
         public string AltUIBackgroundColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "AltUIBackgroundColor", "196,196,196");
 
         public string PanelBorderColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "PanelBorderColor", "255,255,255");
@@ -91,13 +80,10 @@ namespace ClientCore
 
         public string ListBoxFocusColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "ListBoxFocusColor", "64,64,168");
 
-<<<<<<< Updated upstream
         public string HoverOnGameColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "HoverOnGameColor", "32,32,84");
 
         public IniSection GetParserConstants() => DTACnCNetClient_ini.GetSection("ParserConstants");
 
-=======
->>>>>>> Stashed changes
         #endregion
 
         #region Tool tip settings
@@ -155,7 +141,7 @@ namespace ClientCore
         public string WindowTitle => clientDefinitionsIni.GetStringValue(SETTINGS, "WindowTitle", string.Empty);
 
         public string InstallationPathRegKey => clientDefinitionsIni.GetStringValue(SETTINGS, "RegistryInstallPath", "FlippedMissions");
- 
+
         public string BattleFSFileName => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleName", "Battle.ini");
 
         public string BattleFSFileName2 => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleName2", "Battle2.ini");
@@ -183,17 +169,7 @@ namespace ClientCore
 
         public string CreditsURL => clientDefinitionsIni.GetStringValue(SETTINGS, "CreditsURL", "http://www.moddb.com/mods/the-dawn-of-the-tiberium-age/tutorials/credits#Rampastring");
 
-<<<<<<< Updated upstream
-        public string ManualDownloadURL => clientDefinitionsIni.GetStringValue(SETTINGS, "ManualDownloadURL", string.Empty);
-        
-        public string FinalSunIniPath => clientDefinitionsIni.GetStringValue(SETTINGS, "FSIniPath", "FinalSun/FinalSun.ini");
-
-        public int MaxNameLength => clientDefinitionsIni.GetIntValue(SETTINGS, "MaxNameLength", 16);
-
-        public int MapCellSizeX => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeX", 48); 
-=======
         public int MapCellSizeX => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeX", 48);
->>>>>>> Stashed changes
 
         public int MapCellSizeY => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeY", 24);
 

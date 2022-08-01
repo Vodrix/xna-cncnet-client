@@ -8,11 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-<<<<<<< Updated upstream
 using Localization;
-=======
 using System.Threading.Tasks;
->>>>>>> Stashed changes
 
 namespace DTAClient.DXGUI
 {

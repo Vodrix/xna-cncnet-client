@@ -25,11 +25,7 @@ namespace DTAConfig.OptionPanels
 
         private static readonly OptionsGUICreator optionsGUICreator = new OptionsGUICreator();
 
-<<<<<<< Updated upstream
         private readonly List<IUserSetting> userSettings = new List<IUserSetting>();
-=======
-        private readonly List<ICustomSetting> customSettings = new List<ICustomSetting>();
->>>>>>> Stashed changes
 
         public override void Initialize()
         {

@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-<<<<<<< Updated upstream
-using Localization;
-=======
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 using System;
->>>>>>> Stashed changes
+using Localization;
 
 namespace ClientGUI
 {

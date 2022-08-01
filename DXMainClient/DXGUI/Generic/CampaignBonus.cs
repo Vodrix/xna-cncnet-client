@@ -1,7 +1,6 @@
 ﻿using ClientCore;
 using ClientGUI;
 using DTAClient.Domain;
-using DTAClient.Domain.Multiplayer;
 using Microsoft.Xna.Framework;
 using Rampastring.Tools;
 using Rampastring.XNAUI;
@@ -9,7 +8,6 @@ using Rampastring.XNAUI.XNAControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Updater;
 
 namespace DTAClient.DXGUI.Generic
 {
@@ -32,8 +30,6 @@ namespace DTAClient.DXGUI.Generic
             this.discordHandler = discordHandler;
         }
         private readonly DiscordHandler discordHandler;
-
-        protected List<GameMode> GameModes;
 
         private readonly List<Mission> Missions = new List<Mission>();
         private XNAListBox lbCampaignList;
