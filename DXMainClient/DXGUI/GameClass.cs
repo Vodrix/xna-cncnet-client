@@ -32,8 +32,8 @@ namespace DTAClient.DXGUI
             content = new ContentManager(Services);
         }
 
-        private static GraphicsDeviceManager graphics;
-        ContentManager content;
+        public static GraphicsDeviceManager graphics;
+        readonly ContentManager content;
 
         protected override void Initialize()
         {
@@ -61,6 +61,8 @@ namespace DTAClient.DXGUI
                 Color[] colorArray = new Color[100 * 100];
                 texture.SetData(colorArray);
 
+                //Texture2D texture2D = AssetLoader.LoadTextureUncached("checkBoxClear.png");
+                //UISettings.ActiveSettings.CheckBoxClearTexture = texture2D;
                 UISettings.ActiveSettings.CheckBoxClearTexture = AssetLoader.LoadTextureUncached("checkBoxClear.png");
             }
             catch (Exception ex)
@@ -125,7 +127,7 @@ namespace DTAClient.DXGUI
             Components.Add(wm);
 
             string playerName = UserINISettings.Instance.PlayerName.Value.Trim();
-            
+
             if (UserINISettings.Instance.AutoRemoveUnderscoresFromName)
             {
                 while (playerName.EndsWith("_"))
@@ -139,8 +141,6 @@ namespace DTAClient.DXGUI
                 playerName = playerName.Substring(playerName.IndexOf("\\") + 1);
             }
 
-            playerName = Renderer.GetSafeString(NameValidator.GetValidOfflineName(playerName), 0);
-
             ProgramConstants.PLAYERNAME = playerName;
             UserINISettings.Instance.PlayerName.Value = playerName;
 
@@ -152,10 +152,11 @@ namespace DTAClient.DXGUI
 
         private void InitializeUISettings()
         {
-            UISettings settings = new UISettings();
-
-            settings.AltColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.AltUIColor);
-            settings.SubtleTextColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.UIHintTextColor);
+            UISettings settings = new UISettings
+            {
+                AltColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.AltUIColor),
+                SubtleTextColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.UIHintTextColor)
+            };
             settings.ButtonTextColor = settings.AltColor;
             settings.ButtonHoverColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.ButtonHoverColor);
             settings.TextColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.UILabelColor);
@@ -164,10 +165,10 @@ namespace DTAClient.DXGUI
             settings.BackgroundColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.AltUIBackgroundColor);
             settings.FocusColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.ListBoxFocusColor);
             settings.DisabledItemColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.DisabledButtonColor);
-            
+
             settings.DefaultAlphaRate = ClientConfiguration.Instance.DefaultAlphaRate;
             settings.CheckBoxAlphaRate = ClientConfiguration.Instance.CheckBoxAlphaRate;
-            
+
             settings.CheckBoxClearTexture = AssetLoader.LoadTexture("checkBoxClear.png");
             settings.CheckBoxCheckedTexture = AssetLoader.LoadTexture("checkBoxChecked.png");
             settings.CheckBoxDisabledClearTexture = AssetLoader.LoadTexture("checkBoxClearD.png");
@@ -203,6 +204,7 @@ namespace DTAClient.DXGUI
 
             int renderResolutionX = 0;
             int renderResolutionY = 0;
+<<<<<<< Updated upstream
 
             int initialXRes = Math.Max(windowWidth, clientConfiguration.MinimumRenderWidth);
             initialXRes = Math.Min(initialXRes, clientConfiguration.MaximumRenderWidth);
@@ -219,6 +221,27 @@ namespace DTAClient.DXGUI
             {
                 renderResolutionX = windowWidth;
                 renderResolutionY = windowHeight;
+=======
+
+            int initialXRes = Math.Max(windowWidth, clientConfiguration.MinimumRenderWidth);
+            initialXRes = Math.Min(initialXRes, clientConfiguration.MaximumRenderWidth);
+
+            int initialYRes = Math.Max(windowHeight, clientConfiguration.MinimumRenderHeight);
+            initialYRes = Math.Min(initialYRes, clientConfiguration.MaximumRenderHeight);
+
+            double xRatio = (windowWidth) / (double)initialXRes;
+            double yRatio = (windowHeight) / (double)initialYRes;
+
+            double ratio;
+
+            if (xRatio > yRatio)
+            {
+                ratio = yRatio;
+            }
+            else
+            {
+                ratio = xRatio;
+>>>>>>> Stashed changes
             }
 
             if (ratio > 1.0)

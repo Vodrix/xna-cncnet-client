@@ -11,6 +11,7 @@ namespace ClientCore
     {
         private static UserINISettings _instance;
 
+<<<<<<< Updated upstream
         public const string VIDEO = "Video";
         public const string MULTIPLAYER = "MultiPlayer";
         public const string OPTIONS = "Options";
@@ -23,6 +24,13 @@ namespace ClientCore
         private const bool DEFAULT_HIDE_PASSWORDED_GAMES = false;
         private const bool DEFAULT_HIDE_INCOMPATIBLE_GAMES = false;
         private const int DEFAULT_MAX_PLAYER_COUNT = 8;
+=======
+        private const string VIDEO = "Video";
+        private const string OPTIONS = "Options";
+        private const string AUDIO = "Audio";
+        private const string CUSTOM_SETTINGS = "CustomSettings";
+        private const string COMPATIBILITY = "Compatibility";
+>>>>>>> Stashed changes
 
         public static UserINISettings Instance
         {
@@ -59,7 +67,7 @@ namespace ClientCore
 
             IngameScreenWidth = new IntSetting(iniFile, VIDEO, "ScreenWidth", 1024);
             IngameScreenHeight = new IntSetting(iniFile, VIDEO, "ScreenHeight", 768);
-            ClientTheme = new StringSetting(iniFile, MULTIPLAYER, "Theme", string.Empty);
+            ClientTheme = new StringSetting(iniFile, OPTIONS, "Theme", string.Empty);
             DetailLevel = new IntSetting(iniFile, OPTIONS, "DetailLevel", 2);
             Renderer = new StringSetting(iniFile, COMPATIBILITY, "Renderer", string.Empty);
             WindowedMode = new BoolSetting(iniFile, VIDEO, WINDOWED_MODE_KEY, false);
@@ -75,7 +83,7 @@ namespace ClientCore
             SoundVolume = new DoubleSetting(iniFile, AUDIO, "SoundVolume", 0.7);
             VoiceVolume = new DoubleSetting(iniFile, AUDIO, "VoiceVolume", 0.7);
             IsScoreShuffle = new BoolSetting(iniFile, AUDIO, "IsScoreShuffle", true);
-            ClientVolume = new DoubleSetting(iniFile, AUDIO, "ClientVolume", 1.0);
+            ClientVolume = new DoubleSetting(iniFile, AUDIO, "ClientVolume", 0.3);
             PlayMainMenuMusic = new BoolSetting(iniFile, AUDIO, "PlayMainMenuMusic", true);
             StopMusicOnMenu = new BoolSetting(iniFile, AUDIO, "StopMusicOnMenu", true);
             MessageSound = new BoolSetting(iniFile, AUDIO, "ChatMessageSound", true);
@@ -85,6 +93,7 @@ namespace ClientCore
             DoubleTapInterval = new IntSetting(iniFile, OPTIONS, "DoubleTapInterval", 30);
             Win8CompatMode = new StringSetting(iniFile, OPTIONS, "Win8Compat", "No");
 
+<<<<<<< Updated upstream
             PlayerName = new StringSetting(iniFile, MULTIPLAYER, "Handle", string.Empty);
 
             ChatColor = new IntSetting(iniFile, MULTIPLAYER, "ChatColor", -1);
@@ -104,10 +113,17 @@ namespace ClientCore
             AlwaysDisplayTunnelList = new BoolSetting(iniFile, MULTIPLAYER, "AlwaysDisplayTunnelList", false);
             MapSortState = new IntSetting(iniFile, MULTIPLAYER, "MapSortState", (int)SortDirection.None);
 
+=======
+            WritePathToRegistry = new BoolSetting(iniFile, OPTIONS, "WriteInstallationPathToRegistry", false);
+            DiscordIntegration = new BoolSetting(iniFile, OPTIONS, "DiscordIntegration", true);
+            PlayerName = new StringSetting(iniFile, OPTIONS, "Handle", string.Empty);
+>>>>>>> Stashed changes
             CheckForUpdates = new BoolSetting(iniFile, OPTIONS, "CheckforUpdates", true);
 
             PrivacyPolicyAccepted = new BoolSetting(iniFile, OPTIONS, "PrivacyPolicyAccepted", false);
             IsFirstRun = new BoolSetting(iniFile, OPTIONS, "IsFirstRun", true);
+            SearchMixes = new BoolSetting(iniFile, OPTIONS, "SearchMixes", true);
+            WineCheck = new BoolSetting(iniFile, OPTIONS, "WineChecked", false);
             CustomComponentsDenied = new BoolSetting(iniFile, OPTIONS, "CustomComponentsDenied", false);
             Difficulty = new IntSetting(iniFile, OPTIONS, "Difficulty", 1);
             ScrollDelay = new IntSetting(iniFile, OPTIONS, "ScrollDelay", 4);
@@ -116,6 +132,7 @@ namespace ClientCore
             ForceLowestDetailLevel = new BoolSetting(iniFile, VIDEO, "ForceLowestDetailLevel", false);
             MinimizeWindowsOnGameStart = new BoolSetting(iniFile, OPTIONS, "MinimizeWindowsOnGameStart", true);
             AutoRemoveUnderscoresFromName = new BoolSetting(iniFile, OPTIONS, "AutoRemoveUnderscoresFromName", true);
+<<<<<<< Updated upstream
 
             SortState = new IntSetting(iniFile, GAME_FILTERS, "SortState", (int)SortDirection.None);
             ShowFriendGamesOnly = new BoolSetting(iniFile, GAME_FILTERS, "ShowFriendGamesOnly", DEFAULT_SHOW_FRIENDS_ONLY_GAMES);
@@ -125,7 +142,14 @@ namespace ClientCore
             MaxPlayerCount = new IntRangeSetting(iniFile, GAME_FILTERS, "MaxPlayerCount", DEFAULT_MAX_PLAYER_COUNT, 2, 8);
 
             FavoriteMaps = new StringListSetting(iniFile, OPTIONS, "FavoriteMaps", new List<string>());
+=======
+>>>>>>> Stashed changes
         }
+
+
+        /*********************/
+        /* GAME LIST FILTERS */
+        /*********************/
 
         public IniFile SettingsIni { get; private set; }
 
@@ -176,17 +200,9 @@ namespace ClientCore
         /************************/
 
         public StringSetting PlayerName { get; private set; }
-
-        public IntSetting ChatColor { get; private set; }
-        public IntSetting LANChatColor { get; private set; }
-        public BoolSetting PingUnofficialCnCNetTunnels { get; private set; }
         public BoolSetting WritePathToRegistry { get; private set; }
-        public BoolSetting PlaySoundOnGameHosted { get; private set; }
-
-        public BoolSetting SkipConnectDialog { get; private set; }
-        public BoolSetting PersistentMode { get; private set; }
-        public BoolSetting AutomaticCnCNetLogin { get; private set; }
         public BoolSetting DiscordIntegration { get; private set; }
+<<<<<<< Updated upstream
         public BoolSetting AllowGameInvitesFromFriendsOnly { get; private set; }
 
         public BoolSetting NotifyOnUserListChange { get; private set; }
@@ -216,15 +232,19 @@ namespace ClientCore
         public BoolSetting HideIncompatibleGames { get; private set; }
         
         public IntRangeSetting MaxPlayerCount { get; private set; }
+=======
+
+>>>>>>> Stashed changes
 
         /********/
         /* MISC */
         /********/
 
         public BoolSetting CheckForUpdates { get; private set; }
-
         public BoolSetting PrivacyPolicyAccepted { get; private set; }
         public BoolSetting IsFirstRun { get; private set; }
+        public BoolSetting SearchMixes { get; private set; }
+        public BoolSetting WineCheck { get; private set; }
         public BoolSetting CustomComponentsDenied { get; private set; }
 
         public IntSetting Difficulty { get; private set; }
@@ -240,6 +260,7 @@ namespace ClientCore
         public BoolSetting MinimizeWindowsOnGameStart { get; private set; }
 
         public BoolSetting AutoRemoveUnderscoresFromName { get; private set; }
+<<<<<<< Updated upstream
         
         public StringListSetting FavoriteMaps { get; private set; }
         
@@ -265,6 +286,8 @@ namespace ClientCore
         {
             return SettingsIni.GetBooleanValue("Channels", gameName, false);
         }
+=======
+>>>>>>> Stashed changes
 
         public bool ToggleFavoriteMap(string mapName, string gameModeName, bool isFavorite)
         {
@@ -314,24 +337,6 @@ namespace ClientCore
             SettingsIni.WriteIniFile();
 
             SettingsSaved?.Invoke(this, EventArgs.Empty);
-        }
-
-        public bool IsGameFiltersApplied()
-        {
-            return ShowFriendGamesOnly.Value != DEFAULT_SHOW_FRIENDS_ONLY_GAMES ||
-                   HideLockedGames.Value != DEFAULT_HIDE_LOCKED_GAMES ||
-                   HidePasswordedGames.Value != DEFAULT_HIDE_PASSWORDED_GAMES ||
-                   HideIncompatibleGames.Value != DEFAULT_HIDE_INCOMPATIBLE_GAMES ||
-                   MaxPlayerCount.Value != DEFAULT_MAX_PLAYER_COUNT;
-        }
-
-        public void ResetGameFilters()
-        {
-            ShowFriendGamesOnly.Value = DEFAULT_SHOW_FRIENDS_ONLY_GAMES;
-            HideLockedGames.Value = DEFAULT_HIDE_LOCKED_GAMES;
-            HideIncompatibleGames.Value = DEFAULT_HIDE_INCOMPATIBLE_GAMES;
-            HidePasswordedGames.Value = DEFAULT_HIDE_PASSWORDED_GAMES;
-            MaxPlayerCount.Value = DEFAULT_MAX_PLAYER_COUNT;
         }
     }
 }

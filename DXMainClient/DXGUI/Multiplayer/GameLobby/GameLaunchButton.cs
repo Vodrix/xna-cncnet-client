@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientGUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -80,3 +81,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

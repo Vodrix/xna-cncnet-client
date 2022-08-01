@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using ClientCore.Statistics;
 using ClientGUI;
@@ -517,3 +518,6 @@ namespace DTAClient.DXGUI.Multiplayer
         public abstract string GetSwitchName();
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

@@ -1,15 +1,18 @@
-﻿using Microsoft.Xna.Framework;
-using Rampastring.XNAUI.XNAControls;
-using Rampastring.Tools;
-using System;
-using ClientCore;
-using Rampastring.XNAUI;
+﻿using ClientCore;
 using ClientGUI;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Rampastring.Tools;
+using Rampastring.XNAUI;
+using Rampastring.XNAUI.XNAControls;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+<<<<<<< Updated upstream
 using Localization;
+=======
+using System.Threading.Tasks;
+>>>>>>> Stashed changes
 
 namespace DTAClient.DXGUI
 {
@@ -20,7 +23,7 @@ namespace DTAClient.DXGUI
     /// </summary>
     public class GameInProgressWindow : XNAPanel
     {
-        private const double POWER_SAVING_FPS = 5.0;
+        private const double POWER_SAVING_FPS = 2.0;
 
         public GameInProgressWindow(WindowManager windowManager) : base(windowManager)
         {

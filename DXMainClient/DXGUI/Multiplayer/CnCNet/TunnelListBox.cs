@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using DTAClient.Domain.Multiplayer.CnCNet;
 using Localization;
 using Microsoft.Xna.Framework;
@@ -177,3 +178,6 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

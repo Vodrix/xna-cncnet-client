@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using ClientGUI;
+﻿using ClientGUI;
 using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
+using System;
+using System.Diagnostics;
 
 namespace DTAClient.DXGUI.Generic
 {
@@ -28,22 +28,28 @@ namespace DTAClient.DXGUI.Generic
             ClientRectangle = new Rectangle(0, 0, 251, 140);
             BackgroundTexture = AssetLoader.LoadTexture("updatequerybg.png");
 
-            lblDescription = new XNALabel(WindowManager);
-            lblDescription.Name = "lblDescription";
-            lblDescription.ClientRectangle = new Rectangle(12, 9, 0, 0);
-            lblDescription.Text = "Version {0} is available." + Environment.NewLine + Environment.NewLine +
-                "Manual download and installation is" + Environment.NewLine + "required.";
+            lblDescription = new XNALabel(WindowManager)
+            {
+                Name = "lblDescription",
+                ClientRectangle = new Rectangle(12, 9, 0, 0),
+                Text = "Version {0} is available." + Environment.NewLine + Environment.NewLine +
+                "Manual download and installation is" + Environment.NewLine + "required."
+            };
 
-            var btnDownload = new XNAClientButton(WindowManager);
-            btnDownload.Name = "btnDownload";
-            btnDownload.ClientRectangle = new Rectangle(12, 110, 110, 23);
-            btnDownload.Text = "View Downloads";
+            var btnDownload = new XNAClientButton(WindowManager)
+            {
+                Name = "btnDownload",
+                ClientRectangle = new Rectangle(12, 110, 110, 23),
+                Text = "View Downloads"
+            };
             btnDownload.LeftClick += BtnDownload_LeftClick;
 
-            var btnClose = new XNAClientButton(WindowManager);
-            btnClose.Name = "btnClose";
-            btnClose.ClientRectangle = new Rectangle(147, 110, 92, 23);
-            btnClose.Text = "Close";
+            var btnClose = new XNAClientButton(WindowManager)
+            {
+                Name = "btnClose",
+                ClientRectangle = new Rectangle(147, 110, 92, 23),
+                Text = "Close"
+            };
             btnClose.LeftClick += BtnClose_LeftClick;
 
             AddChild(lblDescription);

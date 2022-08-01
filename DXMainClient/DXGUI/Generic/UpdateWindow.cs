@@ -63,57 +63,77 @@ namespace DTAClient.DXGUI.Generic
             ClientRectangle = new Rectangle(0, 0, 446, 270);
             BackgroundTexture = AssetLoader.LoadTexture("updaterbg.png");
 
-            lblDescription = new XNALabel(WindowManager);
-            lblDescription.Text = string.Empty;
-            lblDescription.ClientRectangle = new Rectangle(12, 9, 0, 0);
-            lblDescription.Name = "lblDescription";
+            lblDescription = new XNALabel(WindowManager)
+            {
+                Text = string.Empty,
+                ClientRectangle = new Rectangle(12, 9, 0, 0),
+                Name = "lblDescription"
+            };
 
-            var lblCurrentFileProgressPercentage = new XNALabel(WindowManager);
-            lblCurrentFileProgressPercentage.Text = "Progress percentage of current file:";
-            lblCurrentFileProgressPercentage.ClientRectangle = new Rectangle(12, 90, 0, 0);
-            lblCurrentFileProgressPercentage.Name = "lblCurrentFileProgressPercentage";
+            var lblCurrentFileProgressPercentage = new XNALabel(WindowManager)
+            {
+                Text = "Progress percentage of current file:",
+                ClientRectangle = new Rectangle(12, 90, 0, 0),
+                Name = "lblCurrentFileProgressPercentage"
+            };
 
-            lblCurrentFileProgressPercentageValue = new XNALabel(WindowManager);
-            lblCurrentFileProgressPercentageValue.Text = "0%";
-            lblCurrentFileProgressPercentageValue.ClientRectangle = new Rectangle(409, lblCurrentFileProgressPercentage.Y, 0, 0);
-            lblCurrentFileProgressPercentageValue.Name = "lblCurrentFileProgressPercentageValue";
+            lblCurrentFileProgressPercentageValue = new XNALabel(WindowManager)
+            {
+                Text = "0%",
+                ClientRectangle = new Rectangle(409, lblCurrentFileProgressPercentage.Y, 0, 0),
+                Name = "lblCurrentFileProgressPercentageValue"
+            };
 
-            prgCurrentFile = new XNAProgressBar(WindowManager);
-            prgCurrentFile.Name = "prgCurrentFile";
-            prgCurrentFile.Maximum = 100;
-            prgCurrentFile.ClientRectangle = new Rectangle(12, 110, 422, 30);
-            //prgCurrentFile.BorderColor = UISettings.WindowBorderColor;
-            prgCurrentFile.SmoothForwardTransition = true;
-            prgCurrentFile.SmoothTransitionRate = 10;
+            prgCurrentFile = new XNAProgressBar(WindowManager)
+            {
+                Name = "prgCurrentFile",
+                Maximum = 100,
+                ClientRectangle = new Rectangle(12, 110, 422, 30),
+                //prgCurrentFile.BorderColor = UISettings.WindowBorderColor;
+                SmoothForwardTransition = true,
+                SmoothTransitionRate = 10
+            };
 
-            lblCurrentFile = new XNALabel(WindowManager);
-            lblCurrentFile.Name = "lblCurrentFile";
-            lblCurrentFile.ClientRectangle = new Rectangle(12, 142, 0, 0);
+            lblCurrentFile = new XNALabel(WindowManager)
+            {
+                Name = "lblCurrentFile",
+                ClientRectangle = new Rectangle(12, 142, 0, 0)
+            };
 
-            var lblTotalProgressPercentage = new XNALabel(WindowManager);
-            lblTotalProgressPercentage.Text = "Total progress percentage:";
-            lblTotalProgressPercentage.ClientRectangle = new Rectangle(12, 170, 0, 0);
-            lblTotalProgressPercentage.Name = "lblTotalProgressPercentage";
+            var lblTotalProgressPercentage = new XNALabel(WindowManager)
+            {
+                Text = "Total progress percentage:",
+                ClientRectangle = new Rectangle(12, 170, 0, 0),
+                Name = "lblTotalProgressPercentage"
+            };
 
-            lblTotalProgressPercentageValue = new XNALabel(WindowManager);
-            lblTotalProgressPercentageValue.Text = "0%";
-            lblTotalProgressPercentageValue.ClientRectangle = new Rectangle(409, lblTotalProgressPercentage.Y, 0, 0);
-            lblTotalProgressPercentageValue.Name = "lblTotalProgressPercentageValue";
+            lblTotalProgressPercentageValue = new XNALabel(WindowManager)
+            {
+                Text = "0%",
+                ClientRectangle = new Rectangle(409, lblTotalProgressPercentage.Y, 0, 0),
+                Name = "lblTotalProgressPercentageValue"
+            };
 
-            prgTotal = new XNAProgressBar(WindowManager);
-            prgTotal.Name = "prgTotal";
-            prgTotal.Maximum = 100;
-            prgTotal.ClientRectangle = new Rectangle(12, 190, prgCurrentFile.Width, prgCurrentFile.Height);
+            prgTotal = new XNAProgressBar(WindowManager)
+            {
+                Name = "prgTotal",
+                Maximum = 100,
+                ClientRectangle = new Rectangle(12, 190, prgCurrentFile.Width, prgCurrentFile.Height)
+            };
             //prgTotal.BorderColor = UISettings.WindowBorderColor;
 
-            lblUpdaterStatus = new XNALabel(WindowManager);
-            lblUpdaterStatus.Name = "lblUpdaterStatus";
-            lblUpdaterStatus.Text = "Preparing";
-            lblUpdaterStatus.ClientRectangle = new Rectangle(12, 240, 0, 0);
+            lblUpdaterStatus = new XNALabel(WindowManager)
+            {
+                Name = "lblUpdaterStatus",
+                Text = "Preparing",
+                ClientRectangle = new Rectangle(12, 240, 0, 0)
+            };
 
-            var btnCancel = new XNAClientButton(WindowManager);
-            btnCancel.ClientRectangle = new Rectangle(301, 240, UIDesignConstants.BUTTON_WIDTH_133, UIDesignConstants.BUTTON_HEIGHT);
-            btnCancel.Text = "Cancel";
+            var btnCancel = new XNAClientButton(WindowManager)
+            {
+                ClientRectangle = new Rectangle(301, 240, UIDesignConstants.BUTTON_WIDTH_133, UIDesignConstants.BUTTON_HEIGHT),
+                Text = "Cancel"
+            };
             btnCancel.LeftClick += BtnCancel_LeftClick;
 
             AddChild(lblDescription);
@@ -351,8 +371,8 @@ namespace DTAClient.DXGUI.Generic
             this.reason = reason;
         }
 
-        string reason = String.Empty;
-        
+        readonly string reason = String.Empty;
+
         /// <summary>
         /// The returned error message from the update failure.
         /// </summary>
@@ -412,7 +432,7 @@ namespace DTAClient.DXGUI.Generic
         {
         }
 
-        private ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
+        private readonly ITaskbarList3 taskbarInstance = (ITaskbarList3)new TaskbarInstance();
 
         public void SetState(IntPtr windowHandle, TaskbarStates taskbarState)
         {

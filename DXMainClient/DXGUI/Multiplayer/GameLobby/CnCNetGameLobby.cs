@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using ClientCore;
 using ClientCore.CnCNet5;
 using ClientGUI;
@@ -1898,3 +1899,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
         public override string GetSwitchName() => "Game Lobby".L10N("UI:Main:GameLobby");
     }
 }
+=======
+//empty and doesn't need to exist
+>>>>>>> Stashed changes

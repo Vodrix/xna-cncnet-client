@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -8,23 +9,30 @@ using System.Threading.Tasks;
 using ClientCore;
 using Newtonsoft.Json;
 using Rampastring.Tools;
+=======
+﻿using System.Collections.Generic;
+>>>>>>> Stashed changes
 
 namespace DTAClient.Domain.Multiplayer
 {
     public class MapLoader
     {
         public const string MAP_FILE_EXTENSION = ".map";
+<<<<<<< Updated upstream
         private const string CUSTOM_MAPS_DIRECTORY = "Maps/Custom";
         private static readonly string CUSTOM_MAPS_CACHE = ProgramConstants.ClientUserFilesPath + "custom_map_cache";
         private const string MultiMapsSection = "MultiMaps";
         private const string GameModesSection = "GameModes";
         private const string GameModeAliasesSection = "GameModeAliases";
         private const int CurrentCustomMapCacheVersion = 1;
+=======
+>>>>>>> Stashed changes
 
         /// <summary>
         /// List of game modes.
         /// </summary>
         public List<GameMode> GameModes = new List<GameMode>();
+<<<<<<< Updated upstream
 
         public GameModeMapCollection GameModeMaps;
 
@@ -323,5 +331,7 @@ namespace DTAClient.Domain.Multiplayer
                 }
             }
         }
+=======
+>>>>>>> Stashed changes
     }
 }

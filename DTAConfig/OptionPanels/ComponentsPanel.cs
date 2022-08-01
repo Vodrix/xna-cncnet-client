@@ -7,7 +7,6 @@ using Rampastring.XNAUI.XNAControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using Updater;
 
 namespace DTAConfig.OptionPanels
@@ -19,7 +18,7 @@ namespace DTAConfig.OptionPanels
         {
         }
 
-        List<XNAClientButton> installationButtons = new List<XNAClientButton>();
+        readonly List<XNAClientButton> installationButtons = new List<XNAClientButton>();
 
         bool downloadCancelled = false;
 
@@ -53,18 +52,22 @@ namespace DTAConfig.OptionPanels
                     }
                 }
 
-                var btn = new XNAClientButton(WindowManager);
-                btn.Name = "btn" + c.ININame;
-                btn.ClientRectangle = new Rectangle(Width - 145,
-                    12 + componentIndex * 35, UIDesignConstants.BUTTON_WIDTH_133, UIDesignConstants.BUTTON_HEIGHT);
-                btn.Text = buttonText;
-                btn.Tag = c;
+                var btn = new XNAClientButton(WindowManager)
+                {
+                    Name = "btn" + c.ININame,
+                    ClientRectangle = new Rectangle(Width - 145,
+                    12 + componentIndex * 35, UIDesignConstants.BUTTON_WIDTH_133, UIDesignConstants.BUTTON_HEIGHT),
+                    Text = buttonText,
+                    Tag = c
+                };
                 btn.LeftClick += Btn_LeftClick;
 
-                var lbl = new XNALabel(WindowManager);
-                lbl.Name = "lbl" + c.ININame;
-                lbl.ClientRectangle = new Rectangle(12, btn.Y + 2, 0, 0);
-                lbl.Text = c.GUIName;
+                var lbl = new XNALabel(WindowManager)
+                {
+                    Name = "lbl" + c.ININame,
+                    ClientRectangle = new Rectangle(12, btn.Y + 2, 0, 0),
+                    Text = c.GUIName
+                };
 
                 AddChild(btn);
                 AddChild(lbl);
@@ -173,8 +176,10 @@ namespace DTAConfig.OptionPanels
                     Environment.NewLine +
                     "from a few minutes to multiple hours depending on your Internet connection speed." +
                     Environment.NewLine + Environment.NewLine +
-                    "You will not be able to play during the download. Do you want to continue?", XNAMessageBoxButtons.YesNo);
-                msgBox.Tag = btn;
+                    "You will not be able to play during the download. Do you want to continue?", XNAMessageBoxButtons.YesNo)
+                {
+                    Tag = btn
+                };
 
                 msgBox.Show();
                 msgBox.YesClickedAction = MsgBox_YesClicked;

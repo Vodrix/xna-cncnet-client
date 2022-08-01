@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using ClientCore.CnCNet5;
 using ClientGUI;
@@ -358,3 +359,6 @@ namespace DTAConfig.OptionPanels
         }
     }
 }
+=======
+﻿//no
+>>>>>>> Stashed changes

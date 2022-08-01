@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using DTAClient.Domain.Multiplayer;
 using Microsoft.Xna.Framework;
@@ -691,3 +692,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
         public int StartingLocationIndex { get; set; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

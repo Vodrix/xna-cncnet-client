@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using DTAClient.Domain;
 using DTAClient.Domain.LAN;
@@ -691,3 +692,6 @@ namespace DTAClient.DXGUI.Multiplayer
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

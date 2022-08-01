@@ -1,5 +1,5 @@
-using System;
 using Rampastring.Tools;
+using System;
 using System.IO;
 
 namespace ClientCore
@@ -7,9 +7,7 @@ namespace ClientCore
     public class ClientConfiguration
     {
         private const string GENERAL = "General";
-        private const string AUDIO = "Audio";
         private const string SETTINGS = "Settings";
-        private const string LINKS = "Links";
 
         private const string CLIENT_SETTINGS = "DTACnCNetClient.ini";
         private const string GAME_OPTIONS = "GameOptions.ini";
@@ -17,9 +15,9 @@ namespace ClientCore
 
         private static ClientConfiguration _instance;
 
-        private IniFile gameOptions_ini;
+        private readonly IniFile gameOptions_ini;
         private IniFile DTACnCNetClient_ini;
-        private IniFile clientDefinitionsIni;
+        private readonly IniFile clientDefinitionsIni;
 
         protected ClientConfiguration()
         {
@@ -74,6 +72,7 @@ namespace ClientCore
 
         public string ButtonHoverColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "ButtonHoverColor", "255,192,192");
 
+<<<<<<< Updated upstream
         public string MapPreviewNameBackgroundColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "MapPreviewNameBackgroundColor", "0,0,0,144");
 
         public string MapPreviewNameBorderColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "MapPreviewNameBorderColor", "128,128,128,128");
@@ -82,30 +81,23 @@ namespace ClientCore
 
         public bool MapPreviewStartingLocationUsePlayerRemapColor => DTACnCNetClient_ini.GetBooleanValue(GENERAL, "StartingLocationsUsePlayerRemapColor", false);
 
+=======
+>>>>>>> Stashed changes
         public string AltUIBackgroundColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "AltUIBackgroundColor", "196,196,196");
-
-        public string WindowBorderColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "WindowBorderColor", "128,128,128");
 
         public string PanelBorderColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "PanelBorderColor", "255,255,255");
 
         public string ListBoxHeaderColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "ListBoxHeaderColor", "255,255,255");
 
-        public string DefaultChatColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "DefaultChatColor", "0,255,0");
-
-        public string AdminNameColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "AdminNameColor", "255,0,0");
-
-        public string ReceivedPMColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "PrivateMessageOtherUserColor", "196,196,196");
-
-        public string SentPMColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "PrivateMessageColor", "128,128,128");
-
-        public int DefaultPersonalChatColorIndex => DTACnCNetClient_ini.GetIntValue(GENERAL, "DefaultPersonalChatColorIndex", 0);
-
         public string ListBoxFocusColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "ListBoxFocusColor", "64,64,168");
 
+<<<<<<< Updated upstream
         public string HoverOnGameColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "HoverOnGameColor", "32,32,84");
 
         public IniSection GetParserConstants() => DTACnCNetClient_ini.GetSection("ParserConstants");
 
+=======
+>>>>>>> Stashed changes
         #endregion
 
         #region Tool tip settings
@@ -126,26 +118,12 @@ namespace ClientCore
 
         #region Audio options
 
-        public float SoundGameLobbyJoinCooldown => DTACnCNetClient_ini.GetSingleValue(AUDIO, "SoundGameLobbyJoinCooldown", 0.25f);
-
-        public float SoundGameLobbyLeaveCooldown => DTACnCNetClient_ini.GetSingleValue(AUDIO, "SoundGameLobbyLeaveCooldown", 0.25f);
-
-        public float SoundMessageCooldown => DTACnCNetClient_ini.GetSingleValue(AUDIO, "SoundMessageCooldown", 0.25f);
-
-        public float SoundPrivateMessageCooldown => DTACnCNetClient_ini.GetSingleValue(AUDIO, "SoundPrivateMessageCooldown", 0.25f);
-
-        public float SoundGameLobbyGetReadyCooldown => DTACnCNetClient_ini.GetSingleValue(AUDIO, "SoundGameLobbyGetReadyCooldown", 5.0f);
-
-        public float SoundGameLobbyReturnCooldown => DTACnCNetClient_ini.GetSingleValue(AUDIO, "SoundGameLobbyReturnCooldown", 1.0f);
-
-        #endregion
-
         #endregion
 
         #region Game options
 
         public string Sides => gameOptions_ini.GetStringValue(GENERAL, nameof(Sides), "GDI,Nod,Allies,Soviet");
-        
+
         public string InternalSideIndices => gameOptions_ini.GetStringValue(GENERAL, nameof(InternalSideIndices), string.Empty);
 
         public string SpectatorInternalSideIndex => gameOptions_ini.GetStringValue(GENERAL, nameof(SpectatorInternalSideIndex), string.Empty);
@@ -156,8 +134,6 @@ namespace ClientCore
 
         public string DiscordAppId => clientDefinitionsIni.GetStringValue(SETTINGS, "DiscordAppId", string.Empty);
 
-        public int SendSleep => clientDefinitionsIni.GetIntValue(SETTINGS, "SendSleep", 2500);
-          
         public int LoadingScreenCount => clientDefinitionsIni.GetIntValue(SETTINGS, "LoadingScreenCount", 2);
 
         public int ThemeCount => clientDefinitionsIni.GetSectionKeys("Themes").Count;
@@ -178,21 +154,28 @@ namespace ClientCore
 
         public string WindowTitle => clientDefinitionsIni.GetStringValue(SETTINGS, "WindowTitle", string.Empty);
 
-        public string InstallationPathRegKey => clientDefinitionsIni.GetStringValue(SETTINGS, "RegistryInstallPath", "TiberianSun");
+        public string InstallationPathRegKey => clientDefinitionsIni.GetStringValue(SETTINGS, "RegistryInstallPath", "FlippedMissions");
+ 
+        public string BattleFSFileName => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleName", "Battle.ini");
 
-        public string CnCNetLiveStatusIdentifier => clientDefinitionsIni.GetStringValue(SETTINGS, "CnCNetLiveStatusIdentifier", "cncnet5_ts");
+        public string BattleFSFileName2 => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleName2", "Battle2.ini");
 
-        public string BattleFSFileName => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleFSFileName", "BattleFS.ini");
+        public string BattleFSFileName3 => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleName3", "Battle3.ini");
 
-        public string MapEditorExePath => clientDefinitionsIni.GetStringValue(SETTINGS, "MapEditorExePath", "FinalSun/FinalSun.exe");
+        public string Rulesmd => clientDefinitionsIni.GetPathStringValue(SETTINGS, "RulesPath", "Normal.ini");
 
-        public string UnixMapEditorExePath => clientDefinitionsIni.GetStringValue(SETTINGS, "UnixMapEditorExePath", Instance.MapEditorExePath);
+        public string InsaneLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "InsanePath", "Insane.ini");
+
+        public string AlliedBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "AlliedBrutalPath", "Allied.ini");
+
+        public string SovietBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "SovietBrutalPath", "Soviet.ini");
+
+        public string YuriBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "YuriBrutalPath", "Yuri.ini");
+
 
         public bool ModMode => clientDefinitionsIni.GetBooleanValue(SETTINGS, "ModMode", false);
 
         public string LongGameName => clientDefinitionsIni.GetStringValue(SETTINGS, "LongGameName", "Tiberian Sun");
-
-        public string LongSupportURL => clientDefinitionsIni.GetStringValue(SETTINGS, "LongSupportURL", "http://www.moddb.com/members/rampastring");
 
         public string ShortSupportURL => clientDefinitionsIni.GetStringValue(SETTINGS, "ShortSupportURL", "www.moddb.com/members/rampastring");
 
@@ -200,6 +183,7 @@ namespace ClientCore
 
         public string CreditsURL => clientDefinitionsIni.GetStringValue(SETTINGS, "CreditsURL", "http://www.moddb.com/mods/the-dawn-of-the-tiberium-age/tutorials/credits#Rampastring");
 
+<<<<<<< Updated upstream
         public string ManualDownloadURL => clientDefinitionsIni.GetStringValue(SETTINGS, "ManualDownloadURL", string.Empty);
         
         public string FinalSunIniPath => clientDefinitionsIni.GetStringValue(SETTINGS, "FSIniPath", "FinalSun/FinalSun.ini");
@@ -207,12 +191,11 @@ namespace ClientCore
         public int MaxNameLength => clientDefinitionsIni.GetIntValue(SETTINGS, "MaxNameLength", 16);
 
         public int MapCellSizeX => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeX", 48); 
+=======
+        public int MapCellSizeX => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeX", 48);
+>>>>>>> Stashed changes
 
         public int MapCellSizeY => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeY", 24);
-
-        public bool UseBuiltStatistic => clientDefinitionsIni.GetBooleanValue(SETTINGS, "UseBuiltStatistic", false);
-
-        public string StatisticsLogFileName => clientDefinitionsIni.GetStringValue(SETTINGS, "StatisticsLogFileName", "DTA.LOG");
 
         public string[] GetThemeInfoFromIndex(int themeIndex) => clientDefinitionsIni.GetStringValue("Themes", themeIndex.ToString(), ",").Split(',');
 
@@ -243,7 +226,7 @@ namespace ClientCore
 
         public string ExtraExeCommandLineParameters => clientDefinitionsIni.GetStringValue(SETTINGS, "ExtraCommandLineParams", string.Empty);
 
-        public string MPMapsIniPath => clientDefinitionsIni.GetStringValue(SETTINGS, "MPMapsPath", "INI/MPMaps.ini");
+        public string MPMapsIniPath => clientDefinitionsIni.GetStringValue(SETTINGS, "MPMapsPath", "");
 
         public string KeyboardINI => clientDefinitionsIni.GetStringValue(SETTINGS, "KeyboardINI", "Keyboard.ini");
 
@@ -255,9 +238,7 @@ namespace ClientCore
 
         public int MaximumIngameHeight => clientDefinitionsIni.GetIntValue(SETTINGS, "MaximumIngameHeight", int.MaxValue);
 
-        public bool CopyMissionsToSpawnmapINI => clientDefinitionsIni.GetBooleanValue(SETTINGS, "CopyMissionsToSpawnmapINI", true);
-
-        public string AllowedCustomGameModes => clientDefinitionsIni.GetStringValue(SETTINGS, "AllowedCustomGameModes", "Standard,Custom Map");
+        public bool CopyMissionsToSpawnmapINI => clientDefinitionsIni.GetBooleanValue(SETTINGS, "CopyMissionsToSpawnmapINI", false);
 
         public string GetGameExecutableName()
         {
@@ -268,13 +249,7 @@ namespace ClientCore
 
         public string GameLauncherExecutableName => clientDefinitionsIni.GetStringValue(SETTINGS, "GameLauncherExecutableName", string.Empty);
 
-        public bool SaveSkirmishGameOptions => clientDefinitionsIni.GetBooleanValue(SETTINGS, "SaveSkirmishGameOptions", false);
-
         public bool CreateSavedGamesDirectory => clientDefinitionsIni.GetBooleanValue(SETTINGS, "CreateSavedGamesDirectory", false);
-
-        public bool DisableMultiplayerGameLoading => clientDefinitionsIni.GetBooleanValue(SETTINGS, "DisableMultiplayerGameLoading", false);
-
-        public bool DisplayPlayerCountInTopBar => clientDefinitionsIni.GetBooleanValue(SETTINGS, "DisplayPlayerCountInTopBar", false);
 
         /// <summary>
         /// The name of the executable in the main game directory that selects 
@@ -282,8 +257,6 @@ namespace ClientCore
         /// For example, DTA.exe in case of DTA.
         /// </summary>
         public string LauncherExe => clientDefinitionsIni.GetStringValue(SETTINGS, "LauncherExe", string.Empty);
-
-        public bool UseClientRandomStartLocations => clientDefinitionsIni.GetBooleanValue(SETTINGS, "UseClientRandomStartLocations", false);
 
         /// <summary>
         /// Returns the name of the game executable file that is used on
@@ -301,10 +274,41 @@ namespace ClientCore
         /// </summary>
         public string[] ForbiddenFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "ForbiddenFiles", String.Empty).Split(',');
 
+        /// <summary>
+        /// If checking for non-normal mixes is allowed.
+        /// </summary>
+        //public bool ForbiddenMixes => clientDefinitionsIni.GetBooleanValue(SETTINGS, "SearchMixes", true);
+
+        /// <summary>
+        /// What number to use to count above allowed expandmd mixes.
+        /// </summary>
+        public int MixNum => clientDefinitionsIni.GetIntValue(SETTINGS, "MixNum", 3);
+
+        /// <summary>
+        /// List of CnCNet files used to warn the player that their CnCNet install is broken
+        /// </summary>
+        public string[] CncnetFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "CncnetFiles", String.Empty).Split(',');
+
+        public bool EasterEggMode => clientDefinitionsIni.GetBooleanValue(SETTINGS, "EasterEggMode", false);
+
+        /// <summary>
+        /// in-testing thing to show missionimage when hovering over it, probably stupid
+        /// </summary>
+        public bool ShowMissionImage => clientDefinitionsIni.GetBooleanValue(SETTINGS, "MissionImageHover", false);
+
+        public bool UseNameForMissionImage => clientDefinitionsIni.GetBooleanValue(SETTINGS, "UseNameForMissionImage", false);
+
         #endregion
 
         public OSVersion GetOperatingSystemVersion()
         {
+            try
+            {
+                if (NativeMethods.GetProcAddress(NativeMethods.GetModuleHandle("kernel32"), "wine_get_unix_file_name") != (IntPtr)0)
+                    return OSVersion.WINE;
+            }
+            catch { }
+
             Version osVersion = Environment.OSVersion.Version;
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
@@ -344,3 +348,4 @@ namespace ClientCore
         }
     }
 }
+#endregion

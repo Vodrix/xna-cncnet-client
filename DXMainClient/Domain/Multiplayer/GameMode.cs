@@ -16,7 +16,6 @@ namespace DTAClient.Domain.Multiplayer
             Initialize();
         }
 
-        private const string BASE_INI_PATH = "INI/Map Code/";
         private const string SPAWN_INI_OPTIONS_SECTION = "ForcedSpawnIniOptions";
 
         /// <summary>
@@ -59,16 +58,12 @@ namespace DTAClient.Domain.Multiplayer
         /// </summary>
         public int MinPlayersOverride { get; private set; } = -1;
 
-        private string mapCodeININame;
-
         private string forcedOptionsSection;
-
-        public List<Map> Maps = new List<Map>();
 
         public List<KeyValuePair<string, bool>> ForcedCheckBoxValues = new List<KeyValuePair<string, bool>>();
         public List<KeyValuePair<string, int>> ForcedDropDownValues = new List<KeyValuePair<string, int>>();
 
-        private List<KeyValuePair<string, string>> ForcedSpawnIniOptions = new List<KeyValuePair<string, string>>();
+        private readonly List<KeyValuePair<string, string>> ForcedSpawnIniOptions = new List<KeyValuePair<string, string>>();
 
         public int CoopDifficultyLevel { get; set; }
 
@@ -84,17 +79,16 @@ namespace DTAClient.Domain.Multiplayer
             ForceNoTeams = forcedOptionsIni.GetBooleanValue(Name, "ForceNoTeams", false);
             MinPlayersOverride = forcedOptionsIni.GetIntValue(Name, "MinPlayersOverride", -1);
             forcedOptionsSection = forcedOptionsIni.GetStringValue(Name, "ForcedOptions", string.Empty);
-            mapCodeININame = forcedOptionsIni.GetStringValue(Name, "MapCodeININame", Name + ".ini");
-
+            
             string[] disallowedSides = forcedOptionsIni
                 .GetStringValue(Name, "DisallowedPlayerSides", string.Empty)
                 .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
+            
             foreach (string sideIndex in disallowedSides)
                 DisallowedPlayerSides.Add(int.Parse(sideIndex));
-
+            
             ParseForcedOptions(forcedOptionsIni);
-
+            
             ParseSpawnIniOptions(forcedOptionsIni);
         }
 
@@ -112,8 +106,7 @@ namespace DTAClient.Domain.Multiplayer
             {
                 string value = forcedOptionsIni.GetStringValue(forcedOptionsSection, key, string.Empty);
 
-                int intValue = 0;
-                if (int.TryParse(value, out intValue))
+                if (int.TryParse(value, out int intValue))
                 {
                     ForcedDropDownValues.Add(new KeyValuePair<string, int>(key, intValue));
                 }
@@ -135,10 +128,11 @@ namespace DTAClient.Domain.Multiplayer
 
             foreach (string key in spawnIniKeys)
             {
-                ForcedSpawnIniOptions.Add(new KeyValuePair<string, string>(key, 
+                ForcedSpawnIniOptions.Add(new KeyValuePair<string, string>(key,
                     forcedOptionsIni.GetStringValue(section, key, string.Empty)));
             }
         }
+<<<<<<< Updated upstream
 
         public void ApplySpawnIniCode(IniFile spawnIni)
         {
@@ -154,5 +148,7 @@ namespace DTAClient.Domain.Multiplayer
         protected bool Equals(GameMode other) => string.Equals(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
         public override int GetHashCode() => (Name != null ? Name.GetHashCode() : 0);
+=======
+>>>>>>> Stashed changes
     }
 }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using ClientCore;
 using ClientGUI;
@@ -185,3 +186,6 @@ namespace DTAClient.DXGUI.Multiplayer
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

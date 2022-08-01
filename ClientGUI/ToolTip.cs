@@ -3,9 +3,6 @@ using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ClientGUI
 {
@@ -48,7 +45,6 @@ namespace ClientGUI
             else
                 return parent;
         }
-
         private void MasterControl_EnabledChanged(object sender, EventArgs e)
             => Enabled = masterControl.Enabled;
 
@@ -70,7 +66,7 @@ namespace ClientGUI
         private XNAControl masterControl;
 
         private TimeSpan cursorTime = TimeSpan.Zero;
-        
+
 
         private void MasterControl_MouseEnter(object sender, EventArgs e)
         {

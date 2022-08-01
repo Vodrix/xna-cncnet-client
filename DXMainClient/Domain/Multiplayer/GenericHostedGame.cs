@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore.CnCNet5;
 using System;
 
@@ -40,3 +41,6 @@ namespace DTAClient.Domain.Multiplayer
             string.Equals(RoomName, other?.RoomName, StringComparison.InvariantCultureIgnoreCase);
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

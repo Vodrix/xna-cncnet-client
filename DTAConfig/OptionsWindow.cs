@@ -14,10 +14,9 @@ namespace DTAConfig
 {
     public class OptionsWindow : XNAWindow
     {
-        public OptionsWindow(WindowManager windowManager, GameCollection gameCollection, XNAControl topBar) : base(windowManager)
+        public OptionsWindow(WindowManager windowManager, GameCollection gameCollection) : base(windowManager)
         {
             this.gameCollection = gameCollection;
-            this.topBar = topBar;
         }
 
         public event EventHandler OnForceUpdate;
@@ -28,9 +27,8 @@ namespace DTAConfig
         private ComponentsPanel componentsPanel;
 
         private DisplayOptionsPanel displayOptionsPanel;
-        private XNAControl topBar;
 
-        private GameCollection gameCollection;
+        private readonly GameCollection gameCollection;
 
         public override void Initialize()
         {
@@ -38,6 +36,7 @@ namespace DTAConfig
             ClientRectangle = new Rectangle(0, 0, 576, 475);
             BackgroundTexture = AssetLoader.LoadTextureUncached("optionsbg.png");
 
+<<<<<<< Updated upstream
             tabControl = new XNAClientTabControl(WindowManager);
             tabControl.Name = "tabControl";
             tabControl.ClientRectangle = new Rectangle(12, 12, 0, 23);
@@ -49,8 +48,22 @@ namespace DTAConfig
             tabControl.AddTab("CnCNet".L10N("UI:DTAConfig:TabCnCNet"), UIDesignConstants.BUTTON_WIDTH_92);
             tabControl.AddTab("Updater".L10N("UI:DTAConfig:TabUpdater"), UIDesignConstants.BUTTON_WIDTH_92);
             tabControl.AddTab("Components".L10N("UI:DTAConfig:TabComponents"), UIDesignConstants.BUTTON_WIDTH_92);
+=======
+            tabControl = new XNAClientTabControl(WindowManager)
+            {
+                Name = "tabControl",
+                ClientRectangle = new Rectangle(12, 12, 0, 23),
+                FontIndex = 1,
+                ClickSound = new EnhancedSoundEffect("button.wav")
+            };
+>>>>>>> Stashed changes
             tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
+            tabControl.AddTab("Display", 138);
+            tabControl.AddTab("Audio", 138);
+            tabControl.AddTab("Game", 138);
+            tabControl.AddTab("Updater", 138);
 
+<<<<<<< Updated upstream
             var btnCancel = new XNAClientButton(WindowManager);
             btnCancel.Name = "btnCancel";
             btnCancel.ClientRectangle = new Rectangle(Width - 104,
@@ -62,6 +75,23 @@ namespace DTAConfig
             btnSave.Name = "btnSave";
             btnSave.ClientRectangle = new Rectangle(12, btnCancel.Y, UIDesignConstants.BUTTON_WIDTH_92, UIDesignConstants.BUTTON_HEIGHT);
             btnSave.Text = "Save".L10N("UI:DTAConfig:ButtonSave");
+=======
+            var btnCancel = new XNAClientButton(WindowManager)
+            {
+                Name = "btnCancel",
+                ClientRectangle = new Rectangle(Width - 104,
+                Height - 35, UIDesignConstants.BUTTON_WIDTH_92, UIDesignConstants.BUTTON_HEIGHT),
+                Text = "Cancel"
+            };
+            btnCancel.LeftClick += BtnBack_LeftClick;
+
+            var btnSave = new XNAClientButton(WindowManager)
+            {
+                Name = "btnSave",
+                ClientRectangle = new Rectangle(12, btnCancel.Y, UIDesignConstants.BUTTON_WIDTH_92, UIDesignConstants.BUTTON_HEIGHT),
+                Text = "Save"
+            };
+>>>>>>> Stashed changes
             btnSave.LeftClick += BtnSave_LeftClick;
 
             displayOptionsPanel = new DisplayOptionsPanel(WindowManager, UserINISettings.Instance);
@@ -73,19 +103,26 @@ namespace DTAConfig
             {
                 displayOptionsPanel,
                 new AudioOptionsPanel(WindowManager, UserINISettings.Instance),
-                new GameOptionsPanel(WindowManager, UserINISettings.Instance, topBar),
-                new CnCNetOptionsPanel(WindowManager, UserINISettings.Instance, gameCollection),
-                updaterOptionsPanel,
-                componentsPanel
+                new GameOptionsPanel(WindowManager, UserINISettings.Instance),
+                //new CnCNetOptionsPanel(WindowManager, UserINISettings.Instance, gameCollection),
+                updaterOptionsPanel
+                //componentsPanel
             };
 
             if (ClientConfiguration.Instance.ModMode || Updater.UpdateMirrors == null || Updater.UpdateMirrors.Count < 1)
             {
-                tabControl.MakeUnselectable(4);
-                tabControl.MakeUnselectable(5);
+                tabControl.MakeUnselectable(3);
             }
+<<<<<<< Updated upstream
             else if (Updater.CustomComponents == null || Updater.CustomComponents.Count < 1)
                 tabControl.MakeUnselectable(5);
+=======
+
+            //else
+            //{
+            //
+            //}
+>>>>>>> Stashed changes
 
             foreach (var panel in optionsPanels)
             {
@@ -93,6 +130,8 @@ namespace DTAConfig
                 panel.Load();
                 panel.Disable();
             }
+
+
 
             optionsPanels[0].Enable();
 

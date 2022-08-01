@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using Microsoft.Xna.Framework;
 using System;
 
@@ -68,3 +69,6 @@ namespace DTAClient.Online
         public bool IsUser => SenderIdent != null;
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

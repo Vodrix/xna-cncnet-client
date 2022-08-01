@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore.CnCNet5;
 using DTAClient.DXGUI.Multiplayer.CnCNet;
 using DTAClient.Online;
@@ -162,3 +163,6 @@ namespace DTAClient.DXGUI.Multiplayer
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

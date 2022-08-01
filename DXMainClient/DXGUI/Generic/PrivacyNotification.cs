@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using ClientGUI;
 using Localization;
@@ -93,3 +94,6 @@ namespace DTAClient.DXGUI.Generic
         }
     }
 }
+=======
+﻿//not needed since not using any cncnet service
+>>>>>>> Stashed changes

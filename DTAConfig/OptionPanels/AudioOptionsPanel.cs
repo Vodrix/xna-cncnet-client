@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 using System;
-using System.Collections.Generic;
 
 namespace DTAConfig.OptionPanels
 {
@@ -30,7 +29,6 @@ namespace DTAConfig.OptionPanels
         private XNATrackbar trbClientVolume;
 
         private XNAClientCheckBox chkMainMenuMusic;
-        private XNAClientCheckBox chkStopMusicOnMenu;
 
         public override void Initialize()
         {
@@ -156,12 +154,15 @@ namespace DTAConfig.OptionPanels
             chkMainMenuMusic.Text = "Main menu music".L10N("UI:DTAConfig:MainMenuMusic");
             chkMainMenuMusic.CheckedChanged += ChkMainMenuMusic_CheckedChanged;
 
+<<<<<<< Updated upstream
             chkStopMusicOnMenu = new XNAClientCheckBox(WindowManager);
             chkStopMusicOnMenu.Name = "chkStopMusicOnMenu";
             chkStopMusicOnMenu.ClientRectangle = new Rectangle(
                 lblScoreVolume.X, chkMainMenuMusic.Bottom + 24, 0, 0);
             chkStopMusicOnMenu.Text = "Don't play main menu music in lobbies".L10N("UI:DTAConfig:NoLobbiesMusic");
 
+=======
+>>>>>>> Stashed changes
             AddChild(lblScoreVolume);
             AddChild(lblScoreVolumeValue);
             AddChild(trbScoreVolume);
@@ -179,15 +180,12 @@ namespace DTAConfig.OptionPanels
             AddChild(trbClientVolume);
 
             AddChild(chkMainMenuMusic);
-            AddChild(chkStopMusicOnMenu);
 
             WindowManager.SoundPlayer.SetVolume(trbClientVolume.Value / 10.0f);
         }
 
         private void ChkMainMenuMusic_CheckedChanged(object sender, EventArgs e)
         {
-            chkStopMusicOnMenu.AllowChecking = chkMainMenuMusic.Checked;
-            chkStopMusicOnMenu.Checked = chkMainMenuMusic.Checked;
         }
 
         private void TrbScoreVolume_ValueChanged(object sender, EventArgs e)
@@ -218,13 +216,16 @@ namespace DTAConfig.OptionPanels
             trbScoreVolume.Value = (int)(IniSettings.ScoreVolume * 10);
             trbSoundVolume.Value = (int)(IniSettings.SoundVolume * 10);
             trbVoiceVolume.Value = (int)(IniSettings.VoiceVolume * 10);
+            lblScoreVolumeValue.Text = trbScoreVolume.Value.ToString();
+            lblSoundVolumeValue.Text = trbSoundVolume.Value.ToString();
+            lblVoiceVolumeValue.Text = trbVoiceVolume.Value.ToString();
+            lblClientVolumeValue.Text = trbClientVolume.Value.ToString();
 
             chkScoreShuffle.Checked = IniSettings.IsScoreShuffle;
 
             trbClientVolume.Value = (int)(IniSettings.ClientVolume * 10);
 
             chkMainMenuMusic.Checked = IniSettings.PlayMainMenuMusic;
-            chkStopMusicOnMenu.Checked = IniSettings.StopMusicOnMenu;
         }
 
         public override bool Save()
@@ -234,13 +235,12 @@ namespace DTAConfig.OptionPanels
             IniSettings.ScoreVolume.Value = trbScoreVolume.Value / 10.0;
             IniSettings.SoundVolume.Value = trbSoundVolume.Value / 10.0;
             IniSettings.VoiceVolume.Value = trbVoiceVolume.Value / 10.0;
-            
+
             IniSettings.IsScoreShuffle.Value = chkScoreShuffle.Checked;
 
             IniSettings.ClientVolume.Value = trbClientVolume.Value / 10.0;
 
             IniSettings.PlayMainMenuMusic.Value = chkMainMenuMusic.Checked;
-            IniSettings.StopMusicOnMenu.Value = chkStopMusicOnMenu.Checked;
 
             return restartRequired;
         }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -1072,3 +1073,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
         }
     }
 }
+=======
+//empty and doesn't need to exist
+>>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using DTAClient.Online;
 
@@ -40,3 +41,6 @@ namespace DTAClient.Domain.Multiplayer.CnCNet
                 base.Equals(other);
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

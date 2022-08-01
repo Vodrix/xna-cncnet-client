@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 using System;
-using System.IO;
 using Updater;
 
 namespace DTAConfig.OptionPanels
@@ -85,7 +84,7 @@ namespace DTAConfig.OptionPanels
                     "made to this installation. Use at your own risk!" +
                     Environment.NewLine + Environment.NewLine +
                     "If you proceed, the options window will close and the" + Environment.NewLine +
-                    "client will proceed to checking for updates." + 
+                    "client will proceed to checking for updates." +
                     Environment.NewLine + Environment.NewLine +
                     "Do you really want to force update?" + Environment.NewLine, XNAMessageBoxButtons.YesNo);
             msgBox.Show();
@@ -141,7 +140,7 @@ namespace DTAConfig.OptionPanels
             lbUpdateServerList.Clear();
 
             foreach (var updaterMirror in CUpdater.UPDATEMIRRORS)
-                lbUpdateServerList.AddItem(updaterMirror.Name + (!string.IsNullOrEmpty(updaterMirror.Location) ? 
+                lbUpdateServerList.AddItem(updaterMirror.Name + (!string.IsNullOrEmpty(updaterMirror.Location) ?
                     " (" + updaterMirror.Location + ")" : ""));
 
             chkAutoCheck.Checked = IniSettings.CheckForUpdates;

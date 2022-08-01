@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using ClientCore.Statistics;
 using ClientGUI;
@@ -2317,3 +2318,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
         protected abstract bool AllowPlayerOptionsChange();
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

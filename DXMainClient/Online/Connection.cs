@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using Localization;
 using Rampastring.Tools;
@@ -1080,3 +1081,6 @@ namespace DTAClient.Online
         #endregion
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using DTAClient.Online.EventArguments;
 using Microsoft.Xna.Framework;
@@ -403,3 +404,6 @@ namespace DTAClient.Online
         public string Message { get; private set; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

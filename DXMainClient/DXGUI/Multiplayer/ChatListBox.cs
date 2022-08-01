@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using Rampastring.XNAUI.XNAControls;
 using Rampastring.XNAUI;
 using System.Diagnostics;
@@ -71,3 +72,6 @@ namespace DTAClient.DXGUI.Multiplayer
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

@@ -16,7 +16,7 @@ namespace DTAConfig.OptionPanels
     /// </summary>
     internal abstract class XNAOptionsPanel : XNAWindowBase
     {
-        public XNAOptionsPanel(WindowManager windowManager, 
+        public XNAOptionsPanel(WindowManager windowManager,
             UserINISettings iniSettings) : base(windowManager)
         {
             IniSettings = iniSettings;
@@ -25,7 +25,11 @@ namespace DTAConfig.OptionPanels
 
         private static readonly OptionsGUICreator optionsGUICreator = new OptionsGUICreator();
 
+<<<<<<< Updated upstream
         private readonly List<IUserSetting> userSettings = new List<IUserSetting>();
+=======
+        private readonly List<ICustomSetting> customSettings = new List<ICustomSetting>();
+>>>>>>> Stashed changes
 
         public override void Initialize()
         {
@@ -69,7 +73,7 @@ namespace DTAConfig.OptionPanels
             bool restartRequired = false;
             foreach (var setting in userSettings)
                 restartRequired = setting.Save() || restartRequired;
-            
+
             return restartRequired;
         }
 

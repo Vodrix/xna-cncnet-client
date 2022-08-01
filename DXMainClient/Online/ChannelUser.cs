@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 
 namespace DTAClient.Online
@@ -31,3 +32,6 @@ namespace DTAClient.Online
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

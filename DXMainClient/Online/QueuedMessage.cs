@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 
 namespace DTAClient.Online
@@ -72,3 +73,6 @@ namespace DTAClient.Online
         public bool Replace { get; set; } = false;
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

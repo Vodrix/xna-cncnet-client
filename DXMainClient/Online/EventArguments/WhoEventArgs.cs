@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 
 namespace DTAClient.Online.EventArguments
@@ -17,3 +18,6 @@ namespace DTAClient.Online.EventArguments
         public string ExtraInfo { get; private set; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

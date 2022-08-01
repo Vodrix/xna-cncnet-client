@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using ClientCore;
 using DTAClient.Domain;
 using DTAClient.Domain.LAN;
@@ -1127,3 +1128,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
     }
 
 }
+=======
+//empty and doesn't need to exist
+>>>>>>> Stashed changes

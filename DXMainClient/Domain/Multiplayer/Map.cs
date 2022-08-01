@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -801,3 +802,6 @@ namespace DTAClient.Domain.Multiplayer
         public override int GetHashCode() => (SHA1 != null ? SHA1.GetHashCode() : 0);
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

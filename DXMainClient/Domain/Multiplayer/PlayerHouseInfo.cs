@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using System;
 using System.Collections.Generic;
 using ClientCore;
@@ -173,3 +174,6 @@ namespace DTAClient.Domain.Multiplayer
         }
     }
 }
+=======
+//empty and doesn't need to exist
+>>>>>>> Stashed changes

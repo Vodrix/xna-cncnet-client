@@ -1,14 +1,18 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
+﻿using ClientCore;
 using DTAClient.Domain;
 using Rampastring.Tools;
-using ClientCore;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
+<<<<<<< Updated upstream
 using System.Collections.Generic;
 using Localization;
+=======
+using System.Windows.Forms;
+>>>>>>> Stashed changes
 
 namespace DTAClient
 {
@@ -192,9 +196,11 @@ namespace DTAClient
             if (dr == DialogResult.No)
                 Environment.Exit(0);
 
-            ProcessStartInfo psInfo = new ProcessStartInfo();
-            psInfo.FileName = Application.ExecutablePath.Replace('\\', '/');
-            psInfo.Verb = "runas";
+            ProcessStartInfo psInfo = new ProcessStartInfo
+            {
+                FileName = Application.ExecutablePath.Replace('\\', '/'),
+                Verb = "runas"
+            };
             Process.Start(psInfo);
             Environment.Exit(0);
         }
@@ -239,8 +245,7 @@ namespace DTAClient
 
                 foreach (AuthorizationRule rule in rules)
                 {
-                    var fsAccessRule = rule as FileSystemAccessRule;
-                    if (fsAccessRule == null)
+                    if (!(rule is FileSystemAccessRule fsAccessRule))
                         continue;
 
                     if ((fsAccessRule.FileSystemRights & accessRights) > 0)

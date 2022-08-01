@@ -25,6 +25,7 @@ namespace ClientCore
 
         public const string QRES_EXECUTABLE = "qres.dat";
 
+<<<<<<< Updated upstream
         public const string CNCNET_PROTOCOL_REVISION = "R9";
         public const string LAN_PROTOCOL_REVISION = "RL6";
         public const int LAN_PORT = 1234;
@@ -33,34 +34,35 @@ namespace ClientCore
         public const int LAN_GAME_LOBBY_PORT = 1233;
         public const char LAN_DATA_SEPARATOR = (char)01;
         public const char LAN_MESSAGE_SEPARATOR = (char)02;
+=======
+        public const string EASTEREGG = "1018";
+>>>>>>> Stashed changes
 
         public const string SPAWNMAP_INI = "spawnmap.ini";
         public const string SPAWNER_SETTINGS = "spawn.ini";
         public const string SAVED_GAME_SPAWN_INI = "Saved Games/spawnSG.ini";
 
-        public const int GAME_ID_MAX_LENGTH = 4;
-
-        public static readonly Encoding LAN_ENCODING = Encoding.UTF8;
-
         public static string GAME_VERSION = "Undefined";
-        private static string PlayerName = "No name";
+        private static string PlayerName = "Noname";
+
+        public const int GAME_ID_MAX_LENGTH = 4;
 
         public static string PLAYERNAME
         {
-            get { return PlayerName; }
+            get => PlayerName;
             set
             {
                 string oldPlayerName = PlayerName;
                 PlayerName = value;
                 if (oldPlayerName != PlayerName)
+                {
                     PlayerNameChanged?.Invoke(null, EventArgs.Empty);
+                }
             }
         }
 
         public static string BASE_RESOURCE_PATH = "Resources/";
         public static string RESOURCES_DIR = BASE_RESOURCE_PATH;
-
-        public static int LOG_LEVEL = 1;
 
         public static bool IsInGame { get; set; }
 
@@ -73,6 +75,7 @@ namespace ClientCore
         {
             return GamePath + BASE_RESOURCE_PATH;
         }
+<<<<<<< Updated upstream
 
         public const string GAME_INVITE_CTCP_COMMAND = "INVITE";
         public const string GAME_INVITATION_FAILED_CTCP_COMMAND = "INVITATION_FAILED";
@@ -89,5 +92,7 @@ namespace ClientCore
 
         // Static fields might be initialized before the translation file is loaded. Change to readonly properties here.
         public static List<string> AI_PLAYER_NAMES => new List<string> { "Easy AI".L10N("UI:Main:EasyAIName"), "Medium AI".L10N("UI:Main:MediumAIName"), "Hard AI".L10N("UI:Main:HardAIName") };
+=======
+>>>>>>> Stashed changes
     }
 }

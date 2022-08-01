@@ -21,7 +21,6 @@ namespace DTAClient.Domain
             Enabled = iniFile.GetBooleanValue(sectionName, nameof(Enabled), true);
             BuildOffAlly = iniFile.GetBooleanValue(sectionName, nameof(BuildOffAlly), false);
             PlayerAlwaysOnNormalDifficulty = iniFile.GetBooleanValue(sectionName, nameof(PlayerAlwaysOnNormalDifficulty), false);
-
             GUIDescription = GUIDescription.Replace("@", Environment.NewLine);
         }
 

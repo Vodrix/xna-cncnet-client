@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">SharpDX</Platform>
@@ -241,6 +241,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AresDebug|WindowsGL'">
     <DebugSymbols>true</DebugSymbols>
@@ -419,9 +420,7 @@
     <Compile Include="Domain\Multiplayer\AllianceHolder.cs" />
     <Compile Include="Domain\Multiplayer\CnCNet\CnCNetPlayerCountTask.cs" />
     <Compile Include="Domain\Multiplayer\CnCNet\CnCNetTunnel.cs" />
-    <Compile Include="Domain\Multiplayer\CnCNet\ExtendedWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Domain\Multiplayer\CnCNet\ExtendedWebClient.cs" />
     <Compile Include="Domain\DiscordHandler.cs" />
     <Compile Include="Domain\Multiplayer\CoopHouseInfo.cs" />
     <Compile Include="Domain\Multiplayer\CoopMapInfo.cs" />
@@ -452,6 +451,10 @@
     <Compile Include="Domain\Multiplayer\LAN\HostedLANGame.cs" />
     <Compile Include="Domain\Multiplayer\TeamStartMappingPreset.cs" />
     <Compile Include="Domain\StatisticsSender.cs" />
+    <Compile Include="DXGUI\Generic\CampaignBonus.cs" />
+    <Compile Include="DXGUI\Generic\CampaignRA2.cs" />
+    <Compile Include="DXGUI\Generic\CampaignSelect.cs" />
+    <Compile Include="DXGUI\Generic\CampaignYR.cs" />
     <Compile Include="DXGUI\Generic\CheaterWindow.cs" />
     <Compile Include="Domain\Multiplayer\Map.cs" />
     <Compile Include="Domain\Multiplayer\MapLoader.cs" />
@@ -462,8 +465,12 @@
     <Compile Include="Domain\SavedGame.cs" />
     <Compile Include="Domain\MainClientConstants.cs" />
     <Compile Include="Domain\UserAgentHandler.cs" />
+<<<<<<< Updated upstream
     <Compile Include="DXGUI\Generic\CampaignSelector.cs" />
     <Compile Include="DXGUI\Generic\ManualUpdateQueryWindow.cs" />
+=======
+    <Compile Include="DXGUI\Generic\CreditsWindow.cs" />
+>>>>>>> Stashed changes
     <Compile Include="DXGUI\Generic\PrivacyNotification.cs" />
     <Compile Include="DXGUI\Generic\ManualUpdateQueryWindow.cs" />
     <Compile Include="DXGUI\Generic\TopBar.cs" />
@@ -544,7 +551,6 @@
     <Compile Include="DXGUI\Generic\MainMenu.cs" />
     <Compile Include="DXGUI\Generic\MainMenuDarkeningPanel.cs" />
     <Compile Include="Domain\Multiplayer\MultiplayerColor.cs" />
-    <Compile Include="DXGUI\Generic\StatisticsWindow.cs" />
     <Compile Include="DXGUI\Generic\UpdateQueryWindow.cs" />
     <Compile Include="DXGUI\Generic\UpdateWindow.cs" />
     <Compile Include="Domain\FinalSunSettings.cs" />

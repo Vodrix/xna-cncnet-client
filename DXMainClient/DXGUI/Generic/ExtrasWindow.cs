@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using ClientGUI;
 using DTAClient.Domain;
@@ -79,3 +80,6 @@ namespace DTAClient.DXGUI.Generic
         }
     }
 }
+=======
+﻿
+>>>>>>> Stashed changes

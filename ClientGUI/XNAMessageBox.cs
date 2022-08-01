@@ -1,9 +1,12 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Rampastring.XNAUI.XNAControls;
-using Rampastring.XNAUI;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+<<<<<<< Updated upstream
 using Localization;
+=======
+using Rampastring.XNAUI;
+using Rampastring.XNAUI.XNAControls;
+using System;
+>>>>>>> Stashed changes
 
 namespace ClientGUI
 {
@@ -238,8 +241,8 @@ namespace ClientGUI
             windowManager.AddAndInitializeControl(panel);
 
             var msgBox = new XNAMessageBox(windowManager,
-                Renderer.GetSafeString(caption, 1), 
-                Renderer.GetSafeString(description, 0), 
+                Renderer.GetSafeString(caption, 1),
+                Renderer.GetSafeString(description, 0),
                 XNAMessageBoxButtons.OK);
 
             panel.AddChild(msgBox);

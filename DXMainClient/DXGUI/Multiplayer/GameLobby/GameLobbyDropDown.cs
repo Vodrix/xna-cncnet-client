@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using Rampastring.Tools;
 using Rampastring.XNAUI;
@@ -160,3 +161,6 @@ namespace DTAClient.DXGUI.Multiplayer.GameLobby
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

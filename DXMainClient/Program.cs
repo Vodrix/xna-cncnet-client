@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
+<<<<<<< Updated upstream
 using System.Collections.Generic;
 using Localization;
+=======
+using System.Windows.Forms;
+>>>>>>> Stashed changes
 
 namespace DTAClient
 {
@@ -15,6 +19,7 @@ namespace DTAClient
     {
         static Program()
         {
+
             char dsc = Path.DirectorySeparatorChar;
 
             /*/ We have different binaries depending on build platform, but for simplicity
@@ -51,7 +56,7 @@ namespace DTAClient
 #endif
         }
 
-        static List<string> COMMON_LIBRARIES = new List<string>()
+        static readonly List<string> COMMON_LIBRARIES = new List<string>()
         {
             "Rampastring.Tools",
             "Ionic.Zip",
@@ -62,7 +67,7 @@ namespace DTAClient
             "OpenMcdf",
         };
 
-        static List<string> SPECIFIC_LIBRARIES = new List<string>()
+        static readonly List<string> SPECIFIC_LIBRARIES = new List<string>()
         {
             "ClientGUI",
             "ClientCore",
@@ -74,8 +79,8 @@ namespace DTAClient
             "soft_oal",
         };
 
-        private static string COMMON_LIBRARY_PATH;
-        private static string SPECIFIC_LIBRARY_PATH;
+        private static readonly string COMMON_LIBRARY_PATH;
+        private static readonly string SPECIFIC_LIBRARY_PATH;
 
         /// <summary>
         /// The main entry point for the application.
@@ -128,8 +133,7 @@ namespace DTAClient
                 MutexRights.FullControl, AccessControlType.Allow);
             var securitySettings = new MutexSecurity();
             securitySettings.AddAccessRule(allowEveryoneRule);
-
-            using (var mutex = new Mutex(false, mutexId, out bool createdNew, securitySettings))
+            using (var mutex = new Mutex(false, mutexId, out _, securitySettings))
             {
                 var hasHandle = false;
                 try
@@ -189,7 +193,7 @@ namespace DTAClient
 #if DEBUG
                 try
                 {
-                   data = File.ReadAllBytes(string.Format("{0}{1}.dll", SPECIFIC_LIBRARY_PATH, name));
+                    data = File.ReadAllBytes(string.Format("{0}{1}.dll", SPECIFIC_LIBRARY_PATH, name));
                 }
                 catch
                 {

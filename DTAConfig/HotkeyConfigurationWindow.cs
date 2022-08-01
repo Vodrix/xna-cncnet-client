@@ -73,7 +73,7 @@ namespace DTAConfig
 
             ddCategory = new XNAClientDropDown(WindowManager);
             ddCategory.Name = "ddCategory";
-            ddCategory.ClientRectangle = new Rectangle(lblCategory.Right + 12, 
+            ddCategory.ClientRectangle = new Rectangle(lblCategory.Right + 12,
                 lblCategory.Y - 1, 250, ddCategory.Height);
 
             HashSet<string> categories = new HashSet<string>();
@@ -89,7 +89,7 @@ namespace DTAConfig
 
             lbHotkeys = new XNAMultiColumnListBox(WindowManager);
             lbHotkeys.Name = "lbHotkeys";
-            lbHotkeys.ClientRectangle = new Rectangle(12, ddCategory.Bottom + 12, 
+            lbHotkeys.ClientRectangle = new Rectangle(12, ddCategory.Bottom + 12,
                 ddCategory.Right - 12, Height - ddCategory.Bottom - 59);
             lbHotkeys.PanelBackgroundDrawMode = PanelBackgroundImageDrawMode.STRETCHED;
             lbHotkeys.BackgroundTexture = AssetLoader.CreateTexture(new Color(0, 0, 0, 128), 1, 1);
@@ -326,7 +326,7 @@ namespace DTAConfig
             hotkeyInfoPanel.Enable();
             var command = (GameCommand)lbHotkeys.GetItem(0, lbHotkeys.SelectedIndex).Tag;
             lblCommandCaption.Text = command.UIName;
-            lblDescription.Text = Renderer.FixText(command.Description, lblDescription.FontIndex, 
+            lblDescription.Text = Renderer.FixText(command.Description, lblDescription.FontIndex,
                 hotkeyInfoPanel.Width - lblDescription.X).Text;
             lblCurrentHotkeyValue.Text = command.Hotkey.ToStringWithNone();
 

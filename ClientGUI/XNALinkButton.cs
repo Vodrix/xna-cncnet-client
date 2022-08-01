@@ -1,6 +1,10 @@
+<<<<<<< Updated upstream
 ﻿using System;
+=======
+﻿using Rampastring.Tools;
+>>>>>>> Stashed changes
 using Rampastring.XNAUI;
-using Rampastring.Tools;
+using System;
 using System.Diagnostics;
 
 namespace ClientGUI

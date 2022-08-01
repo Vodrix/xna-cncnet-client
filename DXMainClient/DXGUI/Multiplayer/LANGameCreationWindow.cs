@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientGUI;
 using System;
 using Rampastring.XNAUI;
@@ -149,3 +150,6 @@ namespace DTAClient.DXGUI.Multiplayer
         public int LoadedGameID { get; private set; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

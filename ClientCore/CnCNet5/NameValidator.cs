@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using System.Linq;
 using Localization;
@@ -65,3 +66,6 @@ namespace ClientCore.CnCNet5
         }
     }
 }
+=======
+﻿
+>>>>>>> Stashed changes

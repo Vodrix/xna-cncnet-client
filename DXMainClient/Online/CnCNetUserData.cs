@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using Rampastring.Tools;
 using Rampastring.XNAUI;
@@ -218,3 +219,6 @@ namespace DTAClient.Online
         public string Ident { get; private set; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

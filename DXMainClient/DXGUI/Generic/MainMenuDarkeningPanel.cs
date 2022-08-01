@@ -22,13 +22,15 @@ namespace DTAClient.DXGUI.Generic
 
         private DiscordHandler discordHandler;
 
-        public CampaignSelector CampaignSelector;
+        public CampaignRA2 CampaignRA2;
+        public CampaignBonus CampaignBonus;
+        public CampaignYR CampaignYR;
+        public CampaignSelect CampaignSelect;
         public GameLoadingWindow GameLoadingWindow;
-        public StatisticsWindow StatisticsWindow;
+        public CreditsWindow CreditsWindow;
         public UpdateQueryWindow UpdateQueryWindow;
         public ManualUpdateQueryWindow ManualUpdateQueryWindow;
         public UpdateWindow UpdateWindow;
-        public ExtrasWindow ExtrasWindow;
 
         public override void Initialize()
         {
@@ -40,14 +42,23 @@ namespace DTAClient.DXGUI.Generic
             PanelBackgroundDrawMode = PanelBackgroundImageDrawMode.STRETCHED;
             Alpha = 1.0f;
 
-            CampaignSelector = new CampaignSelector(WindowManager, discordHandler);
-            AddChild(CampaignSelector);
+            CampaignSelect = new CampaignSelect(WindowManager);
+            AddChild(CampaignSelect);
+
+            CampaignRA2 = new CampaignRA2(WindowManager, discordHandler);
+            AddChild(CampaignRA2);
+
+            CampaignBonus = new CampaignBonus(WindowManager, discordHandler);
+            AddChild(CampaignBonus);
+
+            CampaignYR = new CampaignYR(WindowManager, discordHandler);
+            AddChild(CampaignYR);
 
             GameLoadingWindow = new GameLoadingWindow(WindowManager, discordHandler);
             AddChild(GameLoadingWindow);
 
-            StatisticsWindow = new StatisticsWindow(WindowManager);
-            AddChild(StatisticsWindow);
+            CreditsWindow = new CreditsWindow(WindowManager);
+            AddChild(CreditsWindow);
 
             UpdateQueryWindow = new UpdateQueryWindow(WindowManager);
             AddChild(UpdateQueryWindow);
@@ -57,9 +68,6 @@ namespace DTAClient.DXGUI.Generic
 
             UpdateWindow = new UpdateWindow(WindowManager);
             AddChild(UpdateWindow);
-
-            ExtrasWindow = new ExtrasWindow(WindowManager);
-            AddChild(ExtrasWindow);
 
             foreach (XNAControl child in Children)
             {

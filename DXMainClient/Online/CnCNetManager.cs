@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientCore;
 using ClientCore.CnCNet5;
 using DTAClient.Domain.Multiplayer.CnCNet;
@@ -969,3 +970,6 @@ namespace DTAClient.Online
         public IRCUser User { get; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

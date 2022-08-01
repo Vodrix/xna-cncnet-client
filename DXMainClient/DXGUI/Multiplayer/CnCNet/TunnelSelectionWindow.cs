@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientGUI;
 using DTAClient.Domain.Multiplayer.CnCNet;
 using Localization;
@@ -135,3 +136,6 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
         public CnCNetTunnel Tunnel { get; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

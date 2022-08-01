@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientGUI;
 using Localization;
 using Rampastring.XNAUI;
@@ -90,3 +91,6 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

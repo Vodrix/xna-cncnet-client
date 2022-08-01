@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientGUI;
 using DTAClient.Domain.Multiplayer.CnCNet;
 using Localization;
@@ -132,3 +133,6 @@ namespace DTAClient.DXGUI.Multiplayer.CnCNet
         public HostedCnCNetGame HostedGame { get; private set; }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

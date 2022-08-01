@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿namespace DTAClient.Online
 {
     /// <summary>
@@ -22,3 +23,6 @@
         GAME_PLAYERS_EXTRA_MESSAGE,
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

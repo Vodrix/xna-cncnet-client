@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using ClientGUI;
 using System;
 using Rampastring.XNAUI;
@@ -82,3 +83,6 @@ namespace DTAClient.DXGUI.Generic
         }
     }
 }
+=======
+﻿
+>>>>>>> Stashed changes

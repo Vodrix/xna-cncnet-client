@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using Rampastring.XNAUI.XNAControls;
 using System;
 using System.Collections.Generic;
@@ -463,3 +464,6 @@ namespace DTAClient.DXGUI.Generic
         SECONDARY
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes

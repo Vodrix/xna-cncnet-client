@@ -1,4 +1,8 @@
-﻿namespace DTAClient.DXGUI
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace DTAClient.DXGUI
 {
     /// <summary>
     /// An interface for all switchable windows.

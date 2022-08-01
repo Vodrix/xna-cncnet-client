@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using Rampastring.Tools;
 using System.Collections.Generic;
 
@@ -135,3 +136,6 @@ namespace DTAClient.Domain.Multiplayer
         }
     }
 }
+=======
+﻿//empty and doesn't need to exist
+>>>>>>> Stashed changes
