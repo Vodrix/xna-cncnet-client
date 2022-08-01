@@ -168,7 +168,7 @@ namespace ClientCore.CnCNet5
                 if (!iniFile.SectionExists(kvp.Value))
                     continue;
 
-                string ID = iniFile.GetStringValue(kvp.Value, "InternalName", string.Empty).ToLower();
+                string ID = iniFile.GetStringValue(kvp.Value, "InternalName", string.Empty).ToLowerInvariant();
 
                 if (string.IsNullOrEmpty(ID))
                     throw new GameCollectionConfigurationException("InternalName for game " + kvp.Value + " is not defined or set to an empty value.");
@@ -180,18 +180,18 @@ namespace ClientCore.CnCNet5
                 }
 
                 if (existingGames.Find(g => g.InternalName == ID) != null || customGameIDs.Contains(ID))
-                    throw new GameCollectionConfigurationException("Game with InternalName " + ID.ToUpper() + " already exists in the game collection.");
+                    throw new GameCollectionConfigurationException("Game with InternalName " + ID.ToUpperInvariant() + " already exists in the game collection.");
 
                 string iconFilename = iniFile.GetStringValue(kvp.Value, "IconFilename", ID + "icon.png");
                 customGames.Add(new CnCNetGame
                 {
                     InternalName = ID,
-                    UIName = iniFile.GetStringValue(kvp.Value, "UIName", ID.ToUpper()),
+                    UIName = iniFile.GetStringValue(kvp.Value, "UIName", ID.ToUpperInvariant()),
                     ChatChannel = GetIRCChannelNameFromIniFile(iniFile, kvp.Value, "ChatChannel"),
                     GameBroadcastChannel = GetIRCChannelNameFromIniFile(iniFile, kvp.Value, "GameBroadcastChannel"),
                     ClientExecutableName = iniFile.GetStringValue(kvp.Value, "ClientExecutableName", string.Empty),
                     RegistryInstallPath = iniFile.GetStringValue(kvp.Value, "RegistryInstallPath", "HKCU\\Software\\"
-                    + ID.ToUpper()),
+                    + ID.ToUpperInvariant()),
                     Texture = AssetLoader.AssetExists(iconFilename) ? AssetLoader.LoadTexture(iconFilename) :
                     AssetLoader.TextureFromImage(Resources.unknownicon)
                 });
@@ -228,7 +228,7 @@ namespace ClientCore.CnCNet5
             {
                 CnCNetGame game = GameList[gId];
 
-                if (gameName.ToLower() == game.InternalName)
+                if (gameName.ToLowerInvariant() == game.InternalName)
                     return gId;
             }
 
@@ -244,7 +244,7 @@ namespace ClientCore.CnCNet5
         /// Returns the given parameter if the name isn't found in the supported game list.</returns>
         public string GetGameNameFromInternalName(string gameName)
         {
-            CnCNetGame game = GameList.Find(g => g.InternalName == gameName.ToLower());
+            CnCNetGame game = GameList.Find(g => g.InternalName == gameName.ToLowerInvariant());
 
             if (game == null)
                 return gameName;
@@ -274,7 +274,7 @@ namespace ClientCore.CnCNet5
 
         public string GetGameBroadcastingChannelNameFromIdentifier(string gameIdentifier)
         {
-            CnCNetGame game = GameList.Find(g => g.InternalName == gameIdentifier.ToLower());
+            CnCNetGame game = GameList.Find(g => g.InternalName == gameIdentifier.ToLowerInvariant());
             if (game == null)
                 return null;
             return game.GameBroadcastChannel;
@@ -282,7 +282,7 @@ namespace ClientCore.CnCNet5
 
         public string GetGameChatChannelNameFromIdentifier(string gameIdentifier)
         {
-            CnCNetGame game = GameList.Find(g => g.InternalName == gameIdentifier.ToLower());
+            CnCNetGame game = GameList.Find(g => g.InternalName == gameIdentifier.ToLowerInvariant());
             if (game == null)
                 return null;
             return game.ChatChannel;

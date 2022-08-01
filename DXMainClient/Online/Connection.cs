@@ -1,4 +1,5 @@
 ﻿using ClientCore;
+using Localization;
 using Rampastring.Tools;
 using System;
 using System.Collections.Generic;
@@ -141,7 +142,7 @@ namespace DTAClient.Online
         public void ConnectAsync()
         {
             if (_isConnected)
-                throw new InvalidOperationException("The client is already connected!");
+                throw new InvalidOperationException("The client is already connected!".L10N("UI:Main:ClientAlreadyConnected"));
 
             if (_attemptingConnection)
                 return; // Maybe we should throw in this case as well?
@@ -168,7 +169,7 @@ namespace DTAClient.Online
             {
                 try
                 {
-                    for (var i = 0; i < server.Ports.Length; i++)
+                    for (int i = 0; i < server.Ports.Length; i++)
                     {
                         connectionManager.OnAttemptedServerChanged(server.Name);
 
@@ -276,7 +277,7 @@ namespace DTAClient.Online
                     {
                         failedServerIPs.Add(currentConnectedServerIP);
                         Logger.Log("Disconnected from CnCNet.");
-                        connectionManager.OnConnectionLost("Server disconnected.");
+                        connectionManager.OnConnectionLost("Server disconnected.".L10N("UI:Main:ServerDisconnected"));
                         break;
                     }
 
@@ -624,6 +625,9 @@ namespace DTAClient.Online
                             string extraInfo = parameters[7];
                             connectionManager.OnWhoReplyReceived(ident, host, wUserName, extraInfo);
                             break;
+                        case 311: // Reply to WHOIS NAME query
+                            connectionManager.OnWhoReplyReceived(parameters[2], parameters[3], parameters[1], string.Empty);
+                            break;
                         case 433: // Name already in use
                             message = serverMessagePart + parameters[1] + ": " + parameters[2];
                             //connectionManager.OnGenericServerMessageReceived(message);
@@ -938,9 +942,9 @@ namespace DTAClient.Online
             SendMessage("NICK " + ProgramConstants.PLAYERNAME);
         }
 
-        public void QueueMessage(QueuedMessageType type, int priority, string message)
+        public void QueueMessage(QueuedMessageType type, int priority, string message, bool replace = false)
         {
-            QueuedMessage qm = new QueuedMessage(message, type, priority);
+            QueuedMessage qm = new QueuedMessage(message, type, priority, replace);
             QueueMessage(qm);
         }
 
@@ -978,13 +982,36 @@ namespace DTAClient.Online
         }
 
         private int NextQueueID { get; set; } = 0;
+
+        /// <summary>
+        /// This will attempt to replace a previously queued message of the same type.
+        /// </summary>
+        /// <param name="qm">The new message to replace with</param>
+        /// <returns>Whether or not a replace occurred</returns>
+        private bool ReplaceMessage(QueuedMessage qm)
+        {
+            lock (messageQueueLocker)
+            {
+                var previousMessageIndex = MessageQueue.FindIndex(m => m.MessageType == qm.MessageType);
+                if (previousMessageIndex == -1)
+                    return false;
+                
+                MessageQueue[previousMessageIndex] = qm;
+                return true;
+            }
+        }
+
         /// <summary>
         /// Adds a message to the send queue.
         /// </summary>
         /// <param name="qm">The message to queue.</param>
+        /// <param name="replace">If true, attempt to replace a previous message of the same type</param>
         public void QueueMessage(QueuedMessage qm)
         {
             if (!_isConnected)
+                return;
+
+            if (qm.Replace && ReplaceMessage(qm))
                 return;
 
             qm.ID = NextQueueID++;

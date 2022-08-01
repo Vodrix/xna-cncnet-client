@@ -257,9 +257,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Reference Include="DTAUpdater, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\DTAUpdater.dll</HintPath>
+    <Reference Include="ClientUpdater">
+      <HintPath>..\References\ClientUpdater.dll</HintPath>
     </Reference>
     <Reference Include="Rampastring.Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -283,23 +282,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomSettings\CustomSettingFileCheckBox.cs" />
-    <Compile Include="CustomSettings\CustomSettingFileDropDown.cs" />
-    <Compile Include="CustomSettings\FileSourceDestinationInfo.cs" />
-    <Compile Include="CustomSettings\ICustomSetting.cs" />
+    <Compile Include="Settings\FileSettingCheckBox.cs" />
+    <Compile Include="Settings\FileSettingDropDown.cs" />
+    <Compile Include="Settings\FileSourceDestinationInfo.cs" />
+    <Compile Include="Settings\IFileSetting.cs" />
+    <Compile Include="Settings\IUserSetting.cs" />
+    <Compile Include="Settings\SettingCheckBox.cs" />
+    <Compile Include="Settings\SettingCheckBoxBase.cs" />
+    <Compile Include="Settings\SettingDropDownBase.cs" />
     <Compile Include="OptionPanels\AudioOptionsPanel.cs" />
     <Compile Include="OptionPanels\CnCNetOptionsPanel.cs" />
     <Compile Include="OptionPanels\ComponentsPanel.cs" />
     <Compile Include="OptionPanels\DisplayOptionsPanel.cs" />
     <Compile Include="OptionPanels\GameOptionsPanel.cs" />
     <Compile Include="HotkeyConfigurationWindow.cs" />
-    <Compile Include="CustomSettings\FileSettingCheckBox.cs" />
     <Compile Include="OptionsGUICreator.cs" />
     <Compile Include="OptionsWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DirectDrawWrapper.cs" />
     <Compile Include="OptionPanels\UpdaterOptionsPanel.cs" />
     <Compile Include="OptionPanels\XNAOptionsPanel.cs" />
+    <Compile Include="Settings\SettingDropDown.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -331,6 +334,10 @@
     <ProjectReference Include="..\ClientGUI\ClientGUI.csproj">
       <Project>{4c26ad04-ff2e-4465-9f40-deb9ddc2c1d6}</Project>
       <Name>ClientGUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localization\Localization.csproj">
+      <Project>{2cd114e3-c30f-4a95-9b4a-455c2c8f82e5}</Project>
+      <Name>Localization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
