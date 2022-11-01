@@ -62,7 +62,6 @@ namespace ClientCore
             ClientResolutionY = new IntSetting(iniFile, VIDEO, "ClientResolutionY", Screen.PrimaryScreen.Bounds.Height);
             BorderlessWindowedClient = new BoolSetting(iniFile, VIDEO, "BorderlessWindowedClient", true);
             ClientFPS = new IntSetting(iniFile, VIDEO, "ClientFPS", 60);
-            DisplayToggleableExtraTextures = new BoolSetting(iniFile, VIDEO, "DisplayToggleableExtraTextures", true);
 
             ScoreVolume = new DoubleSetting(iniFile, AUDIO, "ScoreVolume", 0.7);
             SoundVolume = new DoubleSetting(iniFile, AUDIO, "SoundVolume", 0.7);
@@ -71,7 +70,6 @@ namespace ClientCore
             ClientVolume = new DoubleSetting(iniFile, AUDIO, "ClientVolume", 0.3);
             PlayMainMenuMusic = new BoolSetting(iniFile, AUDIO, "PlayMainMenuMusic", true);
             StopMusicOnMenu = new BoolSetting(iniFile, AUDIO, "StopMusicOnMenu", true);
-            MessageSound = new BoolSetting(iniFile, AUDIO, "ChatMessageSound", true);
 
             ScrollRate = new IntSetting(iniFile, OPTIONS, "ScrollRate", 3);
             DragDistance = new IntSetting(iniFile, OPTIONS, "DragDistance", 4);
@@ -83,15 +81,12 @@ namespace ClientCore
             PlayerName = new StringSetting(iniFile, OPTIONS, "Handle", string.Empty);
             CheckForUpdates = new BoolSetting(iniFile, OPTIONS, "CheckforUpdates", true);
 
-            PrivacyPolicyAccepted = new BoolSetting(iniFile, OPTIONS, "PrivacyPolicyAccepted", false);
             IsFirstRun = new BoolSetting(iniFile, OPTIONS, "IsFirstRun", true);
             SearchMixes = new BoolSetting(iniFile, OPTIONS, "SearchMixes", true);
             WineCheck = new BoolSetting(iniFile, OPTIONS, "WineChecked", false);
-            CustomComponentsDenied = new BoolSetting(iniFile, OPTIONS, "CustomComponentsDenied", false);
             Difficulty = new IntSetting(iniFile, OPTIONS, "Difficulty", 1);
             ScrollDelay = new IntSetting(iniFile, OPTIONS, "ScrollDelay", 4);
             GameSpeed = new IntSetting(iniFile, OPTIONS, "GameSpeed", 1);
-            PreloadMapPreviews = new BoolSetting(iniFile, VIDEO, "PreloadMapPreviews", false);
             ForceLowestDetailLevel = new BoolSetting(iniFile, VIDEO, "ForceLowestDetailLevel", false);
             MinimizeWindowsOnGameStart = new BoolSetting(iniFile, OPTIONS, "MinimizeWindowsOnGameStart", true);
             AutoRemoveUnderscoresFromName = new BoolSetting(iniFile, OPTIONS, "AutoRemoveUnderscoresFromName", true);
@@ -122,7 +117,6 @@ namespace ClientCore
         public IntSetting ClientResolutionY { get; private set; }
         public BoolSetting BorderlessWindowedClient { get; private set; }
         public IntSetting ClientFPS { get; private set; }
-        public BoolSetting DisplayToggleableExtraTextures { get; private set; }
 
         /*********/
         /* AUDIO */
@@ -135,7 +129,6 @@ namespace ClientCore
         public DoubleSetting ClientVolume { get; private set; }
         public BoolSetting PlayMainMenuMusic { get; private set; }
         public BoolSetting StopMusicOnMenu { get; private set; }
-        public BoolSetting MessageSound { get; private set; }
 
         /********/
         /* GAME */
@@ -160,19 +153,14 @@ namespace ClientCore
         /********/
 
         public BoolSetting CheckForUpdates { get; private set; }
-        public BoolSetting PrivacyPolicyAccepted { get; private set; }
         public BoolSetting IsFirstRun { get; private set; }
         public BoolSetting SearchMixes { get; private set; }
         public BoolSetting WineCheck { get; private set; }
-        public BoolSetting CustomComponentsDenied { get; private set; }
-
         public IntSetting Difficulty { get; private set; }
 
         public IntSetting GameSpeed { get; private set; }
 
         public IntSetting ScrollDelay { get; private set; }
-
-        public BoolSetting PreloadMapPreviews { get; private set; }
 
         public BoolSetting ForceLowestDetailLevel { get; private set; }
 

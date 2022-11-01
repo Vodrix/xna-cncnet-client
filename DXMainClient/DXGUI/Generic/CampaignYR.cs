@@ -314,18 +314,7 @@ namespace DTAClient.DXGUI.Generic
             if (chkAlstar.Checked)
             {
                 IniFile InsaneINI;
-                if (mission.IconPath.Equals("Allies"))
-                {
-                    InsaneINI = new IniFile("INI/" + ClientConfiguration.Instance.AlliedBrutalLocation);
-                }
-                else if (mission.IconPath.Equals("Soviets"))
-                {
-                    InsaneINI = new IniFile("INI/" + ClientConfiguration.Instance.SovietBrutalLocation);
-                }
-                else
-                {
-                    InsaneINI = new IniFile("INI/" + ClientConfiguration.Instance.YuriBrutalLocation);
-                }
+                InsaneINI = mission.IconPath.Equals("Allies") ? new IniFile("INI/" + ClientConfiguration.Instance.AlliedBrutalLocation) : mission.IconPath.Equals("Soviets") ? new IniFile("INI/" + ClientConfiguration.Instance.SovietBrutalLocation) : new IniFile("INI/" + ClientConfiguration.Instance.YuriBrutalLocation);
                 IniFile.ConsolidateIniFiles(NormalINI, InsaneINI);
             }
 

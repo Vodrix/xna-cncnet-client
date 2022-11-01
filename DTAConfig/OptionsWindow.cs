@@ -60,6 +60,7 @@ namespace DTAConfig
             btnSave.Name = "btnSave";
             btnSave.ClientRectangle = new Rectangle(12, btnCancel.Y, UIDesignConstants.BUTTON_WIDTH_92, UIDesignConstants.BUTTON_HEIGHT);
             btnSave.Text = "Save".L10N("UI:DTAConfig:ButtonSave");
+            btnSave.LeftClick += BtnSave_LeftClick;
 
             displayOptionsPanel = new DisplayOptionsPanel(WindowManager, UserINISettings.Instance);
             componentsPanel = new ComponentsPanel(WindowManager, UserINISettings.Instance);

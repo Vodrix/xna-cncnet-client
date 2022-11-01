@@ -52,6 +52,9 @@ namespace DTAClient
             Thread thread = new Thread(CheckSystemSpecifications);
             thread.Start();
 
+            //Thread test = new Thread(GameClassTestThread);
+            //test.Start();
+
             //Thread idThread = new Thread(GenerateOnlineId);
             //idThread.Start();
 
@@ -217,6 +220,13 @@ namespace DTAClient
                     newDirectory.Replace(ProgramConstants.GamePath, "") + ". Message: " + ex.Message);
             }
         }
+
+
+        //private void GameClassTestThread()
+        //{
+        //    GameClass gameClass = new GameClass();
+        //    gameClass.Run();
+        //}
 
         /// <summary>
         /// Writes processor, graphics card and memory info to the log file.

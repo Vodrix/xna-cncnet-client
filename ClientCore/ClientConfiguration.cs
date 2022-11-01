@@ -80,8 +80,6 @@ namespace ClientCore
 
         public string ListBoxFocusColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "ListBoxFocusColor", "64,64,168");
 
-        public string HoverOnGameColor => DTACnCNetClient_ini.GetStringValue(GENERAL, "HoverOnGameColor", "32,32,84");
-
         public IniSection GetParserConstants() => DTACnCNetClient_ini.GetSection("ParserConstants");
 
         #endregion
@@ -150,14 +148,11 @@ namespace ClientCore
 
         public string Rulesmd => clientDefinitionsIni.GetPathStringValue(SETTINGS, "RulesPath", "Normal.ini");
 
-        public string InsaneLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "InsanePath", "Insane.ini");
-
         public string AlliedBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "AlliedBrutalPath", "Allied.ini");
 
         public string SovietBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "SovietBrutalPath", "Soviet.ini");
 
         public string YuriBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "YuriBrutalPath", "Yuri.ini");
-
 
         public bool ModMode => clientDefinitionsIni.GetBooleanValue(SETTINGS, "ModMode", false);
 
@@ -202,8 +197,6 @@ namespace ClientCore
 
         public string ExtraExeCommandLineParameters => clientDefinitionsIni.GetStringValue(SETTINGS, "ExtraCommandLineParams", string.Empty);
 
-        public string MPMapsIniPath => clientDefinitionsIni.GetStringValue(SETTINGS, "MPMapsPath", "");
-
         public string KeyboardINI => clientDefinitionsIni.GetStringValue(SETTINGS, "KeyboardINI", "Keyboard.ini");
 
         public int MinimumIngameWidth => clientDefinitionsIni.GetIntValue(SETTINGS, "MinimumIngameWidth", 640);
@@ -243,17 +236,12 @@ namespace ClientCore
         /// <summary>
         /// List of files that are not distributed but required to play.
         /// </summary>
-        public string[] RequiredFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "RequiredFiles", String.Empty).Split(',');
+        public string[] RequiredFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "RequiredFiles", string.Empty).Split(',');
 
         /// <summary>
         /// List of files that can interfere with the mod functioning.
         /// </summary>
-        public string[] ForbiddenFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "ForbiddenFiles", String.Empty).Split(',');
-
-        /// <summary>
-        /// If checking for non-normal mixes is allowed.
-        /// </summary>
-        //public bool ForbiddenMixes => clientDefinitionsIni.GetBooleanValue(SETTINGS, "SearchMixes", true);
+        public string[] ForbiddenFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "ForbiddenFiles", string.Empty).Split(',');
 
         /// <summary>
         /// What number to use to count above allowed expandmd mixes.
@@ -263,14 +251,11 @@ namespace ClientCore
         /// <summary>
         /// List of CnCNet files used to warn the player that their CnCNet install is broken
         /// </summary>
-        public string[] CncnetFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "CncnetFiles", String.Empty).Split(',');
+        public string[] CncnetFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "CncnetFiles", string.Empty).Split(',');
 
         public bool EasterEggMode => clientDefinitionsIni.GetBooleanValue(SETTINGS, "EasterEggMode", false);
 
-        /// <summary>
-        /// in-testing thing to show missionimage when hovering over it, probably stupid
-        /// </summary>
-        public bool ShowMissionImage => clientDefinitionsIni.GetBooleanValue(SETTINGS, "MissionImageHover", false);
+        public bool easterEgg = false;
 
         public bool UseNameForMissionImage => clientDefinitionsIni.GetBooleanValue(SETTINGS, "UseNameForMissionImage", false);
 

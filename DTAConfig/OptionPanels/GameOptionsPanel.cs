@@ -30,6 +30,7 @@ namespace DTAConfig.OptionPanels
         private XNAClientCheckBox chkTargetLines;
         private XNAClientCheckBox chkScrollCoasting;
         private XNAClientCheckBox chkTooltips;
+        private string date = DateTime.Now.ToString("MMdd");
 #if YR
         private XNAClientCheckBox chkShowHiddenObjects;
 #elif TS
@@ -91,7 +92,6 @@ namespace DTAConfig.OptionPanels
             chkTooltips.Name = "chkTooltips";
             chkTooltips.Text = "Tooltips".L10N("UI:DTAConfig:Tooltips");
 
-
 #if YR
             chkShowHiddenObjects = new SettingCheckBox(WindowManager, true, UserINISettings.OPTIONS, "ShowHidden");
             chkShowHiddenObjects.Name = "chkShowHiddenObjects";
@@ -144,6 +144,23 @@ namespace DTAConfig.OptionPanels
             btnConfigureHotkeys.ClientRectangle = new Rectangle(10, chkTooltips.Bottom + 36, UIDesignConstants.BUTTON_WIDTH_160, UIDesignConstants.BUTTON_HEIGHT);
             btnConfigureHotkeys.Text = "Configure Hotkeys".L10N("UI:DTAConfig:ConfigureHotkeys");
             btnConfigureHotkeys.LeftClick += BtnConfigureHotkeys_LeftClick;
+            if (date.Equals(ProgramConstants.EASTEREGG) & ClientConfiguration.Instance.EasterEggMode)
+            { 
+            var lblPlayerName = new XNALabel(WindowManager);
+            lblPlayerName.Name = "lblPlayerName";
+            lblPlayerName.Text = "Player Name:".L10N("UI:DTAConfig:PlayerName");
+            lblPlayerName.ClientRectangle = new Rectangle(
+            lblScrollRate.X,
+            btnConfigureHotkeys.Bottom + 30, 0, 0);
+            tbPlayerName = new XNATextBox(WindowManager);
+            tbPlayerName.Name = "tbPlayerName";
+            tbPlayerName.MaximumTextLength = 16;
+            tbPlayerName.ClientRectangle = new Rectangle(trbScrollRate.X,
+                lblPlayerName.Y - 2, 200, 19);
+            tbPlayerName.Text = ProgramConstants.PLAYERNAME;
+            AddChild(lblPlayerName);
+            AddChild(tbPlayerName);
+            }
 
             AddChild(lblScrollRate);
             AddChild(lblScrollRateValue);
@@ -181,6 +198,8 @@ namespace DTAConfig.OptionPanels
                 trbScrollRate.Value = scrollRate;
                 lblScrollRateValue.Text = scrollRate.ToString();
             }
+            if(date.Equals(ProgramConstants.EASTEREGG) & ClientConfiguration.Instance.EasterEggMode)
+                tbPlayerName.Text = UserINISettings.Instance.PlayerName;
         }
 
         public override bool Save()
@@ -189,10 +208,12 @@ namespace DTAConfig.OptionPanels
 
             IniSettings.ScrollRate.Value = ReverseScrollRate(trbScrollRate.Value);
 
-            string playerName = tbPlayerName.Text;
-
-            if (playerName.Length > 0)
-                IniSettings.PlayerName.Value = playerName;
+            if (date.Equals(ProgramConstants.EASTEREGG) & ClientConfiguration.Instance.EasterEggMode)
+            {
+                string playerName = tbPlayerName.Text;
+                if (playerName.Length > 0)
+                    IniSettings.PlayerName.Value = playerName;
+            }
 
             return restartRequired;
         }

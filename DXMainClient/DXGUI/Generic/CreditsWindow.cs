@@ -14,7 +14,8 @@ namespace DTAClient.DXGUI.Generic
 
         public override void Initialize()
         {
-
+            //TODO:
+            //split the image into header images and credits text it loads from file
             Name = "CreditsWindow";
             BackgroundTexture = AssetLoader.LoadTexture("scoreviewerbg.png");
             ClientRectangle = new Rectangle(0, 0, 700, 521);

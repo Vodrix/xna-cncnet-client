@@ -494,7 +494,6 @@ namespace DTAClient.DXGUI.Generic
             {
                 CheckForbiddenFiles();
             }
-
         }
 
         #region Updating / versioning system

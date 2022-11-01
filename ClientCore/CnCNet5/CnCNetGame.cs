@@ -39,18 +39,6 @@ namespace ClientCore.CnCNet5
         /// </summary>
         public string RegistryInstallPath { get; set; }
 
-        private bool supported = true;
-
-        /// <summary>
-        /// Determines if the game is properly supported by this client.
-        /// Defaults to true.
-        /// </summary>
-        public bool Supported
-        {
-            get { return supported; }
-            set { supported = value; }
-        }
-
         /// <summary>
         /// If true, the client should always be connected to this game's chat channel.
         /// </summary>
