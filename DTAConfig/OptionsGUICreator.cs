@@ -1,5 +1,9 @@
 ﻿using ClientGUI;
 using DTAConfig.Settings;
+<<<<<<< HEAD
+=======
+using DTAConfig.CustomSettings;
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
 namespace DTAConfig
 {

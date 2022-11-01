@@ -1,9 +1,19 @@
 ﻿using ClientCore;
 using ClientCore.INIProcessing;
 using DTAClient.Domain;
+<<<<<<< HEAD
 using Rampastring.Tools;
 using DTAClient.DXGUI;
 using ClientUpdater;
+=======
+using ClientCore;
+using Rampastring.Tools;
+using DTAClient.DXGUI;
+using ClientUpdater;
+using System.Security.Principal;
+using System.DirectoryServices;
+using DTAClient.DXGUI;
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -12,6 +22,10 @@ using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
+<<<<<<< HEAD
+=======
+using Updater;
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
 namespace DTAClient
 {

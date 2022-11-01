@@ -9,7 +9,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Localization;
+<<<<<<< HEAD
 using System.Threading.Tasks;
+=======
+
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
 namespace DTAClient.DXGUI
 {

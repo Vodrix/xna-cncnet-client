@@ -1,7 +1,10 @@
 using ClientCore;
 using ClientGUI;
+<<<<<<< HEAD
 
 using Localization;
+=======
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -61,11 +64,20 @@ namespace DTAConfig.OptionPanels
 
             Name = "DisplayOptionsPanel";
 
+<<<<<<< HEAD
 
             var lblIngameResolution = new XNALabel(WindowManager);
             lblIngameResolution.Name = "lblIngameResolution";
             lblIngameResolution.ClientRectangle = new Rectangle(12, 14, 0, 0);
             lblIngameResolution.Text = "In-game Resolution:".L10N("UI:DTAConfig:InGameResolution");
+=======
+            var lblIngameResolution = new XNALabel(WindowManager)
+            {
+                Name = "lblIngameResolution",
+                ClientRectangle = new Rectangle(12, 14, 0, 0),
+                Text = "In-game Resolution:"
+            };
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
             ddIngameResolution = new XNAClientDropDown(WindowManager)
             {
@@ -86,12 +98,22 @@ namespace DTAConfig.OptionPanels
             foreach (var res in resolutions)
                 ddIngameResolution.AddItem(res.ToString());
 
+<<<<<<< HEAD
 
             var lblDetailLevel = new XNALabel(WindowManager);
             lblDetailLevel.Name = "lblDetailLevel";
             lblDetailLevel.ClientRectangle = new Rectangle(lblIngameResolution.X,
                 ddIngameResolution.Bottom + 16, 0, 0);
             lblDetailLevel.Text = "Detail Level:".L10N("UI:DTAConfig:DetailLevel");
+=======
+            var lblDetailLevel = new XNALabel(WindowManager)
+            {
+                Name = "lblDetailLevel",
+                ClientRectangle = new Rectangle(lblIngameResolution.X,
+                ddIngameResolution.Bottom + 16, 0, 0),
+                Text = "Detail Level:"
+            };
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
             ddDetailLevel = new XNAClientDropDown(WindowManager);
             ddDetailLevel.Name = "ddDetailLevel";
@@ -109,6 +131,22 @@ namespace DTAConfig.OptionPanels
             lblRenderer.ClientRectangle = new Rectangle(lblDetailLevel.X,
                 ddDetailLevel.Bottom + 16, 0, 0);
             lblRenderer.Text = "Renderer:".L10N("UI:DTAConfig:Renderer");
+<<<<<<< HEAD
+=======
+=======
+                ddIngameResolution.Height)
+            };
+            ddDetailLevel.AddItem("Low");
+            ddDetailLevel.AddItem("Medium");
+            ddDetailLevel.AddItem("High");
+            var lblRenderer = new XNALabel(WindowManager)
+            {
+                Name = "lblRenderer",
+                ClientRectangle = new Rectangle(lblDetailLevel.X,
+                ddDetailLevel.Bottom + 16, 0, 0),
+                Text = "Renderer:"
+            };
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
             ddRenderer = new XNAClientDropDown(WindowManager)
             {
@@ -144,21 +182,38 @@ namespace DTAConfig.OptionPanels
             //if (ClientConfiguration.Instance.GetOperatingSystemVersion() == OSVersion.WINXP)
             //    ddRenderer.AddItem("Software");
 
+<<<<<<< HEAD
             chkWindowedMode = new XNAClientCheckBox(WindowManager);
             chkWindowedMode.Name = "chkWindowedMode";
             chkWindowedMode.ClientRectangle = new Rectangle(lblDetailLevel.X,
                 ddRenderer.Bottom + 16, 0, 0);
             chkWindowedMode.Text = "Windowed Mode".L10N("UI:DTAConfig:WindowedMode");
+=======
+            chkWindowedMode = new XNAClientCheckBox(WindowManager)
+            {
+                Name = "chkWindowedMode",
+                ClientRectangle = new Rectangle(lblDetailLevel.X,
+                ddRenderer.Bottom + 16, 0, 0),
+                Text = "Windowed Mode"
+            };
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
             chkWindowedMode.CheckedChanged += ChkWindowedMode_CheckedChanged;
 
             chkBorderlessWindowedMode = new XNAClientCheckBox(WindowManager);
             chkBorderlessWindowedMode.Name = "chkBorderlessWindowedMode";
             chkBorderlessWindowedMode.ClientRectangle = new Rectangle(
                 chkWindowedMode.X + 50,
+<<<<<<< HEAD
                 chkWindowedMode.Bottom + 24, 0, 0);
             chkBorderlessWindowedMode.Text = "Borderless Windowed Mode".L10N("UI:DTAConfig:BorderlessWindowedMode");
             chkBorderlessWindowedMode.AllowChecking = false;
 
+=======
+                chkWindowedMode.Bottom + 24, 0, 0),
+                Text = "Borderless Windowed Mode",
+                AllowChecking = false
+            };
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
             chkBackBufferInVRAM = new XNAClientCheckBox(WindowManager)
             {
@@ -166,9 +221,15 @@ namespace DTAConfig.OptionPanels
                 ClientRectangle = new Rectangle(
                 lblDetailLevel.X,
                 chkBorderlessWindowedMode.Bottom + 28, 0, 0),
+<<<<<<< HEAD
             };
             chkBackBufferInVRAM.Text = ("Back Buffer in Video Memory" + Environment.NewLine +
                 "(lower performance, but is" + Environment.NewLine + "necessary on some systems)").L10N("UI:DTAConfig:BackBuffer");
+=======
+                Text = "Back Buffer in Video Memory" + Environment.NewLine +
+                "(lower performance, but is" + Environment.NewLine + "necessary on some systems)"
+            };
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
             var lblClientResolution = new XNALabel(WindowManager);
             lblClientResolution.Name = "lblClientResolution";
@@ -176,9 +237,10 @@ namespace DTAConfig.OptionPanels
                 285, 14, 0, 0);
             lblClientResolution.Text = "Client Resolution:".L10N("UI:DTAConfig:ClientResolution");
 
-            ddClientResolution = new XNAClientPreferredItemDropDown(WindowManager);
-            ddClientResolution.Name = "ddClientResolution";
-            ddClientResolution.ClientRectangle = new Rectangle(
+            ddClientResolution = new XNAClientPreferredItemDropDown(WindowManager)
+            {
+                Name = "ddClientResolution",
+                ClientRectangle = new Rectangle(
                 lblClientResolution.Right + 12,
                 lblClientResolution.Y - 2,
                 Width - (lblClientResolution.Right + 24),

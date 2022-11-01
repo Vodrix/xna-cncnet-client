@@ -11,11 +11,19 @@ namespace ClientCore
     {
         private static UserINISettings _instance;
 
+<<<<<<< HEAD
         public const string VIDEO = "Video";
         public const string OPTIONS = "Options";
         public const string AUDIO = "Audio";
         public const string CUSTOM_SETTINGS = "CustomSettings";
         public const string COMPATIBILITY = "Compatibility";
+=======
+        private const string VIDEO = "Video";
+        private const string OPTIONS = "Options";
+        private const string AUDIO = "Audio";
+        private const string CUSTOM_SETTINGS = "CustomSettings";
+        private const string COMPATIBILITY = "Compatibility";
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
 
         public static UserINISettings Instance
         {
@@ -167,6 +175,7 @@ namespace ClientCore
         public BoolSetting MinimizeWindowsOnGameStart { get; private set; }
 
         public BoolSetting AutoRemoveUnderscoresFromName { get; private set; }
+<<<<<<< HEAD
 
         public void SetValue(string section, string key, string value)
        => SettingsIni.SetStringValue(section, key, value);
@@ -186,6 +195,9 @@ namespace ClientCore
         public int GetValue(string section, string key, int defaultValue)
             => SettingsIni.GetIntValue(section, key, defaultValue);
 
+=======
+
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
         public void ReloadSettings()
         {
             SettingsIni.Reload();

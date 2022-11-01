@@ -425,7 +425,13 @@
     <Compile Include="Domain\Mission.cs" />
     <Compile Include="Domain\SavedGame.cs" />
     <Compile Include="Domain\MainClientConstants.cs" />
+<<<<<<< HEAD
     <Compile Include="DXGUI\Generic\CreditsWindow.cs" />
+=======
+    <Compile Include="Domain\UserAgentHandler.cs" />
+    <Compile Include="DXGUI\Generic\CreditsWindow.cs" />
+    <Compile Include="DXGUI\Generic\PrivacyNotification.cs" />
+>>>>>>> e76474081c28fa7e61dbab5dff28b8aba5d63d1b
     <Compile Include="DXGUI\Generic\ManualUpdateQueryWindow.cs" />
     <Compile Include="DXGUI\ISwitchable.cs" />
     <Compile Include="DXGUI\Generic\GameInProgressWindow.cs" />
