@@ -176,9 +176,10 @@ namespace DTAConfig.OptionPanels
                 285, 14, 0, 0);
             lblClientResolution.Text = "Client Resolution:".L10N("UI:DTAConfig:ClientResolution");
 
-            ddClientResolution = new XNAClientPreferredItemDropDown(WindowManager);
-            ddClientResolution.Name = "ddClientResolution";
-            ddClientResolution.ClientRectangle = new Rectangle(
+            ddClientResolution = new XNAClientPreferredItemDropDown(WindowManager)
+            {
+                Name = "ddClientResolution",
+                ClientRectangle = new Rectangle(
                 lblClientResolution.Right + 12,
                 lblClientResolution.Y - 2,
                 Width - (lblClientResolution.Right + 24),
