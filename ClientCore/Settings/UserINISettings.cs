@@ -1,9 +1,7 @@
 ﻿using ClientCore.Settings;
 using Rampastring.Tools;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using ClientCore.Enums;
 
 namespace ClientCore
 {
@@ -87,6 +85,7 @@ namespace ClientCore
             Difficulty = new IntSetting(iniFile, OPTIONS, "Difficulty", 1);
             ScrollDelay = new IntSetting(iniFile, OPTIONS, "ScrollDelay", 4);
             GameSpeed = new IntSetting(iniFile, OPTIONS, "GameSpeed", 1);
+            DefaultGameSpeed = new IntSetting(iniFile, "Phobos", "CampaignDefaultGameSpeed", 4);
             ForceLowestDetailLevel = new BoolSetting(iniFile, VIDEO, "ForceLowestDetailLevel", false);
             MinimizeWindowsOnGameStart = new BoolSetting(iniFile, OPTIONS, "MinimizeWindowsOnGameStart", true);
             AutoRemoveUnderscoresFromName = new BoolSetting(iniFile, OPTIONS, "AutoRemoveUnderscoresFromName", true);
@@ -159,6 +158,8 @@ namespace ClientCore
         public IntSetting Difficulty { get; private set; }
 
         public IntSetting GameSpeed { get; private set; }
+
+        public IntSetting DefaultGameSpeed { get; private set; }
 
         public IntSetting ScrollDelay { get; private set; }
 

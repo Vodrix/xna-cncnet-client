@@ -29,6 +29,7 @@ namespace DTAClient.DXGUI.Generic
         {
             this.discordHandler = discordHandler;
         }
+		
         private readonly DiscordHandler discordHandler;
 
         private readonly List<Mission> Missions = new List<Mission>();
@@ -39,7 +40,7 @@ namespace DTAClient.DXGUI.Generic
         private XNATrackbar trbDifficultySelector;
 
         private XNACheckBox chkAlstar;
-        //private XNAClientDropDown ddSpeedSelector;
+        private XNAClientDropDown ddSpeedSelector;
 
         public override void Initialize()
         {
@@ -169,8 +170,7 @@ namespace DTAClient.DXGUI.Generic
             var btnCancel = new XNAClientButton(WindowManager)
             {
                 Name = "btnCancel",
-                ClientRectangle = new Rectangle(Width - 145,
-                btnLaunch.Y, 133, 23),
+                ClientRectangle = new Rectangle(Width - 145, btnLaunch.Y, 133, 23),
                 Text = "Cancel"
             };
             btnCancel.LeftClick += BtnCancel_LeftClick;
@@ -181,25 +181,35 @@ namespace DTAClient.DXGUI.Generic
                 ClientRectangle = new Rectangle(
                 btnCancel.X,
                 btnCancel.Bottom + 72, 0, 0),
-                Text = "Alstar Difficulty Button lol"
+                Text = "Alstar Difficulty Button"
             };
 
-            //ddSpeedSelector = new XNAClientDropDown(WindowManager);
-            //ddSpeedSelector.Name = "ddSpeedSelector";
-            //ddSpeedSelector.ClientRectangle = new Rectangle(btnLaunch.X, 20, 200, 19);
-            //ddSpeedSelector.AddItem("Fastest");
-            //ddSpeedSelector.AddItem("Faster");
-            //ddSpeedSelector.AddItem("Fast");
-            //ddSpeedSelector.AddItem("Medium");
-            //ddSpeedSelector.AddItem("Slow");
-            //ddSpeedSelector.AddItem("Slower");
-            //ddSpeedSelector.AddItem("Slowest");
-            //ddSpeedSelector.AllowDropDown = true;
-            //ddSpeedSelector.SelectedIndex = 2;
+            ddSpeedSelector = new XNAClientDropDown(WindowManager);
+            ddSpeedSelector.Name = "ddSpeedSelector";
+            ddSpeedSelector.ClientRectangle = new Rectangle(lblHard.X + 63, lblHard.Y + 15, 200, 19);
+            ddSpeedSelector.AddItem("Fastest (Uncapped)");
+            ddSpeedSelector.AddItem("Faster");
+            ddSpeedSelector.AddItem("Fast");
+            ddSpeedSelector.AddItem("Medium");
+            ddSpeedSelector.AddItem("Slow");
+            ddSpeedSelector.AddItem("Slower");
+            ddSpeedSelector.AddItem("Slowest");
+            ddSpeedSelector.AllowDropDown = true;
+            ddSpeedSelector.SelectedIndex = UserINISettings.Instance.GameSpeed.Value;
+            ddSpeedSelector.SelectedIndexChanged += DdSpeedSelector_SelectedIndexChanged;
+			
+            var lblSpeed = new XNALabel(WindowManager)
+            {
+                Name = "lblSpeed",
+                FontIndex = 1,
+                Text = "SPEED",
+                ClientRectangle = new Rectangle(ddSpeedSelector.X,
+                ddSpeedSelector.Y - ddSpeedSelector.Height + 3, 1, 1)
+            };
 
             AddChild(tbMissionImage);
             AddChild(chkAlstar);
-            //AddChild(ddSpeedSelector);
+            AddChild(ddSpeedSelector);
             AddChild(lblSelectCampaign);
             AddChild(lblMissionDescriptionHeader);
             AddChild(lbCampaignList);
@@ -211,6 +221,7 @@ namespace DTAClient.DXGUI.Generic
             AddChild(lblEasy);
             AddChild(lblNormal);
             AddChild(lblHard);
+			AddChild(lblSpeed);
 
             // Set control attributes from INI file
             base.Initialize();
@@ -223,12 +234,19 @@ namespace DTAClient.DXGUI.Generic
             ParseBattleIni("INI/" + ClientConfiguration.Instance.BattleFSFileName2);
         }
 
+        private void DdSpeedSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UserINISettings.Instance.GameSpeed.Value = ddSpeedSelector.SelectedIndex;
+            UserINISettings.Instance.DefaultGameSpeed.Value = Math.Abs(ddSpeedSelector.SelectedIndex - ddSpeedSelector.Items.Count) - 1;
+            UserINISettings.Instance.SaveSettings();
+        }
 
         private void TrbDifficultySelector_ValueChanged(object sender, EventArgs e)
         {
             UserINISettings.Instance.Difficulty.Value = trbDifficultySelector.Value;
             UserINISettings.Instance.SaveSettings();
         }
+		
         private void LbCampaignList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbCampaignList.SelectedIndex == -1)
@@ -256,15 +274,20 @@ namespace DTAClient.DXGUI.Generic
             }
 
             btnLaunch.AllowClick = true;
+            btnLaunch.IdleTexture = AssetLoader.LoadTexture("LaunchIdle.png");
 
-            string MissionImage = string.Format("MissionImage2{0}.png", lbCampaignList.SelectedIndex.ToString("00"));
-            //example filename "MissionImage107.png" meaning 7th selectable map which is allied 7
+            string MissionImage;
 
             if (ClientConfiguration.Instance.UseNameForMissionImage)
             {
                 MissionImage = string.Format("{0}.png", mission.Scenario.Substring(0, mission.Scenario.Length - 4));
                 //example filename "ALLIES07.png" meaning that it's whatever map is called that in SPMapsINI, which is allied 7 ra2
                 //doesn't work if there are multiple of the same name
+            }
+            else
+            {
+                MissionImage = string.Format("MissionImage1{0}.png", lbCampaignList.SelectedIndex.ToString("00"));
+                //example filename "MissionImage107.png" meaning 7th listed entry which is allied 7, soviet 1 is 14 because 13 is the barrier between
             }
 
             if (File.Exists(ProgramConstants.GetBaseResourcePath() + MissionImage))
@@ -274,7 +297,6 @@ namespace DTAClient.DXGUI.Generic
             else //this could probably be removed?
                 tbMissionImage.BackgroundTexture = AssetLoader.CreateTexture(AssetLoader.GetColorFromString(ClientConfiguration.Instance.AltUIBackgroundColor),
                     tbMissionDescription.Width, tbMissionDescription.Height);
-
         }
 
         private void BtnCancel_LeftClick(object sender, EventArgs e)
@@ -358,7 +380,7 @@ namespace DTAClient.DXGUI.Generic
             //    IniFile mapIni = new IniFile(ProgramConstants.GamePath + mission.Scenario);
             //    IniFile InsaneFile = new IniFile(ClientConfiguration.Instance.InsaneINI);
             //    IniFile.ConsolidateIniFiles(mapIni, InsaneFile);
-            //    Logger.Log("test");
+            //    Logger.Log("stupid");
             //    Logger.Log(ClientConfiguration.Instance.InsaneINI);
             //}
 

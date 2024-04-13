@@ -18,16 +18,6 @@ namespace ClientCore.CnCNet5
         public string InternalName { get; set; }
 
         /// <summary>
-        /// The IRC chat channel ID of the game.
-        /// </summary>
-        public string ChatChannel { get; set; }
-
-        /// <summary>
-        /// The IRC game broadcasting channel ID of the game.
-        /// </summary>
-        public string GameBroadcastChannel { get; set; }
-
-        /// <summary>
         /// The executable name of the game's client.
         /// </summary>
         public string ClientExecutableName { get; set; }
@@ -38,10 +28,5 @@ namespace ClientCore.CnCNet5
         /// The location where to read the game's installation path from the registry.
         /// </summary>
         public string RegistryInstallPath { get; set; }
-
-        /// <summary>
-        /// If true, the client should always be connected to this game's chat channel.
-        /// </summary>
-        public bool AlwaysEnabled { get; set; }
     }
 }

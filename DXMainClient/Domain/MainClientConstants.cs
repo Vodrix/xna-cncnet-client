@@ -1,4 +1,5 @@
 ﻿using ClientCore;
+using Rampastring.Tools;
 
 namespace DTAClient.Domain
 {

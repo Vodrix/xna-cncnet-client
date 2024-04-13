@@ -17,15 +17,13 @@ namespace DTAClient
     /// </summary>
     struct StartupParams
     {
-        public StartupParams(bool noAudio, bool multipleInstanceMode,
+        public StartupParams(bool multipleInstanceMode,
             List<string> unknownParams)
         {
-            NoAudio = noAudio;
             MultipleInstanceMode = multipleInstanceMode;
             UnknownStartupParams = unknownParams;
         }
 
-        public bool NoAudio { get; }
         public bool MultipleInstanceMode { get; }
         public List<string> UnknownStartupParams { get; }
     }
@@ -62,8 +60,6 @@ namespace DTAClient
             Logger.Log("Client version: " + Application.ProductVersion);
 
             // Log information about given startup params
-            if (parameters.NoAudio)
-                Logger.Log("Startup parameter: No audio");
 
             if (parameters.MultipleInstanceMode)
                 Logger.Log("Startup parameter: Allow multiple client instances");
@@ -203,7 +199,7 @@ namespace DTAClient
 
         /// <summary>
         /// Checks whether the client has specific file system rights to a directory.
-        /// See ssds's answer at https://stackoverflow.com/questions/1410127/c-sharp-test-if-user-has-write-access-to-a-folder
+        /// See ssds's answer at https://stackoverflow.com/questions/1410127/c-sharp-stupid-if-user-has-write-access-to-a-folder
         /// </summary>
         /// <param name="path">The path to the directory.</param>
         /// <param name="accessRights">The file system rights.</param>

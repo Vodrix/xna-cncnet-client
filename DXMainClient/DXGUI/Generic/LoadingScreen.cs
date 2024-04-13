@@ -9,6 +9,7 @@ using Rampastring.XNAUI;
 using System.Threading.Tasks;
 using Rampastring.Tools;
 using ClientUpdater;
+using System.Windows.Forms;
 
 namespace DTAClient.DXGUI.Generic
 {
@@ -16,7 +17,6 @@ namespace DTAClient.DXGUI.Generic
     {
         public LoadingScreen(WindowManager windowManager) : base(windowManager)
         {
-
         }
 
         private bool visibleSpriteCursor = false;
@@ -29,7 +29,6 @@ namespace DTAClient.DXGUI.Generic
             Name = "LoadingScreen";
 
             BackgroundTexture = AssetLoader.LoadTexture("loadingscreen.png");
-
             base.Initialize();
 
             CenterOnParent();
@@ -77,7 +76,6 @@ namespace DTAClient.DXGUI.Generic
 
             var gipw = new GameInProgressWindow(WindowManager);
 
-
             var mainMenu = new MainMenu(WindowManager, optionsWindow, discordHandler);
             WindowManager.AddAndInitializeControl(mainMenu);
 
@@ -86,11 +84,15 @@ namespace DTAClient.DXGUI.Generic
             WindowManager.AddAndInitializeControl(gipw);
             optionsWindow.Disable();
 
+            //loadTask = mainMenu.AnimateAsync();
+            mainMenu.AnimateAsyncTest();
+
             mainMenu.PostInit();
 
             WindowManager.RemoveControl(this);
 
             Cursor.Visible = visibleSpriteCursor;
+
         }
 
         public override void Update(GameTime gameTime)
@@ -100,6 +102,8 @@ namespace DTAClient.DXGUI.Generic
             if (updaterInitTask == null || updaterInitTask.Status == TaskStatus.RanToCompletion)
             {
                     Finish();
+                //if (loadTask.Status == TaskStatus.RanToCompletion)
+                //    TestStuff();
             }
         }
 

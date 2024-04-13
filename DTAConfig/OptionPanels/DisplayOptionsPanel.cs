@@ -136,14 +136,6 @@ namespace DTAConfig.OptionPanels
                 }
             }
 
-            //ddRenderer.AddItem("Default");
-            //ddRenderer.AddItem("IE-DDRAW");
-            //ddRenderer.AddItem("TS-DDRAW");
-            //ddRenderer.AddItem("DDWrapper");
-            //ddRenderer.AddItem("DxWnd");
-            //if (ClientConfiguration.Instance.GetOperatingSystemVersion() == OSVersion.WINXP)
-            //    ddRenderer.AddItem("Software");
-
             chkWindowedMode = new XNAClientCheckBox(WindowManager);
             chkWindowedMode.Name = "chkWindowedMode";
             chkWindowedMode.ClientRectangle = new Rectangle(lblDetailLevel.X,
@@ -183,8 +175,9 @@ namespace DTAConfig.OptionPanels
                 lblClientResolution.Right + 12,
                 lblClientResolution.Y - 2,
                 Width - (lblClientResolution.Right + 24),
-                ddIngameResolution.Height);
-            ddClientResolution.AllowDropDown = false;
+                ddIngameResolution.Height)
+            };
+            ddClientResolution.AllowDropDown = true;
             ddClientResolution.PreferredItemLabel = "(recommended)".L10N("UI:DTAConfig:Recommended");
 
             var screenBounds = Screen.PrimaryScreen.Bounds;
@@ -195,11 +188,12 @@ namespace DTAConfig.OptionPanels
             // Add "optimal" client resolutions for windowed mode
             // if they're not supported in fullscreen mode
 
-            AddResolutionIfFitting(1024, 600, resolutions);
-            AddResolutionIfFitting(1024, 720, resolutions);
-            AddResolutionIfFitting(1280, 600, resolutions);
-            AddResolutionIfFitting(1280, 720, resolutions);
-            AddResolutionIfFitting(1280, 768, resolutions);
+            //AddResolutionIfFitting(1024, 600, resolutions);
+            //AddResolutionIfFitting(1024, 640, resolutions);
+            //AddResolutionIfFitting(1024, 720, resolutions);
+            //AddResolutionIfFitting(1280, 600, resolutions);
+            //AddResolutionIfFitting(1280, 720, resolutions);
+            //AddResolutionIfFitting(1280, 768, resolutions);
             AddResolutionIfFitting(1280, 800, resolutions);
 
             resolutions.Sort();
@@ -338,9 +332,10 @@ namespace DTAConfig.OptionPanels
             if (resolutions.Find(res => res.Width == width && res.Height == height) != null)
                 return;
 
-            var screenBounds = Screen.PrimaryScreen.Bounds;
+            int currentWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            int currentHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-            if (screenBounds.Width >= width && screenBounds.Height >= height)
+            if (currentWidth >= width && currentHeight >= height)
             {
                 resolutions.Add(new ScreenResolution(width, height));
             }

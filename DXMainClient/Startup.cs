@@ -4,13 +4,6 @@ using DTAClient.Domain;
 using Rampastring.Tools;
 using DTAClient.DXGUI;
 using ClientUpdater;
-using ClientCore;
-using Rampastring.Tools;
-using DTAClient.DXGUI;
-using ClientUpdater;
-using System.Security.Principal;
-using System.DirectoryServices;
-using DTAClient.DXGUI;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -59,8 +52,8 @@ namespace DTAClient
             Thread thread = new Thread(CheckSystemSpecifications);
             thread.Start();
 
-            //Thread test = new Thread(GameClassTestThread);
-            //test.Start();
+            //Thread stupid = new Thread(GameClassTestThread);
+            //stupid.Start();
 
             //Thread idThread = new Thread(GenerateOnlineId);
             //idThread.Start();
@@ -118,9 +111,6 @@ namespace DTAClient
             WriteInstallPathToRegistry();
 
             ClientConfiguration.Instance.RefreshSettings();
-
-            // Start INI file preprocessor
-            PreprocessorBackgroundTask.Instance.Run();
 
             GameClass gameClass = new GameClass();
             gameClass.Run();
@@ -228,13 +218,6 @@ namespace DTAClient
             }
         }
 
-
-        //private void GameClassTestThread()
-        //{
-        //    GameClass gameClass = new GameClass();
-        //    gameClass.Run();
-        //}
-
         /// <summary>
         /// Writes processor, graphics card and memory info to the log file.
         /// </summary>
@@ -301,61 +284,6 @@ namespace DTAClient
 
             Logger.Log(string.Format("Hardware info: {0} | {1} | {2}", cpu.Trim(), videoController.Trim(), memory));
         }
-
-
-        /// <summary>
-        /// Generate an ID for online play.
-        /// </summary>
-       //private static void GenerateOnlineId()
-       //{
-       //    try
-       //    {
-       //        ManagementObjectCollection mbsList = null;
-       //        ManagementObjectSearcher mbs = new ManagementObjectSearcher("Select * From Win32_processor");
-       //        mbsList = mbs.Get();
-       //        string cpuid = "";
-       //        foreach (ManagementObject mo in mbsList)
-       //        {
-       //            cpuid = mo["ProcessorID"].ToString();
-       //        }
-       //
-       //        ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
-       //        ManagementObjectCollection moc = mos.Get();
-       //        string mbid = "";
-       //        foreach (ManagementObject mo in moc)
-       //        {
-       //            mbid = (string)mo["SerialNumber"];
-       //        }
-       //
-       //        string sid = new SecurityIdentifier((byte[])new DirectoryEntry(string.Format("WinNT://{0},Computer", Environment.MachineName)).Children.Cast<DirectoryEntry>().First().InvokeGet("objectSID"), 0).AccountDomainSid.Value;
-       //
-       //        Connection.SetId(cpuid + mbid + sid);
-       //        Registry.CurrentUser.CreateSubKey("SOFTWARE\\" + ClientConfiguration.Instance.InstallationPathRegKey).SetValue("Ident", cpuid + mbid + sid);
-       //    }
-       //    catch (Exception)
-       //    {
-       //        Random rn = new Random();
-       //
-       //        RegistryKey key;
-       //        key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\" + ClientConfiguration.Instance.InstallationPathRegKey);
-       //        string str = rn.Next(Int32.MaxValue - 1).ToString();
-       //
-       //        try
-       //        {
-       //            Object o = key.GetValue("Ident");
-       //            if (o == null)
-       //            {
-       //                key.SetValue("Ident", str);
-       //            }
-       //            else
-       //                str = o.ToString();
-       //        }
-       //        catch { }
-       //
-       //        key.Close();
-       //        Connection.SetId(str);
-       //    }
-       //}
 
         /// <summary>
         /// Writes the game installation path to the Windows registry.

@@ -84,7 +84,6 @@ namespace DTAClient
         [STAThread]
         static void Main(string[] args)
         {
-            bool noAudio = false;
             bool multipleInstanceMode = false;
             List<string> unknownStartupParams = new List<string>();
 
@@ -94,9 +93,6 @@ namespace DTAClient
 
                 switch (argument)
                 {
-                    case "-NOAUDIO":
-                        // TODO fix
-                        throw new NotImplementedException("-NOAUDIO is currently not implemented, please run the client without it.".L10N("UI:Main:NoAudio"));
                     case "-MULTIPLEINSTANCE":
                         multipleInstanceMode = true;
                         break;
@@ -106,7 +102,7 @@ namespace DTAClient
                 }
             }
 
-            StartupParams parameters = new StartupParams(noAudio, multipleInstanceMode, unknownStartupParams);
+            StartupParams parameters = new StartupParams(multipleInstanceMode, unknownStartupParams);
 
             if (multipleInstanceMode)
             {

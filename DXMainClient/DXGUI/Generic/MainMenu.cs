@@ -16,6 +16,8 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using ClientUpdater;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace DTAClient.DXGUI.Generic
 {
@@ -50,6 +52,9 @@ namespace DTAClient.DXGUI.Generic
         private XNAMessageBox firstRunMessageBox;
         private XNAMessageBox forbiddenMessageBox;
 
+        private XNAPanel panelSidebar;
+        private XNAPanel panelBackground;
+        private XNAPanel panelFakeMenu;
 
         private XNALabel lblTime;
         private XNALabel lblEaster;
@@ -94,9 +99,18 @@ namespace DTAClient.DXGUI.Generic
 
             Name = nameof(MainMenu);
             BackgroundTexture = AssetLoader.LoadTexture("MainMenu/mainmenubg.png");
-            ClientRectangle = new Rectangle(0, 0, BackgroundTexture.Width, BackgroundTexture.Height);
+            ClientRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, BackgroundTexture.Width, BackgroundTexture.Height);
 
             WindowManager.CenterControlOnScreen(this);
+
+            panelSidebar = new XNAPanel(WindowManager);
+            panelSidebar.Name = nameof(panelSidebar);
+
+            panelBackground = new XNAPanel(WindowManager);
+            panelBackground.Name = nameof(panelBackground);
+
+            panelFakeMenu = new XNAPanel(WindowManager);
+            panelFakeMenu.Name = nameof(panelFakeMenu);
 
             btnRestart = new XNAClientButton(WindowManager);
             btnRestart.Name = nameof(btnRestart);
@@ -145,24 +159,27 @@ namespace DTAClient.DXGUI.Generic
             lblTime.Name = "lblTime";
             lblTime.FontIndex = 1;
             lblTime.Text = "99:99:99";
-            lblTime.ClientRectangle = new Rectangle(Width -
+            lblTime.ClientRectangle = new Microsoft.Xna.Framework.Rectangle(Width -
                 (int)Renderer.GetTextDimensions(lblTime.Text, lblTime.FontIndex).X - 58, 4,
                 lblTime.Width, lblTime.Height);
 
             lblUpdateStatus = new XNALinkLabel(WindowManager);
             lblUpdateStatus.Name = nameof(lblUpdateStatus);
             lblUpdateStatus.LeftClick += LblUpdateStatus_LeftClick;
-            lblUpdateStatus.ClientRectangle = new Rectangle(0, 0, 160, 20);
+            lblUpdateStatus.ClientRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, 160, 20);
 
+            AddChild(panelBackground);
+            AddChild(panelFakeMenu);
             AddChild(btnCampaignSelect);
             AddChild(btnLoadGame);
-            AddChild(lblTime);
             AddChild(btnOptions);
             AddChild(btnStatistics);
             AddChild(btnExit);
+            AddChild(panelSidebar);
+            AddChild(lblTime);
 
             AddChild(btnRestart);
-                
+
             #region stupid
             string date = DateTime.Now.ToString("MMdd");
             if (date.Equals(ProgramConstants.EASTEREGG) & ClientConfiguration.Instance.EasterEggMode)     //no one will ever find this lol
@@ -170,7 +187,7 @@ namespace DTAClient.DXGUI.Generic
                 lblEaster = new XNALabel(WindowManager);
                 lblEaster.Name = nameof(lblEaster);
                 lblEaster.Text = "Easter Egg Mode Enabled :)";
-                lblEaster.ClientRectangle = new Rectangle(5, 5, 1, 1);
+                lblEaster.ClientRectangle = new Microsoft.Xna.Framework.Rectangle(5, 5, 1, 1);
                 easterMode = true;
                 AddChild(lblEaster);
             }
@@ -190,7 +207,7 @@ namespace DTAClient.DXGUI.Generic
 
             innerPanel = new MainMenuDarkeningPanel(WindowManager, discordHandler)
             {
-                ClientRectangle = new Rectangle(0, 0,
+                ClientRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0,
                 Width,
                 Height),
                 DrawOrder = int.MaxValue,
@@ -208,10 +225,10 @@ namespace DTAClient.DXGUI.Generic
             innerPanel.UpdateWindow.UpdateCancelled += UpdateWindow_UpdateCancelled;
             innerPanel.UpdateWindow.UpdateFailed += UpdateWindow_UpdateFailed;
 
-            this.ClientRectangle = new Rectangle((WindowManager.RenderResolutionX - Width) / 2,
+            this.ClientRectangle = new Microsoft.Xna.Framework.Rectangle((WindowManager.RenderResolutionX - Width) / 2,
                 (WindowManager.RenderResolutionY - Height) / 2,
                 Width, Height);
-            innerPanel.ClientRectangle = new Rectangle(0, 0,
+            innerPanel.ClientRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0,
                 Math.Max(WindowManager.RenderResolutionX, Width),
                 Math.Max(WindowManager.RenderResolutionY, Height));
 
@@ -229,7 +246,7 @@ namespace DTAClient.DXGUI.Generic
             Updater.Restart += Updater_Restart;
 
             SetButtonHotkeys(true);
-            }
+        }
 
         private void SetButtonHotkeys(bool enableHotkeys)
         {
@@ -374,7 +391,7 @@ namespace DTAClient.DXGUI.Generic
         {
             List<string> MixesList = new List<string>();
             for (int i = 1; i < 100; i += 1)
-                 if (i > ClientConfiguration.Instance.MixNum)
+                if (i > ClientConfiguration.Instance.MixNum)
                     MixesList.Add(string.Format("expandmd{0}.mix", i.ToString("00")));
             List<string> presentFiles = ClientConfiguration.Instance.ForbiddenFiles.ToList().FindAll(f => !string.IsNullOrWhiteSpace(f) && File.Exists(ProgramConstants.GamePath + f));
             List<string> finalList = presentFiles.Concat(MixesList).ToList().FindAll(f => !string.IsNullOrWhiteSpace(f) && File.Exists(ProgramConstants.GamePath + f));
@@ -402,8 +419,8 @@ namespace DTAClient.DXGUI.Generic
             XNAMessageBox.Show(WindowManager, "Wine Detected",
                         "The Client has detected that you're running on Wine." +
                         Environment.NewLine +
-                        "Make sure ddraw.dll is set to run as native before builtin" + 
-                        Environment.NewLine + 
+                        "Make sure ddraw.dll is set to run as native before builtin" +
+                        Environment.NewLine +
                         "using winecfg or else the game might not show up properly.");
         }
 
@@ -482,7 +499,7 @@ namespace DTAClient.DXGUI.Generic
 
             CheckRequiredFiles();
             CheckForYRCNCNET();
-            if (ClientConfiguration.Instance.GetOperatingSystemVersion() == OSVersion.WINE && !UserINISettings.Instance.WineCheck)
+            if (MainClientConstants.OSId == OSVersion.WINE && !UserINISettings.Instance.WineCheck)
             {
                 CheckIfWine();
             }
@@ -494,6 +511,27 @@ namespace DTAClient.DXGUI.Generic
             {
                 CheckForbiddenFiles();
             }
+#if !XNA
+            AssetLoader.AnimateXNAPanel(panelSidebar, Image.FromFile(ProgramConstants.GetBaseResourcePath() + panelSidebar.AnimatedTexture));
+            AssetLoader.AnimateXNAPanel(panelBackground, Image.FromFile(ProgramConstants.GetResourcePath() + panelBackground.AnimatedTexture));
+#else
+            panelSidebar.BackgroundTexture = AssetLoader.LoadTexture(panelSidebar.AnimatedTexture);
+            panelBackground.BackgroundTexture = AssetLoader.LoadTexture(panelBackground.AnimatedTexture);
+#endif
+        }
+
+        public void AnimateAsyncTest()
+        {
+            var task = new Task(() => Task.Run(AnimatePanels));
+            task.RunSynchronously();
+        }
+
+        public void AnimatePanels()
+        {
+#if !XNA
+            AssetLoader.CacheAnimatedTextures(panelSidebar, Image.FromFile(ProgramConstants.GetBaseResourcePath() + panelSidebar.AnimatedTexture));
+            AssetLoader.CacheAnimatedTextures(panelBackground, Image.FromFile(ProgramConstants.GetResourcePath() + panelBackground.AnimatedTexture));
+#endif
         }
 
         #region Updating / versioning system
@@ -724,7 +762,7 @@ namespace DTAClient.DXGUI.Generic
         private void HandleGameProcessExited()
         {
             innerPanel.GameLoadingWindow.ListSaves();
-            innerPanel.Hide();
+            //innerPanel.Hide();    //actually annoys me that launching a campaign doesn't keep you on the campaign menu when you come back
 
             // If music is disabled on menus, check if the main menu is the top-most
             // window of the top bar and only play music if it is
@@ -740,6 +778,16 @@ namespace DTAClient.DXGUI.Generic
             base.Update(gameTime);
 
             lblTime.Text = Renderer.GetSafeString(DateTime.Now.ToLongTimeString(), lblTime.FontIndex);
+
+            //if (panelBackground.BackgroundTexture == null)
+            //{
+            //    AssetLoader.AnimateXNAPanelTest(panelBackground, Image.FromFile(ProgramConstants.GetResourcePath() + panelBackground.AnimatedTexture));
+            //}
+            //
+            //if (panelSidebar.BackgroundTexture == null)
+            //{
+            //    AssetLoader.AnimateXNAPanelTest(panelSidebar, Image.FromFile(ProgramConstants.GetBaseResourcePath() + panelSidebar.AnimatedTexture));
+            //}
         }
 
         public override void Draw(GameTime gameTime)
@@ -748,7 +796,6 @@ namespace DTAClient.DXGUI.Generic
             {
                 base.Draw(gameTime);
             }
-
         }
 
         /// <summary>
