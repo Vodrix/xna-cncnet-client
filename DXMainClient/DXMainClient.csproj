@@ -418,6 +418,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\DiscordHandler.cs" />
+    <Compile Include="DXGUI\Generic\BattleListbox.cs" />
     <Compile Include="DXGUI\Generic\CampaignBonus.cs" />
     <Compile Include="DXGUI\Generic\CampaignRA2.cs" />
     <Compile Include="DXGUI\Generic\CampaignSelect.cs" />

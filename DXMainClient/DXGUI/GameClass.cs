@@ -1,5 +1,4 @@
 ﻿using ClientCore;
-using ClientCore.CnCNet5;
 using DTAClient.Domain;
 using DTAClient.DXGUI.Generic;
 using Localization;
@@ -125,24 +124,6 @@ namespace DTAClient.DXGUI
                 wm.Cursor.LoadNativeCursor(alternativeNativeCursorPath);
 
             Components.Add(wm);
-
-            string playerName = UserINISettings.Instance.PlayerName.Value.Trim();
-
-            if (UserINISettings.Instance.AutoRemoveUnderscoresFromName)
-            {
-                while (playerName.EndsWith("_"))
-                    playerName = playerName.Substring(0, playerName.Length - 1);
-            }
-
-            if (string.IsNullOrEmpty(playerName))
-            {
-                playerName = WindowsIdentity.GetCurrent().Name;
-
-                playerName = playerName.Substring(playerName.IndexOf("\\") + 1);
-            }
-
-            ProgramConstants.PLAYERNAME = playerName;
-            UserINISettings.Instance.PlayerName.Value = playerName;
 
             LoadingScreen ls = new LoadingScreen(wm);
             wm.AddAndInitializeControl(ls);

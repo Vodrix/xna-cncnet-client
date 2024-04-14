@@ -17,34 +17,15 @@ namespace ClientCore
 
         public static string ClientUserFilesPath => GamePath + "Client/";
 
-        public static event EventHandler PlayerNameChanged;
-
         public const string QRES_EXECUTABLE = "qres.dat";
-
-        public const string EASTEREGG = "1018";
 
         public const string SPAWNMAP_INI = "spawnmap.ini";
         public const string SPAWNER_SETTINGS = "spawn.ini";
         public const string SAVED_GAME_SPAWN_INI = "Saved Games/spawnSG.ini";
 
         public static string GAME_VERSION = "Undefined";
-        private static string PlayerName = "Noname";
 
         public const int GAME_ID_MAX_LENGTH = 4;
-
-        public static string PLAYERNAME
-        {
-            get => PlayerName;
-            set
-            {
-                string oldPlayerName = PlayerName;
-                PlayerName = value;
-                if (oldPlayerName != PlayerName)
-                {
-                    PlayerNameChanged?.Invoke(null, EventArgs.Empty);
-                }
-            }
-        }
 
         public static string BASE_RESOURCE_PATH = "Resources/";
         public static string RESOURCES_DIR = BASE_RESOURCE_PATH;

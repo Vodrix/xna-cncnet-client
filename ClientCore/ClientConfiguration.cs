@@ -13,11 +13,16 @@ namespace ClientCore
         private const string GAME_OPTIONS = "GameOptions.ini";
         private const string CLIENT_DEFS = "ClientDefinitions.ini";
 
+        private const string GLOBALS_INI = "globals.ini";
+        private const string CLIENTGLOBALS_INI = "ClientGlobals.ini";
+
         private static ClientConfiguration _instance;
 
         private readonly IniFile gameOptions_ini;
         private IniFile DTACnCNetClient_ini;
         private readonly IniFile clientDefinitionsIni;
+        private IniFile globalsIni;
+        private IniFile clientGlobalsIni;
 
         protected ClientConfiguration()
         {
@@ -29,6 +34,11 @@ namespace ClientCore
             DTACnCNetClient_ini = new IniFile(ProgramConstants.GetResourcePath() + CLIENT_SETTINGS);
 
             gameOptions_ini = new IniFile(ProgramConstants.GetBaseResourcePath() + GAME_OPTIONS);
+
+            globalsIni = new IniFile(ProgramConstants.GamePath + GLOBALS_INI);
+
+            clientGlobalsIni = new IniFile(ProgramConstants.GetBaseResourcePath() + CLIENTGLOBALS_INI);
+
         }
 
         /// <summary>
@@ -50,6 +60,37 @@ namespace ClientCore
         public void RefreshSettings()
         {
             DTACnCNetClient_ini = new IniFile(ProgramConstants.GetResourcePath() + CLIENT_SETTINGS);
+            RefreshGlobals();
+        }
+
+        public void RefreshGlobals()
+        {
+            FileInfo fileInfo = new FileInfo(ProgramConstants.GamePath + GLOBALS_INI);
+            if (!fileInfo.Exists)
+                return;
+
+            globalsIni = new IniFile(ProgramConstants.GamePath + GLOBALS_INI);
+
+            foreach (var section in globalsIni.GetSections())
+            {
+                var trim = section.Split('.')[0];
+                var value = globalsIni.GetIntValue(section, trim, 0);
+                var oldValue = clientGlobalsIni.GetIntValue("Globals", trim, 0);
+                if (value < oldValue)
+                    value = oldValue;
+                clientGlobalsIni.SetIntValue("Globals", trim, value);
+            }
+
+            clientGlobalsIni.WriteIniFile();
+
+            clientGlobalsIni = new IniFile(ProgramConstants.GetBaseResourcePath() + CLIENTGLOBALS_INI);
+
+            fileInfo.Delete();
+        }
+
+        public int MissionNameToInteger(string MissionName)
+        {
+            return clientGlobalsIni.GetIntValue("Globals", MissionName, 0);
         }
 
         #region Client settings
@@ -248,10 +289,6 @@ namespace ClientCore
         /// List of CnCNet files used to warn the player that their CnCNet install is broken
         /// </summary>
         public string[] CncnetFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "CncnetFiles", string.Empty).Split(',');
-
-        public bool EasterEggMode => clientDefinitionsIni.GetBooleanValue(SETTINGS, "EasterEggMode", false);
-
-        public bool easterEgg = false;
 
         public bool UseNameForMissionImage => clientDefinitionsIni.GetBooleanValue(SETTINGS, "UseNameForMissionImage", false);
 

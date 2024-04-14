@@ -76,7 +76,6 @@ namespace ClientCore
 
             WritePathToRegistry = new BoolSetting(iniFile, OPTIONS, "WriteInstallationPathToRegistry", false);
             DiscordIntegration = new BoolSetting(iniFile, OPTIONS, "DiscordIntegration", true);
-            PlayerName = new StringSetting(iniFile, OPTIONS, "Handle", string.Empty);
             CheckForUpdates = new BoolSetting(iniFile, OPTIONS, "CheckforUpdates", true);
 
             IsFirstRun = new BoolSetting(iniFile, OPTIONS, "IsFirstRun", true);
@@ -142,10 +141,8 @@ namespace ClientCore
         /* MULTIPLAYER (CnCNet) */
         /************************/
 
-        public StringSetting PlayerName { get; private set; }
         public BoolSetting WritePathToRegistry { get; private set; }
         public BoolSetting DiscordIntegration { get; private set; }
-
 
         /********/
         /* MISC */

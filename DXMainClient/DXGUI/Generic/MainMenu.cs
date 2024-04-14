@@ -57,8 +57,6 @@ namespace DTAClient.DXGUI.Generic
         private XNAPanel panelFakeMenu;
 
         private XNALabel lblTime;
-        private XNALabel lblEaster;
-        public bool easterMode = false;
 
         private bool _updateInProgress;
         private bool UpdateInProgress
@@ -82,8 +80,6 @@ namespace DTAClient.DXGUI.Generic
         private bool isMusicFading = false;
 
         private readonly bool isMediaPlayerAvailable;
-
-        private XNAClientButton btnRestart;
 
         private XNAClientButton btnCampaignSelect;
         private XNAClientButton btnLoadGame;
@@ -112,43 +108,39 @@ namespace DTAClient.DXGUI.Generic
             panelFakeMenu = new XNAPanel(WindowManager);
             panelFakeMenu.Name = nameof(panelFakeMenu);
 
-            btnRestart = new XNAClientButton(WindowManager);
-            btnRestart.Name = nameof(btnRestart);
-            btnRestart.LeftClick += BtnRestart_LeftClick;
-
             btnCampaignSelect = new XNAClientButton(WindowManager);
             btnCampaignSelect.Name = nameof(btnCampaignSelect);
             btnCampaignSelect.IdleTexture = AssetLoader.LoadTexture("MainMenu/campaign.png");
             btnCampaignSelect.HoverTexture = AssetLoader.LoadTexture("MainMenu/campaign_c.png");
-            btnCampaignSelect.HoverSoundEffect = new EnhancedSoundEffect("MainMenu/button.wav");
+            btnCampaignSelect.HoverSoundEffect = new EnhancedSoundEffect("button.wav");
             btnCampaignSelect.LeftClick += BtnCampaignSelect_LeftClick;
 
             btnLoadGame = new XNAClientButton(WindowManager);
             btnLoadGame.Name = nameof(btnLoadGame);
             btnLoadGame.IdleTexture = AssetLoader.LoadTexture("MainMenu/loadmission.png");
             btnLoadGame.HoverTexture = AssetLoader.LoadTexture("MainMenu/loadmission_c.png");
-            btnLoadGame.HoverSoundEffect = new EnhancedSoundEffect("MainMenu/button.wav");
+            btnLoadGame.HoverSoundEffect = new EnhancedSoundEffect("button.wav");
             btnLoadGame.LeftClick += BtnLoadGame_LeftClick;
 
             btnOptions = new XNAClientButton(WindowManager);
             btnOptions.Name = nameof(btnOptions);
             btnOptions.IdleTexture = AssetLoader.LoadTexture("MainMenu/options.png");
             btnOptions.HoverTexture = AssetLoader.LoadTexture("MainMenu/options_c.png");
-            btnOptions.HoverSoundEffect = new EnhancedSoundEffect("MainMenu/button.wav");
+            btnOptions.HoverSoundEffect = new EnhancedSoundEffect("button.wav");
             btnOptions.LeftClick += BtnOptions_LeftClick;
 
             btnStatistics = new XNAClientButton(WindowManager);
             btnStatistics.Name = nameof(btnStatistics);
             btnStatistics.IdleTexture = AssetLoader.LoadTexture("MainMenu/statistics.png");
             btnStatistics.HoverTexture = AssetLoader.LoadTexture("MainMenu/statistics_c.png");
-            btnStatistics.HoverSoundEffect = new EnhancedSoundEffect("MainMenu/button.wav");
+            btnStatistics.HoverSoundEffect = new EnhancedSoundEffect("button.wav");
             btnStatistics.LeftClick += BtnStatistics_LeftClick;
 
             var btnExit = new XNAClientButton(WindowManager);
             btnExit.Name = nameof(btnExit);
             btnExit.IdleTexture = AssetLoader.LoadTexture("MainMenu/exitgame.png");
             btnExit.HoverTexture = AssetLoader.LoadTexture("MainMenu/exitgame_c.png");
-            btnExit.HoverSoundEffect = new EnhancedSoundEffect("MainMenu/button.wav");
+            btnExit.HoverSoundEffect = new EnhancedSoundEffect("button.wav");
             btnExit.LeftClick += BtnExit_LeftClick;
 
             lblVersion = new XNALinkLabel(WindowManager);
@@ -178,20 +170,6 @@ namespace DTAClient.DXGUI.Generic
             AddChild(panelSidebar);
             AddChild(lblTime);
 
-            AddChild(btnRestart);
-
-            #region stupid
-            string date = DateTime.Now.ToString("MMdd");
-            if (date.Equals(ProgramConstants.EASTEREGG) & ClientConfiguration.Instance.EasterEggMode)     //no one will ever find this lol
-            {
-                lblEaster = new XNALabel(WindowManager);
-                lblEaster.Name = nameof(lblEaster);
-                lblEaster.Text = "Easter Egg Mode Enabled :)";
-                lblEaster.ClientRectangle = new Microsoft.Xna.Framework.Rectangle(5, 5, 1, 1);
-                easterMode = true;
-                AddChild(lblEaster);
-            }
-            #endregion
             if (!ClientConfiguration.Instance.ModMode)
             {
                 // ModMode disables version tracking and the updater if it's enabled
@@ -252,9 +230,6 @@ namespace DTAClient.DXGUI.Generic
         {
             if (!Initialized)
                 return;
-
-            if (UserINISettings.Instance.PlayerName == "marsu") //no one but me needs this and i can need it even when using non-debug builds so
-                btnRestart.HotKey = Keys.F24;
 
             if (enableHotkeys)
             {
@@ -744,8 +719,6 @@ namespace DTAClient.DXGUI.Generic
 
         private void BtnLoadGame_LeftClick(object sender, EventArgs e) =>
             innerPanel.Show(innerPanel.GameLoadingWindow);
-
-        private void BtnRestart_LeftClick(object sender, EventArgs e) => WindowManager.RestartGame();
 
         private void BtnStatistics_LeftClick(object sender, EventArgs e) =>
             innerPanel.Show(innerPanel.CreditsWindow);
