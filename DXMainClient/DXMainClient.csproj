@@ -419,10 +419,8 @@
   <ItemGroup>
     <Compile Include="Domain\DiscordHandler.cs" />
     <Compile Include="DXGUI\Generic\BattleListbox.cs" />
-    <Compile Include="DXGUI\Generic\CampaignBonus.cs" />
-    <Compile Include="DXGUI\Generic\CampaignRA2.cs" />
+    <Compile Include="DXGUI\Generic\MissionSelect.cs" />
     <Compile Include="DXGUI\Generic\CampaignSelect.cs" />
-    <Compile Include="DXGUI\Generic\CampaignYR.cs" />
     <Compile Include="Domain\Mission.cs" />
     <Compile Include="Domain\SavedGame.cs" />
     <Compile Include="Domain\MainClientConstants.cs" />

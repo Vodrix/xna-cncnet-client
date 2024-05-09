@@ -293,6 +293,7 @@ namespace DTAClient.DXGUI.Generic
                     if (!UserINISettings.Instance.PlayMainMenuMusic)
                         isMusicFading = true;
                 }
+                else
                 {
                     PlayMusic();
                 }

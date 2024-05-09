@@ -65,7 +65,7 @@ namespace DTAClient.DXGUI.Generic
             btnNo.Name = nameof(btnNo);
 
             AddChild(lblDescription);
-            AddChild(lblChangelogLink);
+            //AddChild(lblChangelogLink);
             AddChild(lblUpdateSize);
             AddChild(btnYes);
             AddChild(btnNo);

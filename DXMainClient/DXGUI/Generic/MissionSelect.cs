@@ -11,7 +11,7 @@ using System.IO;
 
 namespace DTAClient.DXGUI.Generic
 {
-    public class CampaignBonus : XNAWindow
+    public class MissionSelect : XNAWindow
     {
         private const int DEFAULT_WIDTH = 650;
         private const int DEFAULT_HEIGHT = 600;
@@ -25,11 +25,14 @@ namespace DTAClient.DXGUI.Generic
             "INI/Hard.ini"
         };
 
-        public CampaignBonus(WindowManager windowManager, DiscordHandler discordHandler) : base(windowManager)
+        private int campaignValue;
+
+        public MissionSelect(int campaign, WindowManager windowManager, DiscordHandler discordHandler) : base(windowManager)
         {
+            campaignValue = campaign;
             this.discordHandler = discordHandler;
         }
-		
+
         private readonly DiscordHandler discordHandler;
 
         private readonly List<Mission> Missions = new List<Mission>();
@@ -48,7 +51,24 @@ namespace DTAClient.DXGUI.Generic
             ClientRectangle = new Rectangle(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT);
             BorderColor = UISettings.ActiveSettings.PanelBorderColor;
 
-            Name = "CampaignBonus";
+            switch (campaignValue)
+            {
+                case 0:
+                    {
+                        Name = "CampaignRA2";
+                        break;
+                    }
+                case 1:
+                    {
+                        Name = "CampaignBonus";
+                        break;
+                    }
+                case 2:
+                    {
+                        Name = "CampaignYR";
+                        break;
+                    }
+            }
 
             var lblSelectCampaign = new XNALabel(WindowManager)
             {
@@ -197,7 +217,7 @@ namespace DTAClient.DXGUI.Generic
             ddSpeedSelector.AllowDropDown = true;
             ddSpeedSelector.SelectedIndex = UserINISettings.Instance.GameSpeed.Value;
             ddSpeedSelector.SelectedIndexChanged += DdSpeedSelector_SelectedIndexChanged;
-			
+
             var lblSpeed = new XNALabel(WindowManager)
             {
                 Name = "lblSpeed",
@@ -221,7 +241,7 @@ namespace DTAClient.DXGUI.Generic
             AddChild(lblEasy);
             AddChild(lblNormal);
             AddChild(lblHard);
-			AddChild(lblSpeed);
+            AddChild(lblSpeed);
 
             // Set control attributes from INI file
             base.Initialize();
@@ -229,7 +249,25 @@ namespace DTAClient.DXGUI.Generic
             // Center on screen
             CenterOnParent();
             trbDifficultySelector.Value = UserINISettings.Instance.Difficulty;
-            ParseBattleIni("INI/" + ClientConfiguration.Instance.BattleFSFileName2);
+
+            switch (campaignValue)
+            {
+                case 0:
+                    {
+                        ParseBattleIni("INI/" + ClientConfiguration.Instance.BattleFSFileName);
+                        break;
+                    }
+                case 1:
+                    {
+                        ParseBattleIni("INI/" + ClientConfiguration.Instance.BattleFSFileName2);
+                        break;
+                    }
+                case 2:
+                    {
+                        ParseBattleIni("INI/" + ClientConfiguration.Instance.BattleFSFileName3);
+                        break;
+                    }
+            }
         }
 
         private void DdSpeedSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -244,7 +282,7 @@ namespace DTAClient.DXGUI.Generic
             UserINISettings.Instance.Difficulty.Value = trbDifficultySelector.Value;
             UserINISettings.Instance.SaveSettings();
         }
-		
+
         private void LbCampaignList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbCampaignList.SelectedIndex == -1)
@@ -391,6 +429,7 @@ namespace DTAClient.DXGUI.Generic
             // Logger.Log("GameProcessExited: Updating Discord Presence.");
             discordHandler?.UpdatePresence();
             ClientConfiguration.Instance.RefreshGlobals();
+
         }
 
         /// <summary>

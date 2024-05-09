@@ -22,9 +22,9 @@ namespace DTAClient.DXGUI.Generic
 
         private DiscordHandler discordHandler;
 
-        public CampaignRA2 CampaignRA2;
-        public CampaignBonus CampaignBonus;
-        public CampaignYR CampaignYR;
+        public MissionSelect CampaignRA2;
+        public MissionSelect CampaignBonus;
+        public MissionSelect CampaignYR;
         public CampaignSelect CampaignSelect;
         public GameLoadingWindow GameLoadingWindow;
         public CreditsWindow CreditsWindow;
@@ -45,13 +45,13 @@ namespace DTAClient.DXGUI.Generic
             CampaignSelect = new CampaignSelect(WindowManager);
             AddChild(CampaignSelect);
 
-            CampaignRA2 = new CampaignRA2(WindowManager, discordHandler);
+            CampaignRA2 = new MissionSelect(0, WindowManager, discordHandler);
             AddChild(CampaignRA2);
 
-            CampaignBonus = new CampaignBonus(WindowManager, discordHandler);
+            CampaignBonus = new MissionSelect(1, WindowManager, discordHandler);
             AddChild(CampaignBonus);
 
-            CampaignYR = new CampaignYR(WindowManager, discordHandler);
+            CampaignYR = new MissionSelect(2, WindowManager, discordHandler);
             AddChild(CampaignYR);
 
             GameLoadingWindow = new GameLoadingWindow(WindowManager, discordHandler);
