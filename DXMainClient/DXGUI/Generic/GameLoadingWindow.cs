@@ -113,8 +113,6 @@ namespace DTAClient.DXGUI.Generic
             sw.WriteLine("Scenario=spawnmap.ini");
             sw.WriteLine("SaveGameName=" + sg.FileName);
             sw.WriteLine("LoadSaveGame=Yes");
-            sw.WriteLine("SidebarHack=" + ClientConfiguration.Instance.SidebarHack);
-            sw.WriteLine("CustomLoadScreen=" + LoadingScreenController.GetLoadScreenName("g"));
             sw.WriteLine("GameSpeed=" + UserINISettings.Instance.GameSpeed);
             sw.WriteLine();
             sw.Close();

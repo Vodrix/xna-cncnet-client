@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CnCNet")]
 [assembly: AssemblyProduct("CnCNet")]
-[assembly: AssemblyCopyright("Copyright © CnCNet, Rampastring 2011-2022")]
+[assembly: AssemblyCopyright("Copyright © CnCNet, Rampastring 2011-2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

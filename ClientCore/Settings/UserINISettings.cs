@@ -48,17 +48,17 @@ namespace ClientCore
             BackBufferInVRAM = new BoolSetting(iniFile, VIDEO, "UseGraphicsPatch", true);
 #endif
 
-            IngameScreenWidth = new IntSetting(iniFile, VIDEO, "ScreenWidth", 1024);
-            IngameScreenHeight = new IntSetting(iniFile, VIDEO, "ScreenHeight", 768);
+            IngameScreenWidth = new IntSetting(iniFile, VIDEO, "ScreenWidth", Screen.PrimaryScreen.Bounds.Width);
+            IngameScreenHeight = new IntSetting(iniFile, VIDEO, "ScreenHeight", Screen.PrimaryScreen.Bounds.Height);
             ClientTheme = new StringSetting(iniFile, OPTIONS, "Theme", string.Empty);
             DetailLevel = new IntSetting(iniFile, OPTIONS, "DetailLevel", 2);
             Renderer = new StringSetting(iniFile, COMPATIBILITY, "Renderer", string.Empty);
             WindowedMode = new BoolSetting(iniFile, VIDEO, WINDOWED_MODE_KEY, false);
             BorderlessWindowedMode = new BoolSetting(iniFile, VIDEO, "NoWindowFrame", false);
 
-            ClientResolutionX = new IntSetting(iniFile, VIDEO, "ClientResolutionX", Screen.PrimaryScreen.Bounds.Width);
-            ClientResolutionY = new IntSetting(iniFile, VIDEO, "ClientResolutionY", Screen.PrimaryScreen.Bounds.Height);
-            BorderlessWindowedClient = new BoolSetting(iniFile, VIDEO, "BorderlessWindowedClient", true);
+            ClientResolutionX = new IntSetting(iniFile, VIDEO, "ClientResolutionX", 1280);
+            ClientResolutionY = new IntSetting(iniFile, VIDEO, "ClientResolutionY", 800);
+            BorderlessWindowedClient = new BoolSetting(iniFile, VIDEO, "BorderlessWindowedClient", false);
             ClientFPS = new IntSetting(iniFile, VIDEO, "ClientFPS", 60);
 
             ScoreVolume = new DoubleSetting(iniFile, AUDIO, "ScoreVolume", 0.7);
@@ -79,15 +79,14 @@ namespace ClientCore
             CheckForUpdates = new BoolSetting(iniFile, OPTIONS, "CheckforUpdates", true);
 
             IsFirstRun = new BoolSetting(iniFile, OPTIONS, "IsFirstRun", true);
-            SearchMixes = new BoolSetting(iniFile, OPTIONS, "SearchMixes", true);
+            SearchForMixes = new BoolSetting(iniFile, OPTIONS, "SearchMixes", true);
             WineCheck = new BoolSetting(iniFile, OPTIONS, "WineChecked", false);
             Difficulty = new IntSetting(iniFile, OPTIONS, "Difficulty", 1);
             ScrollDelay = new IntSetting(iniFile, OPTIONS, "ScrollDelay", 4);
-            GameSpeed = new IntSetting(iniFile, OPTIONS, "GameSpeed", 1);
+            GameSpeed = new IntSetting(iniFile, OPTIONS, "GameSpeed", 2);
             DefaultGameSpeed = new IntSetting(iniFile, "Phobos", "CampaignDefaultGameSpeed", 4);
             ForceLowestDetailLevel = new BoolSetting(iniFile, VIDEO, "ForceLowestDetailLevel", false);
             MinimizeWindowsOnGameStart = new BoolSetting(iniFile, OPTIONS, "MinimizeWindowsOnGameStart", true);
-            AutoRemoveUnderscoresFromName = new BoolSetting(iniFile, OPTIONS, "AutoRemoveUnderscoresFromName", true);
         }
 
 
@@ -150,7 +149,7 @@ namespace ClientCore
 
         public BoolSetting CheckForUpdates { get; private set; }
         public BoolSetting IsFirstRun { get; private set; }
-        public BoolSetting SearchMixes { get; private set; }
+        public BoolSetting SearchForMixes { get; private set; }
         public BoolSetting WineCheck { get; private set; }
         public IntSetting Difficulty { get; private set; }
 
@@ -163,8 +162,6 @@ namespace ClientCore
         public BoolSetting ForceLowestDetailLevel { get; private set; }
 
         public BoolSetting MinimizeWindowsOnGameStart { get; private set; }
-
-        public BoolSetting AutoRemoveUnderscoresFromName { get; private set; }
 
         public void SetValue(string section, string key, string value)
        => SettingsIni.SetStringValue(section, key, value);

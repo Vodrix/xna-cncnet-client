@@ -1,5 +1,4 @@
 ﻿using ClientCore;
-using Rampastring.Tools;
 
 namespace DTAClient.Domain
 {
@@ -11,9 +10,6 @@ namespace DTAClient.Domain
         public static string CREDITS_URL = "http://rampastring.cncnet.org/TS/Credits.txt";
 
         public static string SUPPORT_URL_SHORT = "www.cncnet.org";
-
-        public static int MAP_CELL_SIZE_X = 48;
-        public static int MAP_CELL_SIZE_Y = 24;
 
         public static OSVersion OSId = OSVersion.UNKNOWN;
 
@@ -29,9 +25,6 @@ namespace DTAClient.Domain
             SUPPORT_URL_SHORT = clientConfiguration.ShortSupportURL;
 
             CREDITS_URL = clientConfiguration.CreditsURL;
-
-            MAP_CELL_SIZE_X = clientConfiguration.MapCellSizeX;
-            MAP_CELL_SIZE_Y = clientConfiguration.MapCellSizeY;
 
             if (string.IsNullOrEmpty(GAME_NAME_SHORT))
                 throw new ClientConfigurationException("LocalGame is set to an empty value.");

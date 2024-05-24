@@ -1,14 +1,13 @@
 ﻿using ClientCore;
 using ClientCore.CnCNet5;
 using ClientGUI;
+using ClientUpdater;
 using DTAClient.Domain;
-
 using DTAConfig;
 using Microsoft.Xna.Framework;
+using Rampastring.Tools;
 using Rampastring.XNAUI;
 using System.Threading.Tasks;
-using Rampastring.Tools;
-using ClientUpdater;
 using System.Windows.Forms;
 
 namespace DTAClient.DXGUI.Generic
@@ -33,13 +32,8 @@ namespace DTAClient.DXGUI.Generic
 
             CenterOnParent();
 
-            bool initUpdater = !ClientConfiguration.Instance.ModMode;
-
-            if (initUpdater)
-            {
-                updaterInitTask = new Task(InitUpdater);
-                updaterInitTask.Start();
-            }
+            updaterInitTask = new Task(InitUpdater);
+            updaterInitTask.Start();
 
             if (Cursor.Visible)
             {
@@ -62,8 +56,7 @@ namespace DTAClient.DXGUI.Generic
 
         private void Finish()
         {
-            ProgramConstants.GAME_VERSION = ClientConfiguration.Instance.ModMode ?
-                "N/A" : Updater.GameVersion;
+            ProgramConstants.GAME_VERSION = Updater.GameVersion;
 
             DiscordHandler discordHandler = null;
             if (!string.IsNullOrEmpty(ClientConfiguration.Instance.DiscordAppId))

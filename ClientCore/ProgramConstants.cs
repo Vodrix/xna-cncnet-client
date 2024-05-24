@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ClientCore
 {
@@ -28,7 +26,7 @@ namespace ClientCore
         public const int GAME_ID_MAX_LENGTH = 4;
 
         public static string BASE_RESOURCE_PATH = "Resources/";
-        public static string RESOURCES_DIR = BASE_RESOURCE_PATH;
+        public static string RESOURCES_DIR = BASE_RESOURCE_PATH;    //"Resources/" + themePath
 
         public static bool IsInGame { get; set; }
 

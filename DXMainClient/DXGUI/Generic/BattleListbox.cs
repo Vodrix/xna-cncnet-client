@@ -1,9 +1,7 @@
 ﻿using ClientCore;
-using ClientGUI;
 using DTAClient.Domain;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Rampastring.Tools;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 
@@ -60,9 +58,9 @@ namespace DTAClient.DXGUI.Generic
         {
             base.DrawListBoxItem(index, y);
 
-            var lbItem = Items[index];
+            XNAListBoxItem lbItem = Items[index];
 
-            var mission = (Mission)lbItem.Tag;
+            Mission mission = (Mission)lbItem.Tag;
 
             Texture2D rankTexture = DifficultyRankToTexture(MissionToDifficultyRank(mission.Scenario.ToString().Split('.')[0]));
             if (rankTexture != null)

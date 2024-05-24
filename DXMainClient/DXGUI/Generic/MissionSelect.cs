@@ -250,7 +250,7 @@ namespace DTAClient.DXGUI.Generic
             CenterOnParent();
             trbDifficultySelector.Value = UserINISettings.Instance.Difficulty;
 
-            switch (campaignValue)
+            switch (campaignValue)  //the more versatile of doing this would be to read everything from a unique ini
             {
                 case 0:
                     {
@@ -312,19 +312,8 @@ namespace DTAClient.DXGUI.Generic
             btnLaunch.AllowClick = true;
             btnLaunch.IdleTexture = AssetLoader.LoadTexture("LaunchIdle.png");
 
-            string MissionImage;
-
-            if (ClientConfiguration.Instance.UseNameForMissionImage)
-            {
-                MissionImage = string.Format("{0}.png", mission.Scenario.Substring(0, mission.Scenario.Length - 4));
-                //example filename "ALLIES07.png" meaning that it's whatever map is called that in SPMapsINI, which is allied 7 ra2
-                //doesn't work if there are multiple of the same name
-            }
-            else
-            {
-                MissionImage = string.Format("MissionImage1{0}.png", lbCampaignList.SelectedIndex.ToString("00"));
-                //example filename "MissionImage107.png" meaning 7th listed entry which is allied 7, soviet 1 is 14 because 13 is the barrier between
-            }
+            string MissionImage = string.Format("{0}.png", mission.Scenario.Substring(0, mission.Scenario.Length - 4));
+            //example filename "ALLIES07.png" meaning that it's whatever map is called that in the battle.ini. (allied 7 ra2)
 
             if (File.Exists(ProgramConstants.GetBaseResourcePath() + MissionImage))
                 tbMissionImage.BackgroundTexture = AssetLoader.LoadTexture(MissionImage);
@@ -364,7 +353,7 @@ namespace DTAClient.DXGUI.Generic
             IniFile difficultyIni = new IniFile(ProgramConstants.GamePath + DifficultyIniPaths[trbDifficultySelector.Value]);
             string difficultyName = DifficultyNames[trbDifficultySelector.Value];
 
-            IniFile NormalINI = new IniFile("INI/" + ClientConfiguration.Instance.Rulesmd);
+            IniFile NormalINI = new IniFile("INI/" + ClientConfiguration.Instance.RulesPath);
 
             if (File.Exists(ProgramConstants.GamePath + DifficultyIniPaths[trbDifficultySelector.Value]))
                 IniFile.ConsolidateIniFiles(NormalINI, difficultyIni);
@@ -386,11 +375,8 @@ namespace DTAClient.DXGUI.Generic
             else
                 swriter.WriteLine("Scenario=" + mission.Scenario);
             swriter.WriteLine("GameSpeed=" + UserINISettings.Instance.GameSpeed);
-            swriter.WriteLine("Firestorm=" + mission.RequiredAddon);
-            swriter.WriteLine("CustomLoadScreen=" + LoadingScreenController.GetLoadScreenName(mission.Side.ToString()));
             swriter.WriteLine("IsSinglePlayer=Yes");
-            swriter.WriteLine("SidebarHack=" + ClientConfiguration.Instance.SidebarHack);
-            swriter.WriteLine("Side=" + mission.Side);
+            swriter.WriteLine("Side=" + 0); //it's zeroes all the way down
             swriter.WriteLine("BuildOffAlly=" + mission.BuildOffAlly);
             swriter.WriteLine("DifficultyModeHuman=" + (mission.PlayerAlwaysOnNormalDifficulty ? "1" : trbDifficultySelector.Value.ToString()));
             swriter.WriteLine("DifficultyModeComputer=" + GetComputerDifficulty());
@@ -406,7 +392,7 @@ namespace DTAClient.DXGUI.Generic
             UserINISettings.Instance.Difficulty.Value = trbDifficultySelector.Value;
             UserINISettings.Instance.SaveSettings();
 
-            ((MainMenuDarkeningPanel)Parent).Hide();
+            ((MainMenuDarkeningPanel)Parent).Hide();    //after game exit, go back to main menu
 
             discordHandler?.UpdatePresence(mission.GUIName, difficultyName, mission.IconPath, true);
             GameProcessLogic.GameProcessExited += GameProcessExited_Callback;
@@ -426,10 +412,9 @@ namespace DTAClient.DXGUI.Generic
         protected virtual void GameProcessExited()
         {
             GameProcessLogic.GameProcessExited -= GameProcessExited_Callback;
-            // Logger.Log("GameProcessExited: Updating Discord Presence.");
+            Logger.Log("GameProcessExited: Updating Discord Presence.");
             discordHandler?.UpdatePresence();
             ClientConfiguration.Instance.RefreshGlobals();
-
         }
 
         /// <summary>

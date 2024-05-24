@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
-using Localization;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace DTAClient
 {

@@ -10,7 +10,6 @@ namespace ClientCore
         private const string SETTINGS = "Settings";
 
         private const string CLIENT_SETTINGS = "DTACnCNetClient.ini";
-        private const string GAME_OPTIONS = "GameOptions.ini";
         private const string CLIENT_DEFS = "ClientDefinitions.ini";
 
         private const string GLOBALS_INI = "globals.ini";
@@ -18,7 +17,6 @@ namespace ClientCore
 
         private static ClientConfiguration _instance;
 
-        private readonly IniFile gameOptions_ini;
         private IniFile DTACnCNetClient_ini;
         private readonly IniFile clientDefinitionsIni;
         private IniFile globalsIni;
@@ -32,8 +30,6 @@ namespace ClientCore
             clientDefinitionsIni = new IniFile(ProgramConstants.GetBaseResourcePath() + CLIENT_DEFS);
 
             DTACnCNetClient_ini = new IniFile(ProgramConstants.GetResourcePath() + CLIENT_SETTINGS);
-
-            gameOptions_ini = new IniFile(ProgramConstants.GetBaseResourcePath() + GAME_OPTIONS);
 
             globalsIni = new IniFile(ProgramConstants.GamePath + GLOBALS_INI);
 
@@ -141,27 +137,13 @@ namespace ClientCore
 
         #endregion
 
-        #region Game options
-
-        public string Sides => gameOptions_ini.GetStringValue(GENERAL, nameof(Sides), "GDI,Nod,Allies,Soviet");
-
-        public string InternalSideIndices => gameOptions_ini.GetStringValue(GENERAL, nameof(InternalSideIndices), string.Empty);
-
-        public string SpectatorInternalSideIndex => gameOptions_ini.GetStringValue(GENERAL, nameof(SpectatorInternalSideIndex), string.Empty);
-
-        #endregion
-
         #region Client definitions
 
         public string DiscordAppId => clientDefinitionsIni.GetStringValue(SETTINGS, "DiscordAppId", string.Empty);
 
-        public int LoadingScreenCount => clientDefinitionsIni.GetIntValue(SETTINGS, "LoadingScreenCount", 2);
-
         public int ThemeCount => clientDefinitionsIni.GetSectionKeys("Themes").Count;
 
         public string LocalGame => clientDefinitionsIni.GetStringValue(SETTINGS, "LocalGame", "DTA");
-
-        public bool SidebarHack => clientDefinitionsIni.GetBooleanValue(SETTINGS, "SidebarHack", false);
 
         public int MinimumRenderWidth => clientDefinitionsIni.GetIntValue(SETTINGS, "MinimumRenderWidth", 1280);
 
@@ -183,15 +165,13 @@ namespace ClientCore
 
         public string BattleFSFileName3 => clientDefinitionsIni.GetStringValue(SETTINGS, "BattleName3", "Battle3.ini");
 
-        public string Rulesmd => clientDefinitionsIni.GetPathStringValue(SETTINGS, "RulesPath", "Normal.ini");
+        public string RulesPath => clientDefinitionsIni.GetPathStringValue(SETTINGS, "RulesPath", "Normal.ini");
 
-        public string AlliedBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "AlliedBrutalPath", "Allied.ini");
+        public string AlliedBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "AlliedBrutalPath", "Insane.ini");
 
-        public string SovietBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "SovietBrutalPath", "Soviet.ini");
+        public string SovietBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "SovietBrutalPath", "Insane.ini");
 
-        public string YuriBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "YuriBrutalPath", "Yuri.ini");
-
-        public bool ModMode => clientDefinitionsIni.GetBooleanValue(SETTINGS, "ModMode", false);
+        public string YuriBrutalLocation => clientDefinitionsIni.GetPathStringValue(SETTINGS, "YuriBrutalPath", "Insane.ini");
 
         public string LongGameName => clientDefinitionsIni.GetStringValue(SETTINGS, "LongGameName", "Tiberian Sun");
 
@@ -200,10 +180,6 @@ namespace ClientCore
         public string ChangelogURL => clientDefinitionsIni.GetStringValue(SETTINGS, "ChangelogURL", "https://discord.gg/AzK2cCs");
 
         public string CreditsURL => clientDefinitionsIni.GetStringValue(SETTINGS, "CreditsURL", "http://www.moddb.com/mods/the-dawn-of-the-tiberium-age/tutorials/credits#Rampastring");
-
-        public int MapCellSizeX => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeX", 48);
-
-        public int MapCellSizeY => clientDefinitionsIni.GetIntValue(SETTINGS, "MapCellSizeY", 24);
 
         public string[] GetThemeInfoFromIndex(int themeIndex) => clientDefinitionsIni.GetStringValue("Themes", themeIndex.ToString(), ",").Split(',');
 
@@ -283,14 +259,12 @@ namespace ClientCore
         /// <summary>
         /// What number to use to count above allowed expandmd mixes.
         /// </summary>
-        public int MixNum => clientDefinitionsIni.GetIntValue(SETTINGS, "MixNum", 3);
+        public int MixNum => clientDefinitionsIni.GetIntValue(SETTINGS, "MixNum", 4);
 
         /// <summary>
         /// List of CnCNet files used to warn the player that their CnCNet install is broken
         /// </summary>
         public string[] CncnetFiles => clientDefinitionsIni.GetStringValue(SETTINGS, "CncnetFiles", string.Empty).Split(',');
-
-        public bool UseNameForMissionImage => clientDefinitionsIni.GetBooleanValue(SETTINGS, "UseNameForMissionImage", false);
 
         #endregion
 

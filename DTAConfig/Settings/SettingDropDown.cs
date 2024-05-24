@@ -1,8 +1,6 @@
 ﻿using ClientCore;
-using ClientGUI;
 using Rampastring.Tools;
 using Rampastring.XNAUI;
-using Rampastring.XNAUI.XNAControls;
 
 namespace DTAConfig.Settings
 {

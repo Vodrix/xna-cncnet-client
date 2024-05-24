@@ -2,7 +2,6 @@ using ClientCore;
 using ClientGUI;
 
 using Localization;
-using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Rampastring.Tools;

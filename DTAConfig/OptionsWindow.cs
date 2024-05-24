@@ -1,14 +1,13 @@
 ﻿using ClientCore;
 using ClientCore.CnCNet5;
 using ClientGUI;
+using ClientUpdater;
 using DTAConfig.OptionPanels;
 using Localization;
 using Microsoft.Xna.Framework;
 using Rampastring.Tools;
 using Rampastring.XNAUI;
-using Rampastring.XNAUI.XNAControls;
 using System;
-using ClientUpdater;
 
 namespace DTAConfig
 {
@@ -77,7 +76,7 @@ namespace DTAConfig
                 //componentsPanel
             };
 
-            if (ClientConfiguration.Instance.ModMode || Updater.UpdateMirrors == null || Updater.UpdateMirrors.Count < 1)
+            if (Updater.UpdateMirrors == null || Updater.UpdateMirrors.Count < 1)
             {
                 tabControl.MakeUnselectable(3);
             }

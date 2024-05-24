@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using ClientGUI;
+﻿using ClientGUI;
 using Localization;
 using Microsoft.Xna.Framework;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
+using System;
+using System.Diagnostics;
 
 namespace DTAClient.DXGUI.Generic
 {

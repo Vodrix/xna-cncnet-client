@@ -10,7 +10,6 @@ using Rampastring.XNAUI;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace DTAClient.DXGUI
@@ -141,7 +140,6 @@ namespace DTAClient.DXGUI
             settings.ButtonTextColor = settings.AltColor;
             settings.ButtonHoverColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.ButtonHoverColor);
             settings.TextColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.UILabelColor);
-            //settings.WindowBorderColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.WindowBorderColor);
             settings.PanelBorderColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.PanelBorderColor);
             settings.BackgroundColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.AltUIBackgroundColor);
             settings.FocusColor = AssetLoader.GetColorFromString(ClientConfiguration.Instance.ListBoxFocusColor);

@@ -1,7 +1,7 @@
-﻿using System;
-using ClientGUI;
+﻿using ClientGUI;
 using Rampastring.Tools;
 using Rampastring.XNAUI;
+using System;
 
 namespace DTAConfig.Settings
 {

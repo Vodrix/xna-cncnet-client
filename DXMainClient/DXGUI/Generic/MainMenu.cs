@@ -1,5 +1,6 @@
 using ClientCore;
 using ClientGUI;
+using ClientUpdater;
 using DTAClient.Domain;
 using DTAConfig;
 using Localization;
@@ -12,11 +13,10 @@ using Rampastring.XNAUI.XNAControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using ClientUpdater;
-using System.Drawing;
 using System.Threading.Tasks;
 
 namespace DTAClient.DXGUI.Generic
@@ -170,16 +170,11 @@ namespace DTAClient.DXGUI.Generic
             AddChild(panelSidebar);
             AddChild(lblTime);
 
-            if (!ClientConfiguration.Instance.ModMode)
-            {
-                // ModMode disables version tracking and the updater if it's enabled
+            AddChild(lblVersion);
+            AddChild(lblUpdateStatus);
 
-                AddChild(lblVersion);
-                AddChild(lblUpdateStatus);
-
-                Updater.FileIdentifiersUpdated += Updater_FileIdentifiersUpdated;
-                Updater.OnCustomComponentsOutdated += Updater_OnCustomComponentsOutdated;
-            }
+            Updater.FileIdentifiersUpdated += Updater_FileIdentifiersUpdated;
+            Updater.OnCustomComponentsOutdated += Updater_OnCustomComponentsOutdated;
 
             base.Initialize(); // Read control attributes from INI
 
@@ -353,7 +348,7 @@ namespace DTAClient.DXGUI.Generic
 
         private void ForbiddenMessageBox_YesClicked(XNAMessageBox messageBox)
         {
-            UserINISettings.Instance.SearchMixes.Value = false;
+            UserINISettings.Instance.SearchForMixes.Value = false;
             UserINISettings.Instance.SaveSettings();
             innerPanel.Hide();
         }
@@ -456,21 +451,18 @@ namespace DTAClient.DXGUI.Generic
 
             PlayMusic();
 
-            if (!ClientConfiguration.Instance.ModMode)
+            if (Updater.UpdateMirrors.Count < 1)
             {
-                if (Updater.UpdateMirrors.Count < 1)
-                {
-                    lblUpdateStatus.Text = "No update download mirrors available.".L10N("UI:Main:NoUpdateMirrorsAvailable");
-                    lblUpdateStatus.DrawUnderline = false;
-                }
-                else if (UserINISettings.Instance.CheckForUpdates)
-                {
-                    CheckForUpdates();
-                }
-                else
-                {
-                    lblUpdateStatus.Text = "Click to check for updates.".L10N("UI:Main:ClickToCheckUpdate");
-                }
+                lblUpdateStatus.Text = "No update download mirrors available.".L10N("UI:Main:NoUpdateMirrorsAvailable");
+                lblUpdateStatus.DrawUnderline = false;
+            }
+            else if (UserINISettings.Instance.CheckForUpdates)
+            {
+                CheckForUpdates();
+            }
+            else
+            {
+                lblUpdateStatus.Text = "Click to check for updates.".L10N("UI:Main:ClickToCheckUpdate");
             }
 
             CheckRequiredFiles();
@@ -483,7 +475,7 @@ namespace DTAClient.DXGUI.Generic
             {
                 CheckIfFirstRun();
             }
-            if (UserINISettings.Instance.SearchMixes.Value)
+            if (UserINISettings.Instance.SearchForMixes.Value)
             {
                 CheckForbiddenFiles();
             }
@@ -859,7 +851,7 @@ namespace DTAClient.DXGUI.Generic
             if (UserINISettings.Instance.StopMusicOnMenu)
                 PlayMusic();
 
-            if (!ClientConfiguration.Instance.ModMode && UserINISettings.Instance.CheckForUpdates)
+            if (UserINISettings.Instance.CheckForUpdates)
             {
                 // Re-check for updates
 

@@ -1,4 +1,5 @@
 ﻿using ClientGUI;
+using ClientUpdater;
 using DTAClient.Domain;
 using Localization;
 using Microsoft.Xna.Framework;
@@ -6,7 +7,6 @@ using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 using System;
 using System.Runtime.InteropServices;
-using ClientUpdater;
 
 namespace DTAClient.DXGUI.Generic
 {

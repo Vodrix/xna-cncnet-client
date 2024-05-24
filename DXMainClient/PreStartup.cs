@@ -1,5 +1,6 @@
 ﻿using ClientCore;
 using DTAClient.Domain;
+using Localization;
 using Rampastring.Tools;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Windows.Forms;
-using Localization;
 
 namespace DTAClient
 {
@@ -108,11 +108,6 @@ namespace DTAClient
             {
                 Logger.Log("Failed to generate the translation stub. " + ex.Message);
             }
-
-            // Delete obsolete files from old target project versions
-
-            File.Delete(ProgramConstants.GamePath + "mainclient.log");
-            File.Delete(ProgramConstants.GamePath + "launchupdt.dat");
             try
             {
                 File.Delete(ProgramConstants.GamePath + "wsock32.dll");

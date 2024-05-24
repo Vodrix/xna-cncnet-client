@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Localization;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Rampastring.XNAUI;
 using Rampastring.XNAUI.XNAControls;
 using System;
-using Localization;
 
 namespace ClientGUI
 {
